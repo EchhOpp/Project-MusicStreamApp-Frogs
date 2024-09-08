@@ -2,9 +2,9 @@
 ## About this project
 - This project for education (Test)
 -  Project management tools:
-  - [Trello](https://trello.com/invite/b/66d3022730b35a2365395cbc/ATTIe30bff57ba25f8e4c56dc641cbe3309d63642856/musicstreamapp-frogs)
-  - [Google Drive](https://drive.google.com/drive/folders/1kA0RptyJgVOYx_8W1230PfwiSz_NrfPq?usp=sharing)
-  - [Figma](https://www.figma.com/design/CijbHZSQsMWlryimcF99Gp/Project-MusicStreamApp-Frogs?node-id=37-1049&t=bULA637HSccZNW15-1)
+    - [Trello](https://trello.com/invite/b/66d3022730b35a2365395cbc/ATTIe30bff57ba25f8e4c56dc641cbe3309d63642856/musicstreamapp-frogs)
+    - [Google Drive](https://drive.google.com/drive/folders/1kA0RptyJgVOYx_8W1230PfwiSz_NrfPq?usp=sharing)
+    - [Figma](https://www.figma.com/design/CijbHZSQsMWlryimcF99Gp/Project-MusicStreamApp-Frogs?node-id=37-1049&t=bULA637HSccZNW15-1)
 
 ## General information
 - Lecturer: Mr. Nguyễn Trọng Tiến and Mr. Nguyễn Văn Thắng
