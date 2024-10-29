@@ -3,24 +3,39 @@
  * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://reactnativeunistyles.vercel.app), etc.
  */
 
-const tintColorLight = '#0a7ea4';
-const tintColorDark = '#fff';
-
 export const Colors = {
-  light: {
-    text: '#11181C',
-    background: '#fff',
-    tint: tintColorLight,
-    icon: '#687076',
-    tabIconDefault: '#687076',
-    tabIconSelected: tintColorLight,
+  primary: {
+    main: '#DF3131',
+    tint1: '#FBEBE8', 
+    tint3: '#F4C5BA',
+    tint5: '#ED9E8C',
+    tint7: '#E6785E',
+    shade2: '#AD3F26',
+    shade4: '#7B2D1B',
+    shade6: '#4A1B10',
+    shade8: '#180905',
   },
-  dark: {
-    text: '#ECEDEE',
-    background: '#151718',
-    tint: tintColorDark,
-    icon: '#9BA1A6',
-    tabIconDefault: '#9BA1A6',
-    tabIconSelected: tintColorDark,
+  secondary: {
+    main: '#F2BF08',
+    tint1: '#FDFBEB',
+    tint3: '#FAF4C3',
+    tint5: '#F7EC9B',
+    tint7: '#F4E573',
+    shade2: '#BBAC3B',
+    shade4: '#857B2A',
+    shade6: '#504A19',
+    shade8: '#1A1808',
   },
+  neutral: {
+    white: '#FFFFFF',
+    black: '#000000',
+  },
+  state: {
+    tint: '#F6CBCB',
+    shade: '#DF2121',
+    tint1: '#D6F6CB',
+    shade1: '#28BD37',
+    tint2: '#F6F2CB',
+    shade2: '#DABC1D',
+  }
 };
