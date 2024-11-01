@@ -1,11 +1,12 @@
 import { StyleSheet, SafeAreaView } from 'react-native'
 import React from 'react'
 import GetStart from './sign_in/GetStart'
+import SignIn from './sign_in/SignIn'
 
 const _layout = () => {
   return (
     <SafeAreaView>
-      <GetStart></GetStart>
+      <SignIn></SignIn>
     </SafeAreaView>
   )
 }
