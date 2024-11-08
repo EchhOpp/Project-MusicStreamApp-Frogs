@@ -10,13 +10,13 @@ const GetStartCount = () => {
       style={styles.container}
     >
       <View style={styles.body}>
-        <View style={styles.btn}>
-          <TouchableOpacity>
+        <View >
+          <TouchableOpacity style={styles.btn_login}>
             <Text style={styles.text}>Sign in</Text>
           </TouchableOpacity>
         </View>
-        <View style={styles.btn}>
-          <TouchableOpacity>
+        <View >
+          <TouchableOpacity style={styles.btn}>
             <Text style={styles.text}>Sign up for free</Text>
           </TouchableOpacity>
         </View>

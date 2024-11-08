@@ -18,10 +18,8 @@ const styles = StyleSheet.create({
 
     btn: {
         width: width * 0.9,
-        height: '6%',
+        paddingVertical: '4%',
         backgroundColor: Colors.primary.main,
-        justifyContent: 'center',
-        alignItems: 'center',
         borderRadius: 50,
         marginBottom: 20,
     },
@@ -29,6 +27,7 @@ const styles = StyleSheet.create({
     text: {
         color: Colors.neutral.white,
         fontSize: 20,
+        textAlign: 'center',
     },
     layout: {
         flexDirection: 'row',
@@ -55,6 +54,18 @@ const styles = StyleSheet.create({
     },
     hor: {
         marginRight: 10,
+    },
+
+    btn_login: {
+        width: width * 0.9,
+        paddingVertical: '4%',
+        backgroundColor: 'rgba(255, 255, 255, 0.5)',
+        borderRadius: 50,
+        marginBottom: 20,
+    },
+
+    btnPressed: {
+        
     },
 
     btnLoginWith: {
