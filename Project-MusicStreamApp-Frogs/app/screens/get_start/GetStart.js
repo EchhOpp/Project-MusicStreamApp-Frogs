@@ -1,13 +1,13 @@
 import { StyleSheet, Text, View, ImageBackground, TouchableOpacity } from 'react-native';
 import React from 'react';
-import styles from '../SignIn/styles/GetStart';
+import styles from './styles/GetStart';
 
 const GetStart = (
   { navigation }
 ) => {
   return (
     <ImageBackground 
-      source={require('../../assets/images/background_sign.png')} 
+      source={require('../../../assets/images/background_sign.png')} 
       style={styles.container}
     >
       <View style={styles.body}>

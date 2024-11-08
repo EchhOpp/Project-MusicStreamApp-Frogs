@@ -7,11 +7,11 @@ const SignUp = () => {
     <SafeAreaView style={styles.container}>
             <View style={styles.header}>
                 <TouchableOpacity style={styles.navigateLeft}>
-                    <Image source={require('../../assets/images/Chevron-Left.png')} />
+                    <Image source={require('../../../assets/images/Chevron-Left.png')} />
                     <Text style={[styles.colortext, styles.boldtext, styles.fonttext16]}>Sign up</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.menu3}>
-                    <Image source={require('../../assets/images/Menu-3.png')} />
+                    <Image source={require('../../../assets/images/Menu-3.png')} />
                 </TouchableOpacity>
             </View>
             <View style={styles.body}>
@@ -25,9 +25,9 @@ const SignUp = () => {
             </View>
             <View style={styles.footer}>
                 <View style={styles.footerText}>
-                    <Image source={require('../../assets/images/Line24.png')} style={styles.footerImg} />
+                    <Image source={require('../../../assets/images/Line24.png')} style={styles.footerImg} />
                     <Text style={[styles.colortext, styles.fonttext14]}>Already have an account?</Text>
-                    <Image source={require('../../assets/images/Line24.png')} style={styles.footerImg} />
+                    <Image source={require('../../../assets/images/Line24.png')} style={styles.footerImg} />
                 </View>
                 <TouchableOpacity style={styles.btn}>
                     <Text style={[styles.colortext, styles.fonttext16,styles.boldtext]}>Sign in</Text>

@@ -39,57 +39,57 @@ const SignInStep1 = () => {
                 <Text style={[styles.fonttext24, styles.Artists]}>Artists</Text>
                 <View style={styles.litsAva}>
                     <View style={styles.itemAva}>
-                        <Image source={require('../../assets/images/avatarArtists.png')} style={styles.avaImage} />
+                        <Image source={require('../../../assets/images/avatarArtists.png')} style={styles.avaImage} />
                         <Text style={[styles.fonttext12, styles.colortext]}>The Weeknd</Text>
                     </View>
                     <View style={styles.itemAva}>
-                        <Image source={require('../../assets/images/avatarArtists.png')} style={styles.avaImage} />
+                        <Image source={require('../../../assets/images/avatarArtists.png')} style={styles.avaImage} />
                         <Text style={[styles.fonttext12, styles.colortext]}>The Weeknd</Text>
                     </View>
                     <View style={styles.itemAva}>
-                        <Image source={require('../../assets/images/avatarArtists.png')} style={styles.avaImage} />
-                        <Text style={[styles.fonttext12, styles.colortext]}>The Weeknd</Text>
-                    </View>
-                </View>
-                <View style={styles.litsAva}>
-                    <View style={styles.itemAva}>
-                        <Image source={require('../../assets/images/avatarArtists.png')} style={styles.avaImage} />
-                        <Text style={[styles.fonttext12, styles.colortext]}>The Weeknd</Text>
-                    </View>
-                    <View style={styles.itemAva}>
-                        <Image source={require('../../assets/images/avatarArtists.png')} style={styles.avaImage} />
-                        <Text style={[styles.fonttext12, styles.colortext]}>The Weeknd</Text>
-                    </View>
-                    <View style={styles.itemAva}>
-                        <Image source={require('../../assets/images/avatarArtists.png')} style={styles.avaImage} />
+                        <Image source={require('../../../assets/images/avatarArtists.png')} style={styles.avaImage} />
                         <Text style={[styles.fonttext12, styles.colortext]}>The Weeknd</Text>
                     </View>
                 </View>
                 <View style={styles.litsAva}>
                     <View style={styles.itemAva}>
-                        <Image source={require('../../assets/images/avatarArtists.png')} style={styles.avaImage} />
+                        <Image source={require('../../../assets/images/avatarArtists.png')} style={styles.avaImage} />
                         <Text style={[styles.fonttext12, styles.colortext]}>The Weeknd</Text>
                     </View>
                     <View style={styles.itemAva}>
-                        <Image source={require('../../assets/images/avatarArtists.png')} style={styles.avaImage} />
+                        <Image source={require('../../../assets/images/avatarArtists.png')} style={styles.avaImage} />
                         <Text style={[styles.fonttext12, styles.colortext]}>The Weeknd</Text>
                     </View>
                     <View style={styles.itemAva}>
-                        <Image source={require('../../assets/images/avatarArtists.png')} style={styles.avaImage} />
+                        <Image source={require('../../../assets/images/avatarArtists.png')} style={styles.avaImage} />
                         <Text style={[styles.fonttext12, styles.colortext]}>The Weeknd</Text>
                     </View>
                 </View>
                 <View style={styles.litsAva}>
                     <View style={styles.itemAva}>
-                        <Image source={require('../../assets/images/avatarArtists.png')} style={styles.avaImage} />
+                        <Image source={require('../../../assets/images/avatarArtists.png')} style={styles.avaImage} />
                         <Text style={[styles.fonttext12, styles.colortext]}>The Weeknd</Text>
                     </View>
                     <View style={styles.itemAva}>
-                        <Image source={require('../../assets/images/avatarArtists.png')} style={styles.avaImage} />
+                        <Image source={require('../../../assets/images/avatarArtists.png')} style={styles.avaImage} />
                         <Text style={[styles.fonttext12, styles.colortext]}>The Weeknd</Text>
                     </View>
                     <View style={styles.itemAva}>
-                        <Image source={require('../../assets/images/avatarArtists.png')} style={styles.avaImage} />
+                        <Image source={require('../../../assets/images/avatarArtists.png')} style={styles.avaImage} />
+                        <Text style={[styles.fonttext12, styles.colortext]}>The Weeknd</Text>
+                    </View>
+                </View>
+                <View style={styles.litsAva}>
+                    <View style={styles.itemAva}>
+                        <Image source={require('../../../assets/images/avatarArtists.png')} style={styles.avaImage} />
+                        <Text style={[styles.fonttext12, styles.colortext]}>The Weeknd</Text>
+                    </View>
+                    <View style={styles.itemAva}>
+                        <Image source={require('../../../assets/images/avatarArtists.png')} style={styles.avaImage} />
+                        <Text style={[styles.fonttext12, styles.colortext]}>The Weeknd</Text>
+                    </View>
+                    <View style={styles.itemAva}>
+                        <Image source={require('../../../assets/images/avatarArtists.png')} style={styles.avaImage} />
                         <Text style={[styles.fonttext12, styles.colortext]}>The Weeknd</Text>
                     </View>
                 </View>
