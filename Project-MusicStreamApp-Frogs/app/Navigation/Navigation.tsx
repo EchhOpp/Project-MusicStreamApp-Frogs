@@ -1,19 +1,27 @@
 import * as React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Home from '../sign_in/GetStart';
-import SignIn from '../sign_in/SignIn';
+import { NavigationContainer } from '@react-navigation/native';
+import GetStart from '../Screens/GetStart/GetStart';
+import SignIn from '../Screens/SignIn/SignIn';
 
 const Stack = createNativeStackNavigator();
 
 const Navigation = () => {
     return (
-        <Stack.Navigator initialRouteName="Home">
+    <NavigationContainer independent={true}>
+        <Stack.Navigator initialRouteName="GetStart">
             <Stack.Screen
-                name="Home"
-                component={Home}
+                name="GetStart"
+                component={GetStart}
+                options={{ headerShown: false }}
+            />
+            <Stack.Screen
+                name="SignIn"
+                component={SignIn}
                 options={{ title: 'Welcome' }}
             />
         </Stack.Navigator>
+    </NavigationContainer>
     );
 }
 

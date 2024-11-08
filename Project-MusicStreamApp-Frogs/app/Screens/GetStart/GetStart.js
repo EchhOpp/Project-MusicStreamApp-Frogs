@@ -1,8 +1,10 @@
 import { StyleSheet, Text, View, ImageBackground, TouchableOpacity } from 'react-native';
 import React from 'react';
-import styles from './styles/GetStart';
+import styles from '../SignIn/styles/GetStart';
 
-const Home = () => {
+const GetStart = (
+  { navigation }
+) => {
   return (
     <ImageBackground 
       source={require('../../assets/images/background_sign.png')} 
@@ -13,7 +15,7 @@ const Home = () => {
           <Text style={[styles.colortext, styles.fonttext30, styles.boldtext]} >Open</Text>
           <Text style={[styles.colortext, styles.fonttext30, styles.boldtext]}>the world of music</Text>
         </View>
-        <TouchableOpacity style={styles.btn}>
+        <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('SignIn') }>
           <Text style={[styles.colortext, styles.fonttext18]}>Get Start</Text>
         </TouchableOpacity>
       </View>
@@ -21,4 +23,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default GetStart;
