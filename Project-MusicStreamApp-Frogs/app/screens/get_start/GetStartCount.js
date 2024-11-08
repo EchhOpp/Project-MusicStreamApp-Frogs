@@ -3,7 +3,9 @@ import React from 'react';
 import styles from './styles/GetStartCount';
 import { Ionicons, FontAwesome } from '@expo/vector-icons';
 
-const GetStartCount = () => {
+const GetStartCount = (
+  { navigation }
+) => {
   return (
     <ImageBackground 
       source={require('./images/background_sign.png')}
@@ -11,7 +13,9 @@ const GetStartCount = () => {
     >
       <View style={styles.body}>
         <View >
-          <TouchableOpacity style={styles.btn_login}>
+          <TouchableOpacity style={styles.btn_login}
+            onPress={() => navigation.navigate('SignIn') }
+          >
             <Text style={styles.text}>Sign in</Text>
           </TouchableOpacity>
         </View>
