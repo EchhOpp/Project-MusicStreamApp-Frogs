@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, ImageBackground, TouchableOpacity } from 'react
 import React from 'react';
 import styles from './styles/GetStart';
 
-const GetStart = () => {
+const Home = () => {
   return (
     <ImageBackground 
       source={require('../../assets/images/background_sign.png')} 
@@ -21,4 +21,4 @@ const GetStart = () => {
   );
 };
 
-export default GetStart;
+export default Home;

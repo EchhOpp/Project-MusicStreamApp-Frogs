@@ -1,19 +1,13 @@
-import { StyleSheet, SafeAreaView } from 'react-native'
-import React from 'react'
-import GetStart from './sign_in/GetStart'
-import SignIn from './sign_in/SignIn'
-import SignUp from './sign_in/SignUp'
-import SignInStep1 from './sign_in/SignInStep1'
-import SignInStep2 from './sign_in/SignInStep2'
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import Navigation from './Navigation/Navigation';
 
-const _layout = () => {
+const App = () => {
   return (
-    <SafeAreaView>
-      <SignInStep2></SignInStep2>
-    </SafeAreaView>
-  )
+    <NavigationContainer independent={true}>
+      <Navigation />
+    </NavigationContainer>
+  );
 }
 
-export default _layout
-
-const styles = StyleSheet.create({})
+export default App;
