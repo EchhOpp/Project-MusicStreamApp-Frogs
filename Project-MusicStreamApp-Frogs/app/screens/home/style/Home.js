@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native'
 import { Popins } from '@/constants/Popins';
 import { Colors } from '@/constants/Colors';
-import ListListenMusic from '@/components/ListListenMusic';
+
 
 const styles = StyleSheet.create({
     container: {
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     },
 
     textH2: {
-        fontSize: Popins.Heading5.size,
+        fontSize: Popins.Heading6.size,
     },
 
     btnMore: {
