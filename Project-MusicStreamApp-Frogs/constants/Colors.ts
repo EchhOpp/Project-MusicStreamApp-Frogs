@@ -25,6 +25,7 @@ export const Colors = {
   neutral: {
     white: '#FFFFFF',
     black: '#000000',
+    gray: '#131313',
   },
   state: {
     tint: '#F6CBCB',
