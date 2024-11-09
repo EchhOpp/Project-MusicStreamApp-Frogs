@@ -17,7 +17,7 @@ const ListListenMusic = (
             </View>
         </View>
         <View>
-            <Ionicons name="play-circle" size={24} color="white" />
+            <Ionicons name="ellipsis-vertical" size={24} color="white" />
         </View>
     </TouchableOpacity>
   )

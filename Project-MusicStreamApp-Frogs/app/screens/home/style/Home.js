@@ -39,7 +39,19 @@ const styles = StyleSheet.create({
 
     Color: {
         color: Colors.neutral.white,
-    }
+    },
+
+    // New releases
+    newReleases: {
+        marginTop: 30,
+        marginHorizontal: 20,
+    },
+
+    // Clips
+    clips: {
+        marginTop: 30,
+        marginHorizontal: 20,
+    },
 })
 
 export default styles;
