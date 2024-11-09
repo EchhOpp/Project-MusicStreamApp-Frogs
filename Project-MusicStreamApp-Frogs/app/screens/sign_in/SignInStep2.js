@@ -14,15 +14,15 @@ const SignInStep2 = () => {
             </View>
             <View style={styles.content}>
                 <View style={styles.itemContent}>
-                    <Image source={require('../../assets/images/Board.png')} />
+                    <Image source={require('../../../assets/images/Board.png')} />
                     <Text style={[styles.fonttext16, styles.colortext2,styles.contenttext]}>Choose your genre and artist you like.Choose your genre and artist you like.Choose your genre and artist you like.</Text>
                 </View>
                 <View style={styles.itemContent}>
-                    <Image source={require('../../assets/images/Board.png')} />
+                    <Image source={require('../../../assets/images/Board.png')} />
                     <Text style={[styles.fonttext16, styles.colortext2,styles.contenttext]}>Choose your genre and artist you like.Choose your genre and artist you like.Choose your genre and artist you like.</Text>
                 </View>
                 <View style={styles.itemContent}>
-                    <Image source={require('../../assets/images/Board.png')} />
+                    <Image source={require('../../../assets/images/Board.png')} />
                     <Text style={[styles.fonttext16, styles.colortext2,styles.contenttext]}>Choose your genre and artist you like.Choose your genre and artist you like.Choose your genre and artist you like.</Text>
                 </View>
 
