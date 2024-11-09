@@ -1,7 +1,9 @@
 import { StyleSheet, Text, View, ScrollView, TextInput, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import styles from './styles/SignInStep1'
-const SignInStep1 = () => {
+const SignInStep1 = (
+    { navigation }
+) => {
     return (
         <ScrollView style={styles.container} >
             <View style={styles.header}>
@@ -94,7 +96,9 @@ const SignInStep1 = () => {
                     </View>
                 </View>
             </View>
-            <TouchableOpacity style={styles.btn}>
+            <TouchableOpacity style={styles.btn}
+                onPress={() => navigation.navigate('SignInStep2') }
+            >
                 <Text style={[styles.fonttext16, styles.colortext]}>Get started </Text>
             </TouchableOpacity>
         </ScrollView>

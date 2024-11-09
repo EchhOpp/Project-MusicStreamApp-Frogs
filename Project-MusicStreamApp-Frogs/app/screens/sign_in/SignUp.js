@@ -2,18 +2,11 @@ import {StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Image, TextInput
 import React from 'react'
 import styles  from './styles/SignUp'
 
-const SignUp = () => {
+const SignUp = (
+    { navigation }
+) => {
   return (
     <SafeAreaView style={styles.container}>
-            <View style={styles.header}>
-                <TouchableOpacity style={styles.navigateLeft}>
-                    <Image source={require('../../../assets/images/Chevron-Left.png')} />
-                    <Text style={[styles.colortext, styles.boldtext, styles.fonttext16]}>Sign up</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.menu3}>
-                    <Image source={require('../../../assets/images/Menu-3.png')} />
-                </TouchableOpacity>
-            </View>
             <View style={styles.body}>
                 <View style={styles.viewInputs}>
                     <TextInput style={[styles.input]} placeholder="Email address" placeholderTextColor="#7e7e7e" />
@@ -29,7 +22,9 @@ const SignUp = () => {
                     <Text style={[styles.colortext, styles.fonttext14]}>Already have an account?</Text>
                     <Image source={require('../../../assets/images/Line24.png')} style={styles.footerImg} />
                 </View>
-                <TouchableOpacity style={styles.btn}>
+                <TouchableOpacity style={styles.btn}
+                    onPress={() => navigation.navigate('SignIn') }
+                >
                     <Text style={[styles.colortext, styles.fonttext16,styles.boldtext]}>Sign in</Text>
                 </TouchableOpacity>
 

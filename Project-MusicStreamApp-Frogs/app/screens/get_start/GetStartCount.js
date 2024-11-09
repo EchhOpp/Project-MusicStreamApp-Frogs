@@ -20,7 +20,9 @@ const GetStartCount = (
           </TouchableOpacity>
         </View>
         <View >
-          <TouchableOpacity style={styles.btn}>
+          <TouchableOpacity style={styles.btn}
+           onPress={() => navigation.navigate('SignUp') }
+          >
             <Text style={styles.text}>Sign up for free</Text>
           </TouchableOpacity>
         </View>
