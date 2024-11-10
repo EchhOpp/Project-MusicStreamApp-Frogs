@@ -4,6 +4,9 @@ import Home from '../screens/home/Home';
 import HeaderLeft from '@/components/headerLeft';
 import HeaderRight from '@/components/headerRight';
 import { Colors } from '@/constants/Colors';
+import Search from '../screens/search/Search'
+import SearchHeaderRight from '../screens/search/SearchHeaderRight'
+import SearchHeaderLeft from '../screens/search/SearchHeaderLeft';
 
 const Stack = createNativeStackNavigator();
 
@@ -29,6 +32,25 @@ const HomeStack = () => {
                         <HeaderRight />
                     ),
                 }}
+            />
+            <Stack.Screen
+                name="Search"
+                component={Search}
+                options={{
+                    headerShadowVisible: false,
+                    headerStyle: {
+                        backgroundColor: Colors.neutral.gray,
+                        height: 80,
+                    },
+                    title: '',
+                    headerLeft: () => (
+                        <SearchHeaderLeft />
+                    ),
+                    headerRight: () => (
+                        <SearchHeaderRight />
+                    ),
+                }}
+                
             />
         </Stack.Navigator>
     );
