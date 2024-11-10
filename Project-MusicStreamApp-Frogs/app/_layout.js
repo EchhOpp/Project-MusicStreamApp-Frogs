@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Navigation from './navigation/Navigation';
+import Navigation from './Navigation/Navigation';
 import GetStartCount from './screens/get_start/GetStartCount';
 
 const App = () => {
