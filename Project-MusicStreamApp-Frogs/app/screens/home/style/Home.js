@@ -43,31 +43,61 @@ const styles = StyleSheet.create({
 
     // New releases
     newReleases: {
-        marginTop: 30,
+        marginTop: 40,
         marginHorizontal: 20,
     },
 
     // Clips
     clips: {
-        marginTop: 30,
+        marginTop: 40,
         marginHorizontal: 20,
     },
 
     // Trending songs
     trending: {
-        marginTop: 30,
+        marginTop: 40,
         marginHorizontal: 20,
     },
 
     // Quick pick
     quickPicks: {
-        marginTop: 30,
+        marginTop: 40,
         marginHorizontal: 20,
     },
 
     // Recommended
     recommendedAlbums: {
-        marginTop: 30,
+        marginTop: 40,
+        marginHorizontal: 20,
+    },
+
+    // fromYourLibrary
+    fromYourLibrary: {
+        marginTop: 40,
+        marginHorizontal: 20,
+    },
+
+    // Clips count
+    clipsCount: {
+        marginTop: 40,
+        marginHorizontal: 20,
+    },
+
+    // Forgotten favorites
+    forgottenFavorites: {
+        marginTop: 40,
+        marginHorizontal: 20,
+    },
+
+    // Latest videos
+    latestVideos: {
+        marginTop: 40,
+        marginHorizontal: 20,
+    },
+
+    // Mood & genre
+    moodGenres: {
+        marginTop: 40,
         marginHorizontal: 20,
     },
 })
