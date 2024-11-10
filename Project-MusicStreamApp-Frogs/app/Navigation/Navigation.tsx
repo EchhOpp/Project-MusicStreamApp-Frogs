@@ -89,7 +89,6 @@ const AuthStack = () => {
     );
 };
 
-
 const NavigationTabs = () => {
     return (
         <Tab.Navigator
