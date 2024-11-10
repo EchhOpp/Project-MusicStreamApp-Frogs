@@ -121,6 +121,7 @@ const NavigationTabs = () => {
                 },
             })}
         >
+        
             {/* Tab home */}
             <Tab.Screen name="Home" component={HomeStack} 
                 options={{
