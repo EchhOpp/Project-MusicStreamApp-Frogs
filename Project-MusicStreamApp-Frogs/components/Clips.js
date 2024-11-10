@@ -6,7 +6,7 @@ const Clips = () => {
   return (
     <TouchableOpacity style={styles.container}>
         <Ionicons name="play" size={24} color="white" style={styles.icon}/>
-        <Image source={require('../assets/images/clipstheweeknd.png')}/>
+        <Image source={require('../assets/images/clipstheweeknd.png')} style={styles.img}/>
         <View style={styles.name}>
             <Text style={styles.nameMusic}>Performing “The Hills”</Text>
             <Text style={styles.nameAuthor}>The Weeknd</Text>
@@ -32,6 +32,9 @@ const styles = StyleSheet.create({
         padding: 10,
         borderRadius: 50, 
         fontSize: 16
+    },
+    img: {
+        borderRadius: 10,
     },
     name: {
         position: 'absolute',

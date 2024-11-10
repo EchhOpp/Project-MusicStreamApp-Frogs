@@ -52,6 +52,12 @@ const styles = StyleSheet.create({
         marginTop: 30,
         marginHorizontal: 20,
     },
+
+    // Trending songs
+    trending: {
+        marginTop: 30,
+        marginHorizontal: 20,
+    },
 })
 
 export default styles;
