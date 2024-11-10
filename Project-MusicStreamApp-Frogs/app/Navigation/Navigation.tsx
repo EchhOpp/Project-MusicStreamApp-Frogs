@@ -90,7 +90,6 @@ const AuthStack = () => {
 };
 
 
-
 const NavigationTabs = () => {
     return (
         <Tab.Navigator
@@ -157,6 +156,7 @@ const MainStack = () => {
                 component={NavigationTabs}
                 options={{ headerShown: false }}
             />
+            
         </Stack.Navigator>
     );
 };
@@ -168,5 +168,6 @@ const Navigation = () => {
         </NavigationContainer>
     );
 };
+
 
 export default Navigation;
