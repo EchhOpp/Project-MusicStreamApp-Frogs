@@ -7,7 +7,21 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: Colors.neutral.gray,
+        position: 'relative',
     },
+
+    bottomNav: {
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        backgroundColor: Colors.neutral.gray,
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        paddingVertical: 10,
+    },
+
+    // Header
     listenAgain: {
         marginTop: 20,
         marginHorizontal: 20,
@@ -43,19 +57,61 @@ const styles = StyleSheet.create({
 
     // New releases
     newReleases: {
-        marginTop: 30,
+        marginTop: 40,
         marginHorizontal: 20,
     },
 
     // Clips
     clips: {
-        marginTop: 30,
+        marginTop: 40,
         marginHorizontal: 20,
     },
 
     // Trending songs
     trending: {
-        marginTop: 30,
+        marginTop: 40,
+        marginHorizontal: 20,
+    },
+
+    // Quick pick
+    quickPicks: {
+        marginTop: 40,
+        marginHorizontal: 20,
+    },
+
+    // Recommended
+    recommendedAlbums: {
+        marginTop: 40,
+        marginHorizontal: 20,
+    },
+
+    // fromYourLibrary
+    fromYourLibrary: {
+        marginTop: 40,
+        marginHorizontal: 20,
+    },
+
+    // Clips count
+    clipsCount: {
+        marginTop: 40,
+        marginHorizontal: 20,
+    },
+
+    // Forgotten favorites
+    forgottenFavorites: {
+        marginTop: 40,
+        marginHorizontal: 20,
+    },
+
+    // Latest videos
+    latestVideos: {
+        marginTop: 40,
+        marginHorizontal: 20,
+    },
+
+    // Mood & genre
+    moodGenres: {
+        marginVertical: 40,
         marginHorizontal: 20,
     },
 })
