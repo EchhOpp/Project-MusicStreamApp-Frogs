@@ -157,27 +157,26 @@ const NavigationTabs = () => {
             screenOptions={({ route }) => ({
                 tabBarIcon: ({ color, size }) => {
                     let iconName;
-
+            
                     if (route.name === 'Home') {
                         iconName = 'home';
                         return <Ionicons name={iconName} size={size} color={color} />;
                     } else if (route.name === 'Clips') {
-                        iconName = 'video-camera'; 
+                        iconName = 'video-camera';
                         return <FontAwesome name={iconName} size={size} color={color} />;
                     } else if (route.name === 'Library') {
-                        iconName = 'library'; 
+                        iconName = 'library';
                         return <Ionicons name={iconName} size={size} color={color} />;
                     } else if (route.name === 'Profile') {
-                        iconName = 'person'; 
+                        iconName = 'person';
                         return <Ionicons name={iconName} size={size} color={color} />;
                     }
-
                 },
                 tabBarActiveTintColor: Colors.primary.main,
-                tabBarInactiveTintColor: 'gray',
+                tabBarInactiveTintColor: Colors.neutral.white,
                 tabBarStyle: {
-                    backgroundColor: Colors.neutral.gray, 
-                    borderTopWidth: 0, 
+                    backgroundColor: Colors.neutral.gray,
+                    borderTopWidth: 0,
                 },
             })}
         >
@@ -195,7 +194,7 @@ const NavigationTabs = () => {
             <Tab.Screen name="Library" component={LibraryStack} />
 
             {/* Project  */}
-            <Tab.Screen name="Project" component={ProfileStack} />
+            <Tab.Screen name="Profile" component={ProfileStack} />
 
         </Tab.Navigator>
     );

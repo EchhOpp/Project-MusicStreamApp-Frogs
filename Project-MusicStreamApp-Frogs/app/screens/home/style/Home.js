@@ -7,7 +7,21 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: Colors.neutral.gray,
+        position: 'relative',
     },
+
+    bottomNav: {
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        backgroundColor: Colors.neutral.gray,
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        paddingVertical: 10,
+    },
+
+    // Header
     listenAgain: {
         marginTop: 20,
         marginHorizontal: 20,
@@ -97,7 +111,7 @@ const styles = StyleSheet.create({
 
     // Mood & genre
     moodGenres: {
-        marginTop: 40,
+        marginVertical: 40,
         marginHorizontal: 20,
     },
 })
