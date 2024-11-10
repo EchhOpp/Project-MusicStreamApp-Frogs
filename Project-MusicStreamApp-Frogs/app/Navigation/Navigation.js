@@ -148,7 +148,7 @@ const NavigationTabs = () => {
 
 const MainStack = () => {
     return (
-        <Stack.Navigator initialRouteName="Main">
+        <Stack.Navigator initialRouteName="Auth">
             <Stack.Screen
                 name="Auth"
                 component={AuthStack}
