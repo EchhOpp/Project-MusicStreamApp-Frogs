@@ -11,7 +11,7 @@ import SignUp from '../screens/sign_in/SignUp';
 import SignInStep1 from '../screens/sign_in/SignInStep1';
 import SignInStep2 from '../screens/sign_in/SignInStep2';
 import Home from '../screens/home/Home';
-import Profile from '../screens/profile/Profile';
+import Profile from '../screens/profile/Profile'; 
 import HeaderLeft from '../../components/headerLeft';
 import HeaderRight from '../../components/headerRight';
 
@@ -20,7 +20,7 @@ const Tab = createBottomTabNavigator();
 
 const AuthStack = () => {
     return (
-        <Stack.Navigator initialRouteName="GetStart">
+        <Stack.Navigator>
             <Stack.Screen
                 name="GetStart"
                 component={GetStart}
@@ -85,6 +85,7 @@ const AuthStack = () => {
     );
 };
 
+// Home
 const HomeStack = () => {
     return (
         <Stack.Navigator>
@@ -110,7 +111,34 @@ const HomeStack = () => {
     );
 };
 
+// Profile
 const ProfileStack = () => {
+    return (
+        <Stack.Navigator>
+            <Stack.Screen
+                name="Clips"
+                component={Profile}
+                options={{ headerShown: false }}
+            />
+        </Stack.Navigator>
+    );
+};
+
+// Library
+const LibraryStack = () => {
+    return (
+        <Stack.Navigator>
+            <Stack.Screen
+                name="Library"
+                component={Profile}
+                options={{ headerShown: false }}
+            />
+        </Stack.Navigator>
+    );
+}
+
+// Clips
+const Clips = () => {
     return (
         <Stack.Navigator>
             <Stack.Screen
@@ -120,7 +148,8 @@ const ProfileStack = () => {
             />
         </Stack.Navigator>
     );
-};
+}
+
 
 const NavigationTabs = () => {
     return (
@@ -131,25 +160,50 @@ const NavigationTabs = () => {
 
                     if (route.name === 'Home') {
                         iconName = 'home';
+                        return <Ionicons name={iconName} size={size} color={color} />;
+                    } else if (route.name === 'Clips') {
+                        iconName = 'video-camera'; 
+                        return <FontAwesome name={iconName} size={size} color={color} />;
+                    } else if (route.name === 'Library') {
+                        iconName = 'library'; 
+                        return <Ionicons name={iconName} size={size} color={color} />;
                     } else if (route.name === 'Profile') {
-                        iconName = 'person';
+                        iconName = 'person'; 
+                        return <Ionicons name={iconName} size={size} color={color} />;
                     }
 
-                    return <Ionicons name={iconName} size={size} color={color} />;
                 },
                 tabBarActiveTintColor: Colors.primary.main,
                 tabBarInactiveTintColor: 'gray',
+                tabBarStyle: {
+                    backgroundColor: Colors.neutral.gray, 
+                    borderTopWidth: 0, 
+                },
             })}
         >
-            <Tab.Screen name="Home" component={HomeStack} />
-            <Tab.Screen name="Profile" component={ProfileStack} />
+            {/* Tab home */}
+            <Tab.Screen name="Home" component={HomeStack} 
+                options={{
+                    headerShown: false,
+                }}
+            />
+
+            {/* Tab Clips */}
+            <Tab.Screen name="Clips" component={ProfileStack} />
+
+            {/* Tab library */}
+            <Tab.Screen name="Library" component={LibraryStack} />
+
+            {/* Project  */}
+            <Tab.Screen name="Project" component={ProfileStack} />
+
         </Tab.Navigator>
     );
 };
 
 const MainStack = () => {
     return (
-        <Stack.Navigator>
+        <Stack.Navigator initialRouteName="Main">
             <Stack.Screen
                 name="Auth"
                 component={AuthStack}
