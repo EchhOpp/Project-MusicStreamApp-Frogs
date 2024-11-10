@@ -7,7 +7,7 @@ import Entypo from '@expo/vector-icons/Entypo';
 const headerLeft = () => {
   return (
     <TouchableOpacity style={styles.container}>
-      <Image source={require('../assets/images/Profileicon.png')} style={{ width: 50, height: 50 }} />
+      <Image source={require('../assets/images/Profileicon.png')}/>
       <View style={styles.body}>
         <Text style={[styles.text, styles.textBold]}>Thanh Luan</Text>
         <Text style={styles.text}>Good morning
@@ -22,13 +22,9 @@ export default headerLeft
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: Colors.neutral.gray,
         flexDirection: 'row',
-        justifyContent: 'center',
         alignItems: 'center',
-        marginLeft: 15,
-        paddingVertical: 10,
+        marginHorizontal: 20,
     },
     body: {
     },

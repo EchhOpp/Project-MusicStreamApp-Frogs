@@ -17,15 +17,15 @@ export default header
 
 const styles = StyleSheet.create({
   container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginRight: 15,
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginHorizontal: 20,
   },
+  
   body: {
     backgroundColor: 'rgba(255, 255, 255, 0.2)',
     textAlign: 'center',
-    padding: 16,
+    padding: 14,
     borderRadius: 50,
     justifyContent: 'center',
     alignItems: 'center',

@@ -2,7 +2,8 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';    
 import { Colors } from '../../constants/Colors';
 import HeaderLeft from '../../components/headerLeft';
-import HeaderRight from '../../components/headerRight';
+import LeftLibrary from '../screens/library/LeftLibrary';
+import RightLibrary from '../screens/library/RightLibrary';
 import Library from '../screens/library/Library';
 
 const Stack = createNativeStackNavigator();
@@ -18,13 +19,14 @@ const LibraryStack = () => {
                     headerShadowVisible: false,
                     headerStyle: {
                         backgroundColor: Colors.neutral.gray,
+                        height: 80,
                     },
                     title: '',
                     headerLeft: () => (
-                        <HeaderLeft />
+                        <LeftLibrary />
                     ),
                     headerRight: () => (
-                        <HeaderRight />
+                        <RightLibrary />
                     ),
                 }}
             />
