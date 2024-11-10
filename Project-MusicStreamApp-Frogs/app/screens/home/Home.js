@@ -8,6 +8,7 @@ import ListSong from '@/components/ListSong';
 import GroupTrendSong from '@/components/GroupTrendSong';
 import LastestVideos from '@/components/LastestVideos';
 import MoodGenres from '@/components/MoodGenres';
+import LiveMusicBottom from '@/components/LiveMusicBottom';
 
 const Home = ({ navigation }) => {
   return (
@@ -258,7 +259,7 @@ const Home = ({ navigation }) => {
 
       {/* Tab live in bottom */}
       <View style={styles.bottomNav}>
-        <Text style={{ width: '100%', textAlign: 'center', backgroundColor: 'red' }}>A</Text>
+        <LiveMusicBottom />
       </View>
     </View>
   );
