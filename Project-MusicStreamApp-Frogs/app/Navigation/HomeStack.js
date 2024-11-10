@@ -42,7 +42,6 @@ const HomeStack = () => {
                         backgroundColor: Colors.neutral.gray,
                         height: 80,
                     },
-                    title: '',
                     headerLeft: () => (
                         <SearchHeaderLeft />
                     ),

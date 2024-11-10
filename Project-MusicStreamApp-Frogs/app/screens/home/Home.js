@@ -1,6 +1,7 @@
 import { View, Text, ScrollView, TouchableOpacity, FlatList } from 'react-native';
 import React from 'react';
 import styles from './style/Home';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import ListListenMusic from '@/components/ListListenMusic';
 import NewReleases from '@/components/NewReleases';
 import Clips from '@/components/Clips';
@@ -12,6 +13,7 @@ import LiveMusicBottom from '@/components/LiveMusicBottom';
 
 const Home = ({ navigation }) => {
   return (
+    <GestureHandlerRootView>
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* List again */}
@@ -262,6 +264,7 @@ const Home = ({ navigation }) => {
         <LiveMusicBottom />
       </View>
     </View>
+    </GestureHandlerRootView>
   );
 };
 
