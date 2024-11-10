@@ -9,13 +9,17 @@ import SignIn from '../screens/sign_in/SignIn';
 import SignUp from '../screens/sign_in/SignUp';
 import SignInStep1 from '../screens/sign_in/SignInStep1';
 import SignInStep2 from '../screens/sign_in/SignInStep2';
+import Home from '../screens/home/Home';
+import HeaderLeft from '../../components/headerLeft';
+import HeaderRight from '../../components/headerRight';
 
 const Stack = createNativeStackNavigator();
 
 const Navigation = () => {
     return (
     <NavigationContainer independent={true}>
-        <Stack.Navigator initialRouteName="GetStart">
+        {/* Sign in - up */}
+        <Stack.Navigator initialRouteName="Home">
             <Stack.Screen
                 name="GetStart"
                 component={GetStart}
@@ -76,6 +80,26 @@ const Navigation = () => {
                 component={SignInStep2}
                 options={{ headerShown: false }}
             />
+            {/* Home screen */}
+            <Stack.Screen
+                name="Home"
+                component={Home}
+                options={{ 
+                    headerShadowVisible: false,
+                    headerStyle: {
+                        backgroundColor: Colors.neutral.gray,
+                        height: 100,
+                    },
+                    title: '',
+                    headerLeft: () => (
+                        <HeaderLeft />
+                    ),
+                    headerRight: () => (
+                        <HeaderRight />
+                    ),
+                }}
+            />
+
         </Stack.Navigator>
     </NavigationContainer>
     );
