@@ -159,7 +159,6 @@ const MainStack = () => {
         </Stack.Navigator>
     );
 };
-
 const Navigation = () => {
     return (
         <NavigationContainer independent={true}>
