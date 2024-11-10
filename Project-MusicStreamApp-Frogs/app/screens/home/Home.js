@@ -3,6 +3,7 @@ import React from 'react'
 import styles from './style/Home'
 import ListListenMusic from '@/components/ListListenMusic';
 import NewReleases from '@/components/NewReleases';
+import Clips from '@/components/Clips';
 
 const Home = (
     {navigation}
@@ -56,6 +57,15 @@ const Home = (
                     <Text style={[styles.Color, styles.textH2]}>More</Text>
                 </TouchableOpacity>
             </View>
+
+            {/* Sổ các clips */}
+            <FlatList
+                data={[1, 2, 3, 4, 5]}
+                renderItem={({ item }) => <Clips />}
+                keyExtractor={item => item.toString()}
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}
+            />
         </View>
     </ScrollView>
   )
