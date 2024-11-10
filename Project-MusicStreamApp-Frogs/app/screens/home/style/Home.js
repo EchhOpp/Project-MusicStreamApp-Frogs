@@ -18,7 +18,6 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.neutral.gray,
         flexDirection: 'row',
         justifyContent: 'space-around',
-        paddingVertical: 10,
     },
 
     // Header
