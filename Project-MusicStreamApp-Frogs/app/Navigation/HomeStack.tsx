@@ -9,7 +9,6 @@ import SearchHeaderRight from '../screens/search/SearchHeaderRight'
 
 const Stack = createNativeStackNavigator();
 
-
 // Home
 const HomeStack = () => {
     return (
