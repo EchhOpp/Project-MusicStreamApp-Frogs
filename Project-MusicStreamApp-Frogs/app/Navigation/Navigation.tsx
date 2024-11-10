@@ -4,16 +4,20 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Colors } from '../../constants/Colors';
 import { Ionicons, FontAwesome } from '@expo/vector-icons';
+
+// Stack screens
 import GetStart from '../screens/get_start/GetStart';
 import GetStartCount from '../screens/get_start/GetStartCount';
 import SignIn from '../screens/sign_in/SignIn';
 import SignUp from '../screens/sign_in/SignUp';
 import SignInStep1 from '../screens/sign_in/SignInStep1';
 import SignInStep2 from '../screens/sign_in/SignInStep2';
-import Home from '../screens/home/Home';
-import Profile from '../screens/profile/Profile'; 
-import HeaderLeft from '../../components/headerLeft';
-import HeaderRight from '../../components/headerRight';
+
+// Tab screens
+import HomeStack from './HomeStack';
+import LibraryStack from './LibraryStack';
+import ClipsStack from './ClipsStack';
+import ProfileStack from './ProfileStack';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -85,70 +89,6 @@ const AuthStack = () => {
     );
 };
 
-// Home
-const HomeStack = () => {
-    return (
-        <Stack.Navigator>
-            <Stack.Screen
-                name="Home"
-                component={Home}
-                options={{
-                    headerShadowVisible: false,
-                    headerStyle: {
-                        backgroundColor: Colors.neutral.gray,
-                        height: 100,
-                    },
-                    title: '',
-                    headerLeft: () => (
-                        <HeaderLeft />
-                    ),
-                    headerRight: () => (
-                        <HeaderRight />
-                    ),
-                }}
-            />
-        </Stack.Navigator>
-    );
-};
-
-// Profile
-const ProfileStack = () => {
-    return (
-        <Stack.Navigator>
-            <Stack.Screen
-                name="Clips"
-                component={Profile}
-                options={{ headerShown: false }}
-            />
-        </Stack.Navigator>
-    );
-};
-
-// Library
-const LibraryStack = () => {
-    return (
-        <Stack.Navigator>
-            <Stack.Screen
-                name="Library"
-                component={Profile}
-                options={{ headerShown: false }}
-            />
-        </Stack.Navigator>
-    );
-}
-
-// Clips
-const Clips = () => {
-    return (
-        <Stack.Navigator>
-            <Stack.Screen
-                name="Profile"
-                component={Profile}
-                options={{ headerShown: false }}
-            />
-        </Stack.Navigator>
-    );
-}
 
 
 const NavigationTabs = () => {
@@ -160,16 +100,16 @@ const NavigationTabs = () => {
             
                     if (route.name === 'Home') {
                         iconName = 'home';
-                        return <Ionicons name={iconName} size={size} color={color} />;
+                        return <Ionicons name={iconName} size={24} color={color} />;
                     } else if (route.name === 'Clips') {
                         iconName = 'video-camera';
-                        return <FontAwesome name={iconName} size={size} color={color} />;
+                        return <FontAwesome name={iconName} size={24} color={color} />;
                     } else if (route.name === 'Library') {
                         iconName = 'library';
-                        return <Ionicons name={iconName} size={size} color={color} />;
+                        return <Ionicons name={iconName} size={24} color={color} />;
                     } else if (route.name === 'Profile') {
                         iconName = 'person';
-                        return <Ionicons name={iconName} size={size} color={color} />;
+                        return <Ionicons name={iconName} size={24} color={color} />;
                     }
                 },
                 tabBarActiveTintColor: Colors.primary.main,
@@ -188,10 +128,14 @@ const NavigationTabs = () => {
             />
 
             {/* Tab Clips */}
-            <Tab.Screen name="Clips" component={ProfileStack} />
+            <Tab.Screen name="Clips" component={ClipsStack} />
 
             {/* Tab library */}
-            <Tab.Screen name="Library" component={LibraryStack} />
+            <Tab.Screen name="Library" component={LibraryStack} 
+                options={{
+                    headerShown: false,
+                }}
+            />
 
             {/* Project  */}
             <Tab.Screen name="Profile" component={ProfileStack} />
