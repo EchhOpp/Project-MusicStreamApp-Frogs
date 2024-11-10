@@ -1,10 +1,12 @@
-import { StyleSheet, Text, View, Image} from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native'
 import React from 'react'
 
 const NewReleases = () => {
   return (
     <View style={styles.container}>
-      <Image source={require('../assets/images/NewReleases1.png')}/>
+      <TouchableOpacity>
+        <Image source={require('../assets/images/NewReleases1.png')}/>
+      </TouchableOpacity>
       <View>
         <Text style={styles.nameMusic}>Wonderland</Text>
         <Text style={styles.nameAuthor}>Taylor Swift</Text>

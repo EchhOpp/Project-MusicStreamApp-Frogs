@@ -8,18 +8,18 @@ const ListListenMusic = (
     {navigation}
 ) => {
   return (
-    <TouchableOpacity style={styles.container}>
-        <View style={styles.music}>
+    <View style={styles.container}>
+        <TouchableOpacity style={styles.music}>
             <Image source={require('@/assets/images/musiccover.png')}/>
             <View style={styles.textName}>
                 <Text style={styles.nameMucsic}>I Can See You</Text>
                 <Text style={styles.authour}>Taylor Swift</Text>
             </View>
-        </View>
-        <View>
+        </TouchableOpacity>
+        <TouchableOpacity>
             <Ionicons name="ellipsis-vertical" size={24} color="white" />
-        </View>
-    </TouchableOpacity>
+        </TouchableOpacity>
+    </View>
   )
 }
 
