@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
         position: 'relative',
     },
     searchInput: {
-        marginTop: 36,
+        marginTop: 20,
         width: '90%',
         backgroundColor: 'rgba(255, 255, 255, 0.1)',
         height: 50,

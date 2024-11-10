@@ -6,6 +6,7 @@ import HeaderRight from '@/components/headerRight';
 import { Colors } from '@/constants/Colors';
 import Search from '../screens/search/Search'
 import SearchHeaderRight from '../screens/search/SearchHeaderRight'
+import SearchHeaderLeft from '../screens/search/SearchHeaderLeft';
 
 const Stack = createNativeStackNavigator();
 
@@ -43,7 +44,7 @@ const HomeStack = () => {
                     },
                     title: '',
                     headerLeft: () => (
-                        <HeaderLeft />
+                        <SearchHeaderLeft />
                     ),
                     headerRight: () => (
                         <SearchHeaderRight />
