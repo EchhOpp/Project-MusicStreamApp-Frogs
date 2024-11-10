@@ -6,6 +6,7 @@ import LiveMusicBottom from '@/components/LiveMusicBottom'
 import NewReleases from '@/components/NewReleases'
 import Clips from '@/components/Clips'
 import LastestVideos from '@/components/LastestVideos'
+import Playlists from '@/components/PlayList'
 
 const Library = () => {
   return (
@@ -42,7 +43,7 @@ const Library = () => {
           {/* Sổ data */}
           <FlatList
             data={[1, 2, 3, 4, 5]}
-            renderItem={({ item }) => <NewReleases />}
+            renderItem={({ item }) => <Playlists />}
             keyExtractor={item => item.toString()}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
