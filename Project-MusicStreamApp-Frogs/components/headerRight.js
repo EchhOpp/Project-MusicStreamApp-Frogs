@@ -17,7 +17,6 @@ const header = () => {
     </TouchableOpacity>
   )
 }
-
 export default header
 
 const styles = StyleSheet.create({
