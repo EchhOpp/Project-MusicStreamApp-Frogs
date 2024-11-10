@@ -58,6 +58,18 @@ const styles = StyleSheet.create({
         marginTop: 30,
         marginHorizontal: 20,
     },
+
+    // Quick pick
+    quickPicks: {
+        marginTop: 30,
+        marginHorizontal: 20,
+    },
+
+    // Recommended
+    recommendedAlbums: {
+        marginTop: 30,
+        marginHorizontal: 20,
+    },
 })
 
 export default styles;

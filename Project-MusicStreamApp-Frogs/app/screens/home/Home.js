@@ -107,6 +107,41 @@ const Home = (
                 showsHorizontalScrollIndicator={false}
             />
         </View>
+
+    {/* Quick picks */}
+        <View style={styles.quickPicks}>
+            <View style={styles.listenTitle}>
+                <Text style={[styles.Color, styles.textH1]}>Quick picks</Text>
+                <TouchableOpacity style={styles.btnMore}>
+                    <Text style={[styles.Color, styles.textH2]}>More</Text>
+                </TouchableOpacity>
+            </View>
+
+            {/* Sổ các quick picks */}
+            <FlatList
+                data={[1, 2, 3, 4, 5]}
+                renderItem={({ item }) => <ListListenMusic />}
+                keyExtractor={item => item.toString()}
+            />
+        </View>
+    {/* Recommended albums */}
+        <View style={styles.recommendedAlbums}>
+            <View style={styles.listenTitle}>
+                <Text style={[styles.Color, styles.textH1]}>Recommended albums</Text>
+                <TouchableOpacity style={styles.btnMore}>
+                    <Text style={[styles.Color, styles.textH2]}>More</Text>
+                </TouchableOpacity>
+            </View>
+
+            {/* Sổ các recommended albums */}
+            <FlatList
+                data={[1, 2, 3, 4, 5]}
+                renderItem={({ item }) => <NewReleases />}
+                keyExtractor={item => item.toString()}
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}
+            />
+        </View>
     </ScrollView>
   )
 }
