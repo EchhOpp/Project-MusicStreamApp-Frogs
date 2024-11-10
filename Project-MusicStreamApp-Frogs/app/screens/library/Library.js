@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity, ScrollView, FlatList} from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView, FlatList, Animated} from 'react-native'
 import React from 'react'
 import styles from './style/Library'
 import Followings from '@/components/Followings'
@@ -8,7 +8,9 @@ import Clips from '@/components/Clips'
 import LastestVideos from '@/components/LastestVideos'
 import Playlists from '@/components/PlayList'
 
-const Library = () => {
+const Library = (
+  { navigation }
+) => {
   return (
     <View style={styles.container}>
        <ScrollView showsVerticalScrollIndicator={false} style={styles.bodyContent}>
@@ -35,7 +37,9 @@ const Library = () => {
         <View style={styles.playlists}>
           <View style={styles.listenTitle}>
             <Text style={[styles.Color, styles.textH1]}>Playlists</Text>
-            <TouchableOpacity style={styles.btnMore}>
+            <TouchableOpacity style={styles.btnMore} onPress={
+              () => navigation.navigate('PlayListScreen')
+            }>
               <Text style={[styles.Color, styles.textH2]}>More</Text>
             </TouchableOpacity>
           </View>

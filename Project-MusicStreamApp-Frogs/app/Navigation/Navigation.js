@@ -101,16 +101,16 @@ const NavigationTabs = () => {
             
                     if (route.name === 'Home') {
                         iconName = 'home';
-                        return <Ionicons name={iconName} size={24} color={color} />;
+                        return <Ionicons name='home' size={24} color={color} />;
                     } else if (route.name === 'Clips') {
                         iconName = 'video-camera';
-                        return <FontAwesome name={iconName} size={24} color={color} />;
+                        return <FontAwesome name='video-camera' size={24} color={color} />;
                     } else if (route.name === 'Library') {
                         iconName = 'library';
-                        return <Ionicons name={iconName} size={24} color={color} />;
+                        return <Ionicons name='library' size={24} color={color} />;
                     } else if (route.name === 'Profile') {
                         iconName = 'person';
-                        return <Ionicons name={iconName} size={24} color={color} />;
+                        return <Ionicons name='person' size={24} color={color} />;
                     }
                 },
                 tabBarActiveTintColor: Colors.primary.main,
