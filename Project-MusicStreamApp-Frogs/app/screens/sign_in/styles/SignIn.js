@@ -12,17 +12,16 @@ const styles = StyleSheet.create({
     body: {
         marginTop: '16%',
         width: width,
-        height: 0.5*height,
+        height: 0.5 * height,
     },
     menu3: {
         width: 24,
         height: 24,
     },
     viewInputs: {
-        height:'100%',
+        height: '80%',
         marginTop: 20,
         width: '100%',
-        height: '70%',
         paddingLeft: 20,
         paddingRight: 20,
         alignItems: 'center',
@@ -31,12 +30,12 @@ const styles = StyleSheet.create({
         width: '100%',
         height: 56,
         borderColor: '#7e7e7e',
-        borderWidth: 1,
-        borderRadius:12,
+        borderWidth: 2.5,
+        borderRadius: 12,
         paddingLeft: 20,
         color: Colors.neutral.white,
         fontSize: 18,
-        marginVertical:6
+        marginVertical: 8
     },
     context: {
         width: '80%',
@@ -66,7 +65,7 @@ const styles = StyleSheet.create({
     btn: {
         backgroundColor: '#1e1e1e',
         width: '100%',
-        height: '20%',
+        height: '18%',
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 50,
@@ -74,8 +73,8 @@ const styles = StyleSheet.create({
         marginBottom: '20%',
     },
     footer: {
-        width:0.9* width,
-        height:0.3*height,
+        width: 0.9 * width,
+        height: 0.3 * height,
         alignSelf: 'center',
     },
     footerText: {
@@ -88,6 +87,20 @@ const styles = StyleSheet.create({
     },
     footerImg: {
         height: 2,
+    },
+    viewerror: {
+        marginTop: 5,
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent:'flex-start',
+        alignItems:'center'
+
+    },
+    txterror: {
+        color: '#fb4343'
+    },
+    imgerror: {
+        marginRight: 8
     },
 });
 
