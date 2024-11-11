@@ -93,7 +93,7 @@ const AuthStack = () => {
 const NavigationTabs = () => {
     return (
         <Tab.Navigator 
-            initialRouteName='Home'
+            initialRouteName='Library'
             screenOptions={({ route }) => ({
                 tabBarIcon: ({ color, size }) => {
                     let iconName;
