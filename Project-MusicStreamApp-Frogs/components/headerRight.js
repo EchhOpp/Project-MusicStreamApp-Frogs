@@ -25,10 +25,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'flex-end',
-    marginRight: 60,
+    marginRight: 40,
   },
   icon:{
-    padding: 12,
+    padding: 14,
     borderRadius: 50,
     backgroundColor: 'rgba(255, 255, 255, 0.2)',
   },
