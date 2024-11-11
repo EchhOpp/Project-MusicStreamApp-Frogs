@@ -2,7 +2,6 @@ import { View, Text, ScrollView, TouchableOpacity, FlatList } from 'react-native
 import React from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import styles from './style/Home';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import ListListenMusic from '@/components/ListListenMusic';
 import NewReleases from '@/components/NewReleases';
 import Clips from '@/components/Clips';
