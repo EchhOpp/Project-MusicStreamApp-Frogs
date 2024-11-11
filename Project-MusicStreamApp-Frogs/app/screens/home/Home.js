@@ -15,7 +15,6 @@ const Home = ({ navigation }) => {
   return (
     <GestureHandlerRootView>
     <View style={styles.container}>
-    <GestureHandlerRootView>
       <ScrollView showsVerticalScrollIndicator={false} style={styles.bodyContent}>
         {/* List again */}
         <View style={styles.listenAgain}>
@@ -25,13 +24,11 @@ const Home = ({ navigation }) => {
               <Text style={[styles.Color, styles.textH2]}>More</Text>
             </TouchableOpacity>
           </View>
-
           {/* Sổ list data */}
           <FlatList
-            removeClippedSubviews={true}
             data={[1, 2, 3, 4, 5]}
-            renderItem={({ item }) => <ListListenMusic />}
             keyExtractor={item => item.toString() + 'listenAgain'}
+            renderItem={({ item }) => <ListListenMusic />}
           />
         </View>
 
@@ -46,10 +43,9 @@ const Home = ({ navigation }) => {
 
           {/* Sổ các new releases */}
           <FlatList
-            
             data={[1, 2, 3, 4, 5]}
+            keyExtractor={item => item.toString() + 'newReleases'}
             renderItem={({ item }) => <NewReleases />}
-            keyExtractor={item => item.toString()}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
           />
@@ -63,10 +59,8 @@ const Home = ({ navigation }) => {
               <Text style={[styles.Color, styles.textH2]}>More</Text>
             </TouchableOpacity>
           </View>
-
           {/* Sổ các clips */}
           <FlatList
-            removeClippedSubviews={true}
             data={[1, 2, 3, 4, 5]}
             renderItem={({ item }) => <Clips />}
             keyExtractor={item => item.toString()}
@@ -142,27 +136,29 @@ const Home = ({ navigation }) => {
               <Text style={[styles.Color, styles.textH2]}>More</Text>
             </TouchableOpacity>
           </View>
-
-          {/* Sổ các recommended albums */}
-          <FlatList
-            removeClippedSubviews={true}
-            data={[1, 2, 3, 4, 5]}
-            renderItem={({ item }) => <NewReleases />}
-            keyExtractor={item => item.toString()}
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-          />
-
-          {/* List group lại */}
-          <FlatList
-            removeClippedSubviews={true}
-            data={[1, 2, 3, 4, 5]}
-            renderItem={({ item }) => <GroupTrendSong />}
-            keyExtractor={item => item.toString()}
-            horizontal={true}
-            style={{ marginTop: 30 }}
-            showsHorizontalScrollIndicator={false}
-          />
+          <View>
+            {/* Sổ các recommended albums */}
+            <FlatList
+              removeClippedSubviews={true}
+              data={[1, 2, 3, 4, 5]}
+              renderItem={({ item }) => <NewReleases />}
+              keyExtractor={item => item.toString()}
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
+            />
+          </View>
+          <View>
+            {/* List group lại */}
+            <FlatList
+              removeClippedSubviews={true}
+              data={[1, 2, 3, 4, 5]}
+              renderItem={({ item }) => <GroupTrendSong />}
+              keyExtractor={item => item.toString()}
+              horizontal={true}
+              style={{ marginTop: 30 }}
+              showsHorizontalScrollIndicator={false}
+            />
+          </View>
         </View>
 
         {/* From your library */}
@@ -277,7 +273,6 @@ const Home = ({ navigation }) => {
         </View>
         
       </ScrollView>
-    </GestureHandlerRootView>
       {/* Tab live in bottom */}
       <View style={styles.bottomNav}>
         <LiveMusicBottom />

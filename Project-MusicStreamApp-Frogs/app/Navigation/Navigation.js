@@ -90,12 +90,10 @@ const AuthStack = () => {
     );
 };
 
-
-
 const NavigationTabs = () => {
     return (
         <Tab.Navigator 
-            initialRouteName='Library'
+            initialRouteName='Home'
             screenOptions={({ route }) => ({
                 tabBarIcon: ({ color, size }) => {
                     let iconName;
@@ -151,7 +149,7 @@ const NavigationTabs = () => {
 
 const MainStack = () => {
     return (
-        <Stack.Navigator initialRouteName="Auth">
+        <Stack.Navigator initialRouteName="Main">
             <Stack.Screen
                 name="Auth"
                 component={AuthStack}
