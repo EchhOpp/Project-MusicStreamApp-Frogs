@@ -12,7 +12,7 @@ const SavedClips = () => {
         <View style={styles.titles}>
             <Text style={[styles.Color, styles.textH1]}>Saved Clips</Text>
             <TouchableOpacity style={styles.btnFilter}>
-                <FontAwesome name="edit" size={24} color="white"/>
+                <FontAwesome name="sliders" size={24} color="white"/>
             </TouchableOpacity>
         </View>
         <FlatList
