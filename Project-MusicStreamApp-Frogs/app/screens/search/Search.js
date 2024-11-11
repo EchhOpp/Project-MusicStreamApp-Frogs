@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { View, TextInput, FlatList, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import styles from '../search/style/Search';
 import ListListenMusic from '@/components/ListListenMusic';
+import LiveMusicBottom from '@/components/LiveMusicBottom';
 
 const Search = () => {
     return (
         <View style={styles.container}>
             <ScrollView>
                 <TextInput
-                    style={[styles.searchInput, styles.fontSize16]}
+                    style={[styles.searchInput, styles.fontSize16,{}]}
                     placeholder="Search for songs, artists, albums..."
                     placeholderTextColor='#ffffff'
                 />

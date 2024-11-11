@@ -17,9 +17,11 @@ const styles = StyleSheet.create({
         borderRadius: 48,
         alignSelf: 'center',
         color: Colors.neutral.white,
-        padding: 20,
+        padding: 5,
         borderWidth: 2,
-        borderColor: 'rgba(255, 255, 255, 0.1)'
+        borderColor: 'rgba(255, 255, 255, 0.1)',
+        height:60,
+        paddingLeft: 20
     },
     fontSize16: {
         fontSize: 16
@@ -52,6 +54,7 @@ const styles = StyleSheet.create({
         width: '90%', 
         alignSelf: 'center',
         marginTop: 18,
+        padding: 10,
     }
 
 })
