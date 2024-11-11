@@ -1,5 +1,6 @@
 import { View, Text, ScrollView, TouchableOpacity, FlatList } from 'react-native';
 import React from 'react';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import styles from './style/Home';
 import ListListenMusic from '@/components/ListListenMusic';
 import NewReleases from '@/components/NewReleases';
@@ -13,7 +14,8 @@ import LiveMusicBottom from '@/components/LiveMusicBottom';
 const Home = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <ScrollView showsVerticalScrollIndicator={false}>
+    <GestureHandlerRootView>
+      <ScrollView showsVerticalScrollIndicator={false} style={styles.bodyContent}>
         {/* List again */}
         <View style={styles.listenAgain}>
           <View style={styles.listenTitle}>
@@ -25,9 +27,10 @@ const Home = ({ navigation }) => {
 
           {/* Sổ list data */}
           <FlatList
+            removeClippedSubviews={true}
             data={[1, 2, 3, 4, 5]}
             renderItem={({ item }) => <ListListenMusic />}
-            keyExtractor={item => item.toString()}
+            keyExtractor={item => item.toString() + 'listenAgain'}
           />
         </View>
 
@@ -42,6 +45,7 @@ const Home = ({ navigation }) => {
 
           {/* Sổ các new releases */}
           <FlatList
+            
             data={[1, 2, 3, 4, 5]}
             renderItem={({ item }) => <NewReleases />}
             keyExtractor={item => item.toString()}
@@ -61,6 +65,7 @@ const Home = ({ navigation }) => {
 
           {/* Sổ các clips */}
           <FlatList
+            removeClippedSubviews={true}
             data={[1, 2, 3, 4, 5]}
             renderItem={({ item }) => <Clips />}
             keyExtractor={item => item.toString()}
@@ -80,6 +85,7 @@ const Home = ({ navigation }) => {
 
           {/* Sổ các trending songs */}
           <FlatList
+            removeClippedSubviews={true}
             data={[1, 2, 3, 4, 5]}
             renderItem={({ item }) => <ListSong />}
             keyExtractor={item => item.toString()}
@@ -87,6 +93,7 @@ const Home = ({ navigation }) => {
             showsHorizontalScrollIndicator={false}
           />
           <FlatList
+            removeClippedSubviews={true}
             style={{ marginTop: 20 }}
             data={[1, 2, 3, 4, 5]}
             renderItem={({ item }) => <ListSong />}
@@ -97,6 +104,7 @@ const Home = ({ navigation }) => {
 
           {/* List group lại */}
           <FlatList
+            removeClippedSubviews={true}
             data={[1, 2, 3, 4, 5]}
             renderItem={({ item }) => <GroupTrendSong />}
             keyExtractor={item => item.toString()}
@@ -117,9 +125,11 @@ const Home = ({ navigation }) => {
 
           {/* Sổ các quick picks */}
           <FlatList
+            removeClippedSubviews={true}
             data={[1, 2, 3, 4, 5]}
             renderItem={({ item }) => <ListListenMusic />}
             keyExtractor={item => item.toString()}
+            horizontal={false}
           />
         </View>
 
@@ -134,6 +144,7 @@ const Home = ({ navigation }) => {
 
           {/* Sổ các recommended albums */}
           <FlatList
+            removeClippedSubviews={true}
             data={[1, 2, 3, 4, 5]}
             renderItem={({ item }) => <NewReleases />}
             keyExtractor={item => item.toString()}
@@ -143,6 +154,7 @@ const Home = ({ navigation }) => {
 
           {/* List group lại */}
           <FlatList
+            removeClippedSubviews={true}
             data={[1, 2, 3, 4, 5]}
             renderItem={({ item }) => <GroupTrendSong />}
             keyExtractor={item => item.toString()}
@@ -163,6 +175,7 @@ const Home = ({ navigation }) => {
 
           {/* Sổ các from your library */}
           <FlatList
+            removeClippedSubviews={true}
             data={[1, 2, 3, 4, 5]}
             renderItem={({ item }) => <ListSong />}
             keyExtractor={item => item.toString()}
@@ -171,6 +184,7 @@ const Home = ({ navigation }) => {
           />
 
           <FlatList
+            removeClippedSubviews={true}
             data={[1, 2, 3, 4, 5]}
             renderItem={({ item }) => <ListSong />}
             keyExtractor={item => item.toString()}
@@ -191,6 +205,7 @@ const Home = ({ navigation }) => {
 
           {/* Sổ các clips count */}
           <FlatList
+            removeClippedSubviews={true}
             data={[1, 2, 3, 4, 5]}
             renderItem={({ item }) => <Clips />}
             keyExtractor={item => item.toString()}
@@ -210,6 +225,7 @@ const Home = ({ navigation }) => {
 
           {/* Sổ các forgotten favorites */}
           <FlatList
+            removeClippedSubviews={true}
             data={[1, 2, 3, 4, 5]}
             renderItem={({ item }) => <ListSong />}
             keyExtractor={item => item.toString()}
@@ -229,6 +245,7 @@ const Home = ({ navigation }) => {
 
           {/* Sổ các latest videos */}
           <FlatList
+            removeClippedSubviews={true}
             data={[1, 2, 3, 4, 5]}
             renderItem={({ item }) => <LastestVideos />}
             keyExtractor={item => item.toString()}
@@ -248,15 +265,18 @@ const Home = ({ navigation }) => {
 
           {/* Sổ các mood & genres */}
           <FlatList
+            removeClippedSubviews={true}
             data={[1, 2, 3, 4, 5, 6]}
             renderItem={({ item }) => <MoodGenres />}
             keyExtractor={item => item.toString()}
             numColumns={2}
             columnWrapperStyle={{ justifyContent: 'space-between' }}
+            horizontal={false}
           />
         </View>
+        
       </ScrollView>
-
+    </GestureHandlerRootView>
       {/* Tab live in bottom */}
       <View style={styles.bottomNav}>
         <LiveMusicBottom />

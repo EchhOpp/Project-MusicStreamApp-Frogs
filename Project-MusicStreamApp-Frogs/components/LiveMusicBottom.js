@@ -2,12 +2,14 @@ import { StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native'
 import React from 'react'
 import { Ionicons } from '@expo/vector-icons'
 import { Colors } from '@/constants/Colors'
-import { Popins } from '@/constants/Popins'
+import { LinearGradient } from 'expo-linear-gradient'
 
 
 const LiveMusicBottom = () => {
   return (
-    <View style={styles.container}>
+     <LinearGradient style={styles.container}
+        colors={['#4a1f1d', '#1a1a1a']}
+    >
         <TouchableOpacity style={styles.music}>
             <Image source={require('../assets/images/afterhoursLive.png')} />
             <View style={styles.textName}>
@@ -19,11 +21,11 @@ const LiveMusicBottom = () => {
             <TouchableOpacity>
                 <Ionicons name="play-back" size={18} color={Colors.neutral.white} style={styles.iconplayback}/>
             </TouchableOpacity>
-            <TouchableOpacity>
-                <Ionicons name="play" size={24} color={Colors.neutral.white} style={styles.iconplay}/>
+            <TouchableOpacity  style={styles.iconplay}>
+                <Ionicons name="play" size={24} color={Colors.neutral.white}/>
             </TouchableOpacity>
         </View>
-    </View>
+    </LinearGradient>
   )
 }
 
@@ -34,23 +36,25 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
+        paddingHorizontal: 12,
+        borderRadius: 18,
         width: '100%',
-        paddingHorizontal: 16,
-        borderTopLeftRadius: 10,
-        borderTopRightRadius: 10,
+        paddingVertical: 10,
     },
 
     music: {
         flexDirection: 'row',
         alignItems: 'center',
+        marginLeft: 8,
     },
 
     textName: {
-        marginLeft: 10,
+        marginLeft: 12,
     },
 
     nameMusic: {
         color: 'white',
+        fontWeight: '500',
         fontSize: 18,
         marginVertical: 5,
     },
@@ -73,6 +77,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(255, 255, 255, 0.2)',
         padding: 12,
         borderRadius: 50,
-        marginRight: 16,
+        marginRight: 12,
     }
 })

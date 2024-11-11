@@ -11,7 +11,7 @@ const header = () => {
       style={styles.container}
       onPress={() => navigation.navigate('Search')}
     >
-      <Text>
+      <Text style={styles.text}>
         <FontAwesome style={styles.body} name="search" size={20} color={Colors.neutral.white} />
       </Text>
     </TouchableOpacity>
@@ -35,5 +35,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-
 })

@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -118,8 +119,10 @@ const NavigationTabs = () => {
                 tabBarStyle: {
                     backgroundColor: Colors.neutral.gray,
                     borderTopWidth: 0,
+                    height: 80,
                 },
-            })}
+            })
+            }
         >
         
             {/* Tab home */}
