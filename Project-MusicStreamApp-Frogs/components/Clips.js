@@ -5,7 +5,9 @@ import { Ionicons } from '@expo/vector-icons'
 const Clips = () => {
   return (
     <TouchableOpacity style={styles.container}>
-        <Ionicons name="play" size={24} color="white" style={styles.icon}/>
+        <View style={styles.icon}>
+            <Ionicons name="play" size={16} color="white"/>
+        </View>
         <Image source={require('../assets/images/clipstheweeknd.png')} style={styles.img}/>
         <View style={styles.name}>
             <Text style={styles.nameMusic}>Performing “The Hills”</Text>

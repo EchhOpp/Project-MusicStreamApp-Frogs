@@ -1,16 +1,13 @@
-import { StyleSheet, Text, View, TouchableOpacity, ScrollView, FlatList, Animated} from 'react-native'
+import { Text, View, TouchableOpacity, ScrollView, FlatList} from 'react-native'
 import React from 'react'
 import styles from './style/Library'
 import Followings from '@/components/Followings'
 import LiveMusicBottom from '@/components/LiveMusicBottom'
-import NewReleases from '@/components/NewReleases'
 import Clips from '@/components/Clips'
 import LastestVideos from '@/components/LastestVideos'
 import Playlists from '@/components/PlayList'
 
-const Library = (
-  { navigation }
-) => {
+const Library = ({navigation }) => {
   return (
     <View style={styles.container}>
        <ScrollView showsVerticalScrollIndicator={false} style={styles.bodyContent}>

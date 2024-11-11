@@ -9,14 +9,16 @@ const LastestVideos = () => {
     <View style={styles.container}>
         <View>
            <TouchableOpacity>
-                <Ionicons name="play" size={24} color="white" style={styles.icon}/>
+                <View style={styles.icon}>
+                    <Ionicons name="play" size={20} color="white" style={styles.iconImg}/>
+                </View>
                 <Image source={require('../assets/images/lastestvideo1.png')} style={styles.img}/>
-                <Text style={styles.time}>
-                    6:53
-                </Text>
+                <View style={styles.time}>
+                    <Text style={styles.texttime}>3:45</Text>
+                </View>
            </TouchableOpacity>
             <View style={styles.name}>
-                <Text style={styles.title}>Performing “Training Season”</Text>
+                <Text style={styles.title}>PerfSorming “Training Season”</Text>
             </View>
         </View>
     </View>
@@ -43,7 +45,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(255, 255, 255, 0.2)',
         paddingHorizontal: 12,
         paddingVertical: 4,
-        borderRadius: 50,
+        borderRadius: '100%', 
         color: Colors.neutral.white,
         fontSize: 12,
     },
@@ -53,9 +55,18 @@ const styles = StyleSheet.create({
         left: 18,
         zIndex: 1,
         backgroundColor: 'rgba(255, 255, 255, 0.2)',
-        padding: 10,
-        borderRadius: 50, 
-        fontSize: 16
+        padding: 8,
+        borderRadius: '50%', 
+    },
+
+    iconImg: {
+        color: Colors.neutral.white
+
+    },
+
+    texttime: {
+        color: Colors.neutral.white,
+        fontSize: 12,
     },
     title: {
         color: Colors.neutral.white,

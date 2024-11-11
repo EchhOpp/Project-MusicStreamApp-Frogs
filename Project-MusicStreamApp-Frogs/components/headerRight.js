@@ -11,8 +11,8 @@ const header = () => {
       style={styles.container}
       onPress={() => navigation.navigate('Search')}
     >
-      <View style={styles.icon}>
-        <FontAwesome style={styles.body} name="search" size={20} color={Colors.neutral.white} />
+      <View style={styles.text}>
+        <Ionicons name="search" size={24} color={'white'}/>
       </View>
     </TouchableOpacity>
   )
@@ -22,20 +22,14 @@ export default header
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'flex-end',
-    marginRight: 40,
   },
-  icon:{
-    padding: 14,
-    borderRadius: 50,
+  text: {
     backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    padding: 10,
+    borderRadius: '50%',
   },
   body: {
-    textAlign: 'center',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-
+    color: Colors.neutral.white,
+    fontSize: 20,
+  }
 })

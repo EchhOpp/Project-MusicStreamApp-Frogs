@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, ScrollView, TextInput, Image, TouchableOpacity } from 'react-native'
+import { Text, View, ScrollView, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import styles from './styles/SignInStep2'
 
