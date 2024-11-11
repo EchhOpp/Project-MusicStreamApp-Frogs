@@ -4,7 +4,7 @@ import { Colors } from '../../constants/Colors';
 import LeftLibrary from '../screens/library/LeftLibrary';
 import RightLibrary from '../screens/library/RightLibrary';
 import Library from '../screens/library/Library';
-import PlayListScreen from '../screens/library/PlayListScreen';
+import PlayListScreen from '../screens/playlists/PlayLists';
 
 const Stack = createNativeStackNavigator();
 
@@ -23,7 +23,7 @@ const LibraryStack = () => {
       };
     
     return (
-        <Stack.Navigator>
+        <Stack.Navigator initialRouteName='Library'>
             <Stack.Screen
                 name="Library"
                 component={Library}
@@ -50,9 +50,20 @@ const LibraryStack = () => {
                 name="PlayListScreen"
                 component={PlayListScreen}
                 options={{
+                   headerShadowVisible: false,
+                    headerStyle: {
+                        backgroundColor: Colors.neutral.rgba1,
+                    },
+                    title: '',
+                    headerLeft: () => (
+                        <LeftLibrary />
+                    ),
+                    headerRight: () => (
+                        <RightLibrary />
+                    ),
                     transitionSpec: {
-                      open: config,
-                      close: config,
+                        open: config,
+                        close: config,
                     },
                     animation: 'slide_from_right',
                 }}
