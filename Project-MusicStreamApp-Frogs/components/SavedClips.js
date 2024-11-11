@@ -13,7 +13,7 @@ const SavedClipItem = () => {
                 </View>
                 <Image source={require('../assets/images/clips-eminem.png')} style={styles.img} />
                 <LinearGradient
-                    colors={['rgba(255, 255, 255, 0.0)', 'rgba(226, 226, 226,0.6)']}
+                    colors={['rgba(255, 255, 255, 0.0)', 'rgba(226, 226, 226,0.8)']}
                     style={styles.avtContainer}
                     >
                     <View style={styles.info}>
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
         bottom: 0,
         left: 0,
         right: 0,
-        height: 90,
+        height: 100,
         borderBottomEndRadius: 10,
         borderBottomStartRadius: 10,
     }
