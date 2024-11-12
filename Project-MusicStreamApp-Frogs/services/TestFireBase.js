@@ -1,6 +1,7 @@
 import { Text, View, Button } from "react-native";
 import { database } from "../config/firebaseConfig";
 import { ref, set, onValue } from "firebase/database";
+import { doc, setDoc } from 'firebase/firestore';
 
 export default function Index() {
 
