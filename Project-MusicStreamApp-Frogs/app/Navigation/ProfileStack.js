@@ -4,6 +4,8 @@ import Profile from '../screens/profile/Profile';
 import { Colors } from '../../constants/Colors';
 import ProfileHeaderLeft from '../screens/profile/ProfileHeaderLeft';
 import ProfileHeaderRight from '../screens/profile/ProfileHeaderRight';
+import Settings from '../screens/settings/Settings';
+import SettingRight from '../screens/settings/SettingRight';
 
 const Stack = createNativeStackNavigator();
 
@@ -25,6 +27,20 @@ const ProfileStack = () => {
                     ),
                     headerRight: () => (
                         <ProfileHeaderRight />
+                    ),
+                 }}
+            />
+            <Stack.Screen
+                name="Settings"
+                component={Settings}
+                options={{ 
+                    headerStyle: {
+                        backgroundColor: Colors.neutral.rgba1,
+                    },
+                    headerTintColor: Colors.neutral.white,
+                    headerShadowVisible: false,
+                    headerRight: () => (
+                        <SettingRight/>
                     ),
                  }}
             />
