@@ -2,6 +2,7 @@ import {Text, View, SafeAreaView, TouchableOpacity, Image, TextInput, Keyboard, 
 import React, {useState} from 'react'
 import { MaterialIcons, MaterialCommunityIcons, FontAwesome} from '@expo/vector-icons'
 import styles  from './styles/SignUp'
+import signUpUser from '../../../services/AuthSignUp'
 
 const SignUpEmail = ({ navigation }) => {
     const [userName, setUserName] = useState("");
@@ -29,33 +30,18 @@ const SignUpEmail = ({ navigation }) => {
         if (email.trim() === "" || !email.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g)) {
             setEmailBorderColor('#fb4343');
             valid = false;
-            Alert.alert("Message","Invalid email address");
         } else {
             setEmailBorderColor('#7e7e7e');
         }
 
-        // Check password
-        if (passWord.trim() === "") {
-            setPasswordBorderColor('#fb4343');
-            valid = false;
-        } else {
-            setPasswordBorderColor('#7e7e7e');
-        }
-
-        // Check enter password
-        if (enterPassword.trim() === "") {
-            setEnterPasswordBorderColor('#fb4343');
-            valid = false;
-        } else {
-            setEnterPasswordBorderColor('#7e7e7e');
-        }
-
         // check password and enter password
-        if (passWord !== enterPassword) {
+        if (passWord !== enterPassword || passWord.trim() === "" || enterPassword.trim() === "") {
             setPasswordBorderColor('#fb4343');
             setEnterPasswordBorderColor('#fb4343');
             valid = false;
-            Alert.alert("Message","Password and Re-enter password do not match");
+            if (passWord !== enterPassword) {
+                Alert.alert("Password","Password and confirm password must be the same");
+            }
         } else {
             setPasswordBorderColor('#7e7e7e');
             setEnterPasswordBorderColor('#7e7e7e');
@@ -63,8 +49,20 @@ const SignUpEmail = ({ navigation }) => {
 
         // If all fields are valid, navigate to SignIn screen
         if (valid) {
-            navigation.navigate('SignIn');
-            setShowError(false);
+            signUpUser(userName, email, passWord).then(
+                (user) => {
+                    console.log('User signed up:', user);
+                    navigation.navigate('SignIn',
+                        { email: email, password: passWord }
+                    );
+                    setShowError(false);
+                }
+            ).catch(
+                (error) => {
+                    setShowError(true);
+                    alert("Error: " + error);
+                }
+            );
         } else {
             setShowError(true);
         }
