@@ -21,7 +21,6 @@ const styles = StyleSheet.create({
     },
     viewInputs: {
         height: '80%',
-        marginTop: 20,
         width: '100%',
         paddingLeft: 20,
         paddingRight: 20,
@@ -35,7 +34,7 @@ const styles = StyleSheet.create({
         borderRadius: 12,
         paddingLeft: 20,
         color: Colors.neutral.white,
-        fontSize: 18,
+        fontSize: 16,
         marginVertical: 8
     },
     context: {
