@@ -12,11 +12,11 @@ const GetStart = (
     >
       <View style={styles.body}>
         <View style={styles.context}>
-          <Text style={[styles.colortext, styles.fonttext30, styles.boldtext]} >Open</Text>
-          <Text style={[styles.colortext, styles.fonttext30, styles.boldtext]}>the world of music</Text>
+          <Text style={[styles.colortext, styles.fonttext30]} >Open</Text>
+          <Text style={[styles.colortext, styles.fonttext30]}>the world of music</Text>
         </View>
         <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('GetStartCount') }>
-          <Text style={[styles.colortext, styles.fonttext18]}>Get Start</Text>
+          <Text style={[styles.colortext, styles.fonttext18]}>Get started</Text>
         </TouchableOpacity>
       </View>
     </ImageBackground>

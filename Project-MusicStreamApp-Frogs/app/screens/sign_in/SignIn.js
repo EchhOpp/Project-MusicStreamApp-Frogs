@@ -72,13 +72,13 @@ const SignIn = (
             <View style={styles.footer}>
                 <View style={styles.footerText}>
                     <Image source={require('../../../assets/images/Line24.png')} style={styles.footerImg} />
-                    <Text style={[styles.colortext, styles.fonttext14]}>Don't have an account?</Text>
+                    <Text style={[styles.colortext2, styles.fonttext14]}>Don't have an account?</Text>
                     <Image source={require('../../../assets/images/Line24.png')} style={styles.footerImg} />
                 </View>
-                <TouchableOpacity style={styles.btn}
+                <TouchableOpacity style={styles.btnfooter}
                     onPress={() => navigation.navigate('SignUp')}
                 >
-                    <Text style={[styles.colortext, styles.fonttext16, styles.boldtext]}>Sign up for free </Text>
+                    <Text style={[styles.colortext, styles.fonttext16]}>Sign up for free </Text>
                 </TouchableOpacity>
             </View>
         </SafeAreaView>

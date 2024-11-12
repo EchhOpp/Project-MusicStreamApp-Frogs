@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { View } from 'react-native';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
@@ -34,13 +35,16 @@ const AuthStack = () => {
             <Stack.Screen
                 name="GetStartCount"
                 component={GetStartCount}
-                options={{ headerShown: false }}
+                options={{ 
+                    headerShown: false,
+                    title: 'Sign In',
+                }}
             />
             <Stack.Screen
                 name="SignIn"
                 component={SignIn}
                 options={{
-                    title: 'Sign In',
+                    headerTitle: '',
                     headerStyle: {
                         backgroundColor: Colors.neutral.black,
                     },
@@ -153,7 +157,7 @@ const NavigationTabs = () => {
 
 const MainStack = () => {
     return (
-        <Stack.Navigator initialRouteName="Main">
+        <Stack.Navigator initialRouteName="Auth">
             <Stack.Screen
                 name="Auth"
                 component={AuthStack}
