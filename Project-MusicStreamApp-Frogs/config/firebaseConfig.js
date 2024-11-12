@@ -1,41 +1,24 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, initializeAuth, getReactNativePersistence, browserLocalPersistence } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { FIREBASE_API_KEY, FIREBASE_AUTH_DOMAIN, FIREBASE_PROJECT_ID, FIREBASE_STORAGE_BUCKET, FIREBASE_MESSAGING_SENDER_ID, FIREBASE_APP_ID, FIREBASE_MEASUREMENT_ID } from '@env';
-import { Platform } from 'react-native';
+import { getDatabase } from "firebase/database";
+import AsyncStorage from '@react-native-async-storage/async-storage'; 
 
 const firebaseConfig = {
-    apiKey: FIREBASE_API_KEY,
-    authDomain: FIREBASE_AUTH_DOMAIN,
-    projectId: FIREBASE_PROJECT_ID,
-    storageBucket: FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: FIREBASE_MESSAGING_SENDER_ID,
-    appId: FIREBASE_APP_ID,
-    measurementId: FIREBASE_MEASUREMENT_ID
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+  databaseURL: process.env.FIREBASE_DATABASE_URL,
+  projectId: process.env.FIREBASE_PROJECT_ID,
+  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.FIREBASE_APP_ID,
+  measurementId: process.env.FIREBASE_MEASUREMENT_ID
 };
 
-// Initialize Firebase
-export const FIREBASE_APP = initializeApp(firebaseConfig);
+// Khởi tạo ứng dụng Firebase
+const app = initializeApp(firebaseConfig);
 
-let auth;
-if (Platform.OS === 'web') {
-  auth = getAuth(FIREBASE_APP);
-  auth.setPersistence(browserLocalPersistence);
-} else {
-  try {
-    auth = initializeAuth(FIREBASE_APP, {
-      persistence: getReactNativePersistence(AsyncStorage),
-    });
-  } catch (e) {
-    if (e.code === 'auth/already-initialized') {
-      auth = getAuth(FIREBASE_APP);
-    } else {
-      throw e;
-    }
-  }
-}
-
-
-export const FIREBASE_AUTH = auth;
-export const FIREBASE_DB = getFirestore(FIREBASE_APP);
+export const auth = getAuth(app);
+export const db = getFirestore(app);
+export const database = getDatabase(app);
+export default app;
