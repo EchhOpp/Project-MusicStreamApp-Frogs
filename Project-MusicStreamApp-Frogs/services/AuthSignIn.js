@@ -1,5 +1,5 @@
 // Lấy thông tin từ form đăng ký và gọi hàm tạo tài khoản người dùng mới
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
+import { signInWithEmailAndPassword} from "firebase/auth";
 import { auth } from "../config/firebaseConfig";
 
 /**
