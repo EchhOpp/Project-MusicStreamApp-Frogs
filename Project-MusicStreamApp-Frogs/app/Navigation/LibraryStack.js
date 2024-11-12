@@ -5,6 +5,7 @@ import LeftLibrary from '../screens/library/LeftLibrary';
 import RightLibrary from '../screens/library/RightLibrary';
 import Library from '../screens/library/Library';
 import PlayListScreen from '../screens/playlists/PlayLists';
+import SavedClips from '../screens/saved_clips/SavedClips';
 
 const Stack = createNativeStackNavigator();
 
@@ -64,6 +65,28 @@ const LibraryStack = () => {
                     transitionSpec: {
                         open: config,
                         close: config,
+                    },
+                    animation: 'slide_from_right',
+                }}
+            />
+            <Stack.Screen
+                name="SavedClips"
+                component={SavedClips}
+                options={{
+                    headerShadowVisible: false,
+                    headerStyle: {
+                        backgroundColor: Colors.neutral.rgba1,
+                    },
+                    title: '',
+                    headerLeft: () => (
+                        <LeftLibrary />
+                    ),
+                    headerRight: () => (
+                        <RightLibrary />
+                    ),
+                    transitionSpec: {
+                      open: config,
+                      close: config,
                     },
                     animation: 'slide_from_right',
                 }}

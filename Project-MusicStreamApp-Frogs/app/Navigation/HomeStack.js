@@ -39,6 +39,8 @@ const HomeStack = () => {
                     headerShadowVisible: false,
                     headerStyle: {
                         backgroundColor: Colors.neutral.gray,
+                        height: 80,
+                        justifyContent: 'space-between',
                     },
                     headerLeft: () => (
                         <SearchHeaderLeft />

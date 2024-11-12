@@ -7,9 +7,9 @@ import { useNavigation } from '@react-navigation/native';
 const SearchHeaderRight = () => {
     return (
         <TouchableOpacity  style={styles.container}>
-            <Text>
+            <View style={styles.icon}>
                 <FontAwesome style={styles.body} name="bell" size={20} color={Colors.neutral.white} />
-            </Text>
+            </View>
         </TouchableOpacity>
     )
 }
@@ -22,13 +22,14 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        marginRight: 15,
+      },
+      icon:{
+        padding: 12,
+        borderRadius: '50%',
+        backgroundColor: 'rgba(255, 255, 255, 0.2)',
       },
       body: {
-        backgroundColor: 'rgba(255, 255, 255, 0.2)',
         textAlign: 'center',
-        padding: 16,
-        borderRadius: 50,
         justifyContent: 'center',
         alignItems: 'center',
       },

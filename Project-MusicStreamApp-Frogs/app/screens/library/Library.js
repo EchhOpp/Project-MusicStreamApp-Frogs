@@ -55,7 +55,10 @@ const Library = ({navigation }) => {
         <View style={styles.savedClips}>
           <View style={styles.listenTitle}>
             <Text style={[styles.Color, styles.textH1]}>Saved Clips</Text>
-            <TouchableOpacity style={styles.btnMore}>
+            <TouchableOpacity 
+                style={styles.btnMore}
+                onPress={() => navigation.navigate('SavedClips')}
+                >
               <Text style={[styles.Color, styles.textH2]}>More</Text>
             </TouchableOpacity>
           </View>

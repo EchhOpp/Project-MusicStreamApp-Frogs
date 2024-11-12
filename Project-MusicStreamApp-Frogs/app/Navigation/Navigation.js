@@ -141,7 +141,11 @@ const NavigationTabs = () => {
             />
 
             {/* Project  */}
-            <Tab.Screen name="Profile" component={ProfileStack} />
+            <Tab.Screen name="Profile" component={ProfileStack} 
+                        options={{
+                            headerShown: false,
+                        }}
+            />
 
         </Tab.Navigator>
     );
