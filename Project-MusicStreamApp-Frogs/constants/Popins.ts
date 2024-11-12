@@ -22,7 +22,7 @@ export const Popins = {
         weight: Bold
     },
     Heading5: {
-        size: 20,
+        size: 18,
         weight: Bold
     },
     Heading6: {

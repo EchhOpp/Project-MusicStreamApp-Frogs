@@ -3,7 +3,6 @@ import { auth, database} from "../config/firebaseConfig";
 import { set, ref } from "firebase/database";
 
 // Hàm tạo tài khoản người dùng mới
-
 const createProfile = async (user, userName) => 
 {
     set(ref(database, `users/${user.uid}`), {

@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     },
 
     fonttext16: {
-        fontSize: 18,
+        fontSize: 16,
     },
     fonttext14: {
         fontSize: 14,
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     btn: {
         backgroundColor: '#1e1e1e',
         width: '100%',
-        height: '14%',
+        height: '12.8%',
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 50,
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     btnfooter: {
         backgroundColor: '#1e1e1e',
         width: '100%',
-        height: '34%',
+        height: '30%',
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 50,
