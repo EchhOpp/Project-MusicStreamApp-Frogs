@@ -32,7 +32,10 @@ const SignIn = ({ navigation }) => {
             AuthSignIn(userName, passWord)
                 .then((user) => {
                     console.log('User signed in:', user);
-                    navigation.navigate('SignInStep1');
+                    navigation.reset({
+                        index: 0, // Đặt chỉ mục màn hình hiện tại
+                        routes: [{ name: 'SignInStep1' }], // Đặt màn hình SignInStep1 là màn hình duy nhất
+                    });
                     setShowError(false);
                 })
                 .catch((error) => {
