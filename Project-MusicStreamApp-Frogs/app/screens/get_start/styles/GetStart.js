@@ -37,11 +37,11 @@ const styles = StyleSheet.create({
   btn: {
     backgroundColor: '#DF3131',
     width: '90%',
-    height: '6%',
+    height: '5.8%',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: '50%',
-    marginTop: '10%',
+    marginTop: '8%',
     marginBottom: '30%',
   }
 });

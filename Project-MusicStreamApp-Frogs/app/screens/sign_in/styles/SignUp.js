@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     btnSignUp: {
         backgroundColor: 'rgba(223, 49, 49, 0.8)',
         width: '100%',
-        height: 58,
+        height: 54,
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 50,
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
 
 
     fonttext16: {
-        fontSize: 18,
+        fontSize: 16,
     },
     fonttext14: {
         fontSize: 14,
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     btn: {
         backgroundColor: '#1e1e1e',
         width: '100%',
-        height: 60,
+        height: 54,
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 50,
