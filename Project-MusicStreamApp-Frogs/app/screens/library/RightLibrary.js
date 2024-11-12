@@ -7,11 +7,11 @@ import { Ionicons } from '@expo/vector-icons'
 const RightLibrary = () => {
   return (
     <View style={styles.container}>
-        <TouchableOpacity>
-            <Ionicons name="search" size={24} style={[styles.icon, styles.iconSearch]} />
+        <TouchableOpacity style={[styles.icon, styles.iconSearch]}>
+            <Ionicons name="search" size={24} color={'white'}/>
         </TouchableOpacity>
-        <TouchableOpacity>
-            <Ionicons name="add" size={24} style={styles.icon} />
+        <TouchableOpacity style={styles.icon} >
+            <Ionicons name="add" size={24} color={'white'}/>
         </TouchableOpacity>
     </View>
   )
@@ -22,26 +22,25 @@ export default RightLibrary
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        alignItems: 'center',
-        marginHorizontal: 20, 
+        alignItems: 'center', 
     },
     
     icon: {
         color: Colors.neutral.white,
-        marginLeft: 20
+        marginLeft: 10,
     },
     
     icon: {
         backgroundColor: 'rgba(255, 255, 255, 0.2)',
         textAlign: 'center',
         fontWeight: 'bold',
-        padding: 12,
+        padding: 8,
         borderRadius: 50,
         justifyContent: 'center',
         alignItems: 'center',
         color: Colors.neutral.white,
     },
     iconSearch: {
-        marginHorizontal: 8,
+        marginHorizontal: 12,
     }
 })

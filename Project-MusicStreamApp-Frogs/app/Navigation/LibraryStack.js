@@ -1,11 +1,11 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';  
 import { Colors } from '../../constants/Colors';
-import HeaderLeft from '../../components/headerLeft';
 import LeftLibrary from '../screens/library/LeftLibrary';
 import RightLibrary from '../screens/library/RightLibrary';
 import Library from '../screens/library/Library';
-import PlayListScreen from '../screens/library/PlayListScreen';
+import PlayListScreen from '../screens/playlists/PlayLists';
+import SavedClips from '../screens/saved_clips/SavedClips';
 
 const Stack = createNativeStackNavigator();
 
@@ -24,15 +24,14 @@ const LibraryStack = () => {
       };
     
     return (
-        <Stack.Navigator>
+        <Stack.Navigator initialRouteName='Library'>
             <Stack.Screen
                 name="Library"
                 component={Library}
                 options={{
                     headerShadowVisible: false,
                     headerStyle: {
-                        backgroundColor: Colors.neutral.gray,
-                        height: 80,
+                        backgroundColor: Colors.neutral.rgba1,
                     },
                     title: '',
                     headerLeft: () => (
@@ -52,6 +51,39 @@ const LibraryStack = () => {
                 name="PlayListScreen"
                 component={PlayListScreen}
                 options={{
+                   headerShadowVisible: false,
+                    headerStyle: {
+                        backgroundColor: Colors.neutral.rgba1,
+                    },
+                    title: '',
+                    headerLeft: () => (
+                        <LeftLibrary />
+                    ),
+                    headerRight: () => (
+                        <RightLibrary />
+                    ),
+                    transitionSpec: {
+                        open: config,
+                        close: config,
+                    },
+                    animation: 'slide_from_right',
+                }}
+            />
+            <Stack.Screen
+                name="SavedClips"
+                component={SavedClips}
+                options={{
+                    headerShadowVisible: false,
+                    headerStyle: {
+                        backgroundColor: Colors.neutral.rgba1,
+                    },
+                    title: '',
+                    headerLeft: () => (
+                        <LeftLibrary />
+                    ),
+                    headerRight: () => (
+                        <RightLibrary />
+                    ),
                     transitionSpec: {
                       open: config,
                       close: config,

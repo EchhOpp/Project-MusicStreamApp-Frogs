@@ -1,7 +1,7 @@
-import { StyleSheet, Text, View, ImageBackground, TouchableOpacity } from 'react-native';
+import { Text, View, ImageBackground, TouchableOpacity } from 'react-native';
 import React from 'react';
 import styles from './styles/GetStartCount';
-import { Ionicons, FontAwesome } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 
 const GetStartCount = (
   { navigation }

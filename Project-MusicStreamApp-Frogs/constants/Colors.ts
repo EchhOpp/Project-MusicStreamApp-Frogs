@@ -26,6 +26,8 @@ export const Colors = {
     white: '#FFFFFF',
     black: '#000000',
     gray: '#131313',
+    rgba1: 'rgba(0, 0, 0, 0.9)',
+    rgba2: 'rgba(0, 0, 0, 0.7)',
   },
   state: {
     tint: '#F6CBCB',

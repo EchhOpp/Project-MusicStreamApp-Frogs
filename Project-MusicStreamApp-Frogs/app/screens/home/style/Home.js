@@ -7,7 +7,10 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: Colors.neutral.gray,
-        position: 'relative',
+    },
+
+    bodyContent: {
+        marginBottom: 40,
     },
 
     bottomNav: {

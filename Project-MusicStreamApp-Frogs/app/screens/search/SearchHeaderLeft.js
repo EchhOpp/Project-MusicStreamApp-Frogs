@@ -21,9 +21,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginHorizontal: 20, 
   },
-
   nameFunc: {
     color: Colors.neutral.white,
     fontSize: Popins.Heading4.size,

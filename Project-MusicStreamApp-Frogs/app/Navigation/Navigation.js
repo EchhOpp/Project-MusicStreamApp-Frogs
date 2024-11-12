@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -89,8 +90,6 @@ const AuthStack = () => {
     );
 };
 
-
-
 const NavigationTabs = () => {
     return (
         <Tab.Navigator 
@@ -118,8 +117,10 @@ const NavigationTabs = () => {
                 tabBarStyle: {
                     backgroundColor: Colors.neutral.gray,
                     borderTopWidth: 0,
+                    height: 80,
                 },
-            })}
+            })
+            }
         >
         
             {/* Tab home */}
@@ -140,7 +141,11 @@ const NavigationTabs = () => {
             />
 
             {/* Project  */}
-            <Tab.Screen name="Profile" component={ProfileStack} />
+            <Tab.Screen name="Profile" component={ProfileStack} 
+                        options={{
+                            headerShown: false,
+                        }}
+            />
 
         </Tab.Navigator>
     );
@@ -148,7 +153,7 @@ const NavigationTabs = () => {
 
 const MainStack = () => {
     return (
-        <Stack.Navigator initialRouteName="Auth">
+        <Stack.Navigator initialRouteName="Main">
             <Stack.Screen
                 name="Auth"
                 component={AuthStack}

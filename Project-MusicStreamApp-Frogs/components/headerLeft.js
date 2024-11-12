@@ -1,7 +1,6 @@
 import { StyleSheet,Image, Text, View, TouchableOpacity} from 'react-native'
 import React from 'react'
 import { Colors } from '@/constants/Colors';
-import { Ionicons } from '@expo/vector-icons';
 import Entypo from '@expo/vector-icons/Entypo';
 
 const headerLeft = () => {
@@ -24,7 +23,6 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginHorizontal: 20,
     },
     body: {
     },
