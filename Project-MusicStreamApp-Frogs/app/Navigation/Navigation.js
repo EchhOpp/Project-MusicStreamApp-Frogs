@@ -26,7 +26,7 @@ const Tab = createBottomTabNavigator();
 
 const AuthStack = () => {
     return (
-        <Stack.Navigator>
+        <Stack.Navigator initialRouteName="GetStart">
             <Stack.Screen
                 name="GetStart"
                 component={GetStart}
@@ -65,9 +65,6 @@ const AuthStack = () => {
                     },
                     headerTintColor: Colors.neutral.white,
                     headerShadowVisible: false,
-                    headerRight: () => (
-                        <Ionicons name="ellipsis-vertical" size={24} color={Colors.neutral.white} style={{ marginRight: 20 }} />
-                    ),
                 }}
             />
             <Stack.Screen

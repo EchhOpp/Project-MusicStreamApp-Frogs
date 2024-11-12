@@ -52,7 +52,7 @@ const SignIn = ({ navigation }) => {
                         <TextInput
                             style={[styles.input, { borderColor: userNameBorderColor }]}
                             onChangeText={(text) => { setUserName(text)}}
-                            placeholder="Username or Email"
+                            placeholder="Username or Email address"
                             placeholderTextColor='#7e7e7e'
                         />
                         <TextInput
