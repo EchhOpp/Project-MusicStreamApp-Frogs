@@ -28,13 +28,13 @@ const GetStartCount = (
         </View>
         <View style={styles.layout}>
           <Text style={styles.colorLayout}>
-            __________________
+            _____________
           </Text>
           <Text style={styles.colorLayout}>
             Or continue with
           </Text>
           <Text style={styles.colorLayout}>
-            __________________
+            _____________
           </Text>
         </View>
         <View style={styles.bottom}>

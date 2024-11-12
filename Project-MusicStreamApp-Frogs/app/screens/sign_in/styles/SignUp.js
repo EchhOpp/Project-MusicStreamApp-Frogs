@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     body: {
+        flex: 3,
         width: width,
         height: 0.5 * height,
     },
@@ -32,30 +33,55 @@ const styles = StyleSheet.create({
         height: 24,
     },
     viewInputs: {
-        height: '100%',
-        marginTop: 20,
+        marginTop: '16%',
         width: '100%',
-        height: '70%',
+        height: '60%',
         paddingLeft: 20,
         paddingRight: 20,
         alignItems: 'center',
     },
-    input: {
+
+    textInput: {
         width: '100%',
-        height: 56,
-        borderColor: Colors.neutral.white,
+        height: 60,
+        borderColor: '#7e7e7e',
         borderWidth: 1,
-        borderRadius: 12,
+        borderRadius: 16,
         paddingLeft: 20,
         color: Colors.neutral.white,
         fontSize: 16,
-        marginVertical: 6
+        marginVertical: 6,
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+
+    input: {
+        width: '100%',
+        height: 60,
+        paddingLeft: 10,
+        color: Colors.neutral.white,
+        fontSize: 16,
+    },
+
+    icon: {
+        marginRight: 10,
+        backgroundColor: 'rgba(0, 0, 0, 0.0)',
+    },
+
+    btnSignUp: {
+        backgroundColor: 'rgba(223, 49, 49, 0.8)',
+        width: '100%',
+        height: 54,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 50,
+        marginTop: 20,
     },
     colortext2: {
         color: Colors.neutral.white,
     },
     colortext: {
-        color: Colors.neutral.white,
+        color: 'rgba(225, 225, 225, 0.6)',
     },
 
     boldtext: {
@@ -64,7 +90,7 @@ const styles = StyleSheet.create({
 
 
     fonttext16: {
-        fontSize: 18,
+        fontSize: 16,
     },
     fonttext14: {
         fontSize: 14,
@@ -73,18 +99,19 @@ const styles = StyleSheet.create({
     btn: {
         backgroundColor: '#1e1e1e',
         width: '100%',
-        height: '20%',
+        height: 54,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 25,
+        borderRadius: 50,
         marginTop: 20,
         marginBottom: '20%',
     },
     footer: {
-
+        flex: 1,
         width: 0.9 * width,
         height: 0.3 * height,
         alignSelf: 'center',
+        marginTop: '20%',
     },
     footerText: {
         width: '100%',
@@ -93,6 +120,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         alignSelf: 'center',
         marginTop: 20,
+        marginBottom: 20,
     },
     footerImg: {
         height: 2,

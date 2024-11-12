@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.neutral.black
     },
     body: {
+        flex: 3,
         marginTop: '16%',
         width: width,
         height: 0.5 * height,
@@ -20,7 +21,6 @@ const styles = StyleSheet.create({
     },
     viewInputs: {
         height: '80%',
-        marginTop: 20,
         width: '100%',
         paddingLeft: 20,
         paddingRight: 20,
@@ -28,27 +28,24 @@ const styles = StyleSheet.create({
     },
     input: {
         width: '100%',
-        height: 56,
+        height: 60,
         borderColor: '#7e7e7e',
-        borderWidth: 2.5,
+        borderWidth: 1,
         borderRadius: 12,
         paddingLeft: 20,
         color: Colors.neutral.white,
-        fontSize: 18,
+        fontSize: 16,
         marginVertical: 8
     },
     context: {
         width: '80%',
     },
     colortext2: {
-        color: Colors.neutral.white,
+        color: 'rgba(255, 255, 255, 0.5)',
     },
     colortext: {
         color: Colors.neutral.white,
-    },
 
-    boldtext: {
-        fontWeight: '500',
     },
 
     fonttext30: {
@@ -56,7 +53,7 @@ const styles = StyleSheet.create({
     },
 
     fonttext16: {
-        fontSize: 18,
+        fontSize: 16,
     },
     fonttext14: {
         fontSize: 14,
@@ -65,14 +62,27 @@ const styles = StyleSheet.create({
     btn: {
         backgroundColor: '#1e1e1e',
         width: '100%',
-        height: '18%',
+        height: '12.8%',
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 50,
+        borderRadius: '50%',
         marginTop: 20,
-        marginBottom: '20%',
+        marginBottom: '12%',
     },
+
+    btnfooter: {
+        backgroundColor: '#1e1e1e',
+        width: '100%',
+        height: '30%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: '50%',
+        marginTop: '12%',
+        marginBottom: '12%',
+    },
+
     footer: {
+        flex: 1,
         width: 0.9 * width,
         height: 0.3 * height,
         alignSelf: 'center',

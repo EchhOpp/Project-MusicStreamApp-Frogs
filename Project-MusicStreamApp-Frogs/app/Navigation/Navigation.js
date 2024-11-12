@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { View } from 'react-native';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
@@ -25,7 +26,7 @@ const Tab = createBottomTabNavigator();
 
 const AuthStack = () => {
     return (
-        <Stack.Navigator>
+        <Stack.Navigator initialRouteName="GetStart">
             <Stack.Screen
                 name="GetStart"
                 component={GetStart}
@@ -34,13 +35,16 @@ const AuthStack = () => {
             <Stack.Screen
                 name="GetStartCount"
                 component={GetStartCount}
-                options={{ headerShown: false }}
+                options={{ 
+                    headerShown: false,
+                    title: 'Sign In',
+                }}
             />
             <Stack.Screen
                 name="SignIn"
                 component={SignIn}
                 options={{
-                    title: 'Sign In',
+                    headerTitle: '',
                     headerStyle: {
                         backgroundColor: Colors.neutral.black,
                     },
@@ -61,9 +65,6 @@ const AuthStack = () => {
                     },
                     headerTintColor: Colors.neutral.white,
                     headerShadowVisible: false,
-                    headerRight: () => (
-                        <Ionicons name="ellipsis-vertical" size={24} color={Colors.neutral.white} style={{ marginRight: 20 }} />
-                    ),
                 }}
             />
             <Stack.Screen
@@ -153,7 +154,7 @@ const NavigationTabs = () => {
 
 const MainStack = () => {
     return (
-        <Stack.Navigator initialRouteName="Main">
+        <Stack.Navigator initialRouteName="Auth">
             <Stack.Screen
                 name="Auth"
                 component={AuthStack}

@@ -1,4 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native';
+import { Colors } from '../../../../constants/Colors';
+import { Popins } from '../../../../constants/Popins'
 
 const { width, height } = Dimensions.get('window');
 
@@ -13,36 +15,34 @@ const styles = StyleSheet.create({
     height: height,
     justifyContent: 'flex-end',
     alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
   },
   context: {
-    width: '80%',
+    width: '90%',
   },
 
   colortext: {
     color: '#FFFFFF',
   },
 
-  boldtext: {
-    fontWeight: '500',
-  },
-
   fonttext30: {
-    fontSize: 34,
+    fontSize: Popins.Heading3.size,
+    fontWeight: 'bold',
   },
 
   fonttext18: {
-    fontSize: 18,
+    fontSize: Popins.Heading5.size,
   },
 
   btn: {
     backgroundColor: '#DF3131',
-    width: '80%',
-    height: '6%',
+    width: '90%',
+    height: '5.8%',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 25,
-    marginTop: 20,
-    marginBottom: '20%',
+    borderRadius: '50%',
+    marginTop: '8%',
+    marginBottom: '30%',
   }
 });
 
