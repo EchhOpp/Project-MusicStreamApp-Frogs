@@ -1,6 +1,7 @@
 // Lấy thông tin từ form đăng ký và gọi hàm tạo tài khoản người dùng mới
 import { signInWithEmailAndPassword} from "firebase/auth";
 import { auth } from "../config/firebaseConfig";
+import { Alert } from "react-native";
 
 /**
  * Hàm để tạo tài khoản người dùng mới
@@ -18,6 +19,7 @@ const signInUser = (email, password) => {
       // Xử lý lỗi đăng ký
       const errorCode = error.code;
       const errorMessage = error.message;
+      Alert.alert("Login Error", "Do you have an account?");
       throw new Error(`Error ${errorCode}: ${errorMessage}`);
     });
 };

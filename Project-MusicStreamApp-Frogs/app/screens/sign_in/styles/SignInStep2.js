@@ -12,8 +12,7 @@ const styles = StyleSheet.create({
         width: width,
         alignItems: 'flex-start',
         height: 0.15 * height,
-        padding: 20,
-        marginTop: 20,
+        paddingHorizontal: 20,
     },
     steps: {
         width: '100%',
@@ -28,7 +27,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
     },
     colorNoActive: {
-        backgroundColor: Colors.neutral.white,
+        backgroundColor: 'rgba(255, 255, 255, 0.4)',
     },
     colorActive: {
         backgroundColor: Colors.primary.main
