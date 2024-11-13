@@ -39,7 +39,7 @@ const SignIn = ({ navigation }) => {
                     setShowError(false);
                 })
                 .catch((error) => {
-                    showError(true);
+                    setShowError(true);
                     alert("Username or Password is incorrect");
                 });
         } else {
@@ -48,7 +48,7 @@ const SignIn = ({ navigation }) => {
     };
 
     return (
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <TouchableWithoutFeedback >
             <SafeAreaView style={styles.container}>
                 <View style={styles.body}>
                     <View style={styles.viewInputs}>

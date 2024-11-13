@@ -69,7 +69,7 @@ const SignUpEmail = ({ navigation }) => {
     };
 
     return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+    <TouchableWithoutFeedback >
         <SafeAreaView style={styles.container}>
             <View style={styles.body}>
                 <View style={styles.viewInputs}>
