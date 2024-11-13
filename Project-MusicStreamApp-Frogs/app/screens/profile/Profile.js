@@ -4,9 +4,11 @@ import styles from './style/Profile'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
+import { useNavigation } from '@react-navigation/native';
 
 
 const Profile = () => {
+  const navigation = useNavigation();
   return (
     <ScrollView style={styles.container}>
       <View style={styles.viewProfile}>
@@ -59,7 +61,9 @@ const Profile = () => {
           </View>
 
         </TouchableOpacity>
-        <TouchableOpacity style={styles.functionitem}>
+        <TouchableOpacity 
+            onPress={() => navigation.navigate('Settings')}
+            style={styles.functionitem}>
           <SimpleLineIcons name="settings" size={18} color="white" style={styles.iconf} />
           <View style={styles.functiondes}>
             <View style={styles.functionname}>
