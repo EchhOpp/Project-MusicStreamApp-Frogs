@@ -36,7 +36,9 @@ const SignInStep1 = ({ navigation }) => {
 
     return (
         <View style={styles.container} >
-            <ScrollView style={styles.scrollContainer}>
+            <ScrollView style={styles.scrollContainer} 
+            showsVerticalScrollIndicator={false}
+            >
             {/* Header */}
             <View style={styles.header}>
                 <View style={styles.steps}>

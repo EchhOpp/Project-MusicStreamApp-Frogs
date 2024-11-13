@@ -26,7 +26,7 @@ const Tab = createBottomTabNavigator();
 
 const AuthStack = () => {
     return (
-        <Stack.Navigator initialRouteName="SignInStep1">
+        <Stack.Navigator>
             <Stack.Screen
                 name="GetStart"
                 component={GetStart}
@@ -65,31 +65,30 @@ const AuthStack = () => {
                     },
                     headerTintColor: Colors.neutral.white,
                     headerShadowVisible: false,
+                    headerRight: () => (
+                        <Ionicons name="ellipsis-vertical" size={24} color={Colors.neutral.white} style={{ marginRight: 20 }} />
+                    ),
                 }}
             />
             <Stack.Screen
                 name="SignInStep1"
                 component={SignInStep1}
                 options={{
-                    title: 'Choose music',
+                    title: 'Chose music',
                     headerStyle: {
                         backgroundColor: Colors.neutral.black,
                     },
                     headerTintColor: Colors.neutral.white,
                     headerShadowVisible: false,
+                    headerRight: () => (
+                        <Ionicons name="ellipsis-vertical" size={24} color={Colors.neutral.white} style={{ marginRight: 20 }} />
+                    ),
                 }}
             />
             <Stack.Screen
                 name="SignInStep2"
                 component={SignInStep2}
-                options={{ 
-                    title: 'Choose music',
-                    headerStyle: {
-                        backgroundColor: Colors.neutral.black,
-                    },
-                    headerTintColor: Colors.neutral.white,
-                    headerShadowVisible: false,
-                 }}
+                options={{ headerShown: false }}
             />
         </Stack.Navigator>
     );
