@@ -69,7 +69,7 @@ const SignUpEmail = ({ navigation }) => {
     };
 
     return (
-    <TouchableWithoutFeedback >
+    <TouchableWithoutFeedback>
         <SafeAreaView style={styles.container}>
             <View style={styles.body}>
                 <View style={styles.viewInputs}>

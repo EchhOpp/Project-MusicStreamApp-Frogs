@@ -6,7 +6,9 @@ const SignInStep2 = (
     {navigation}
 ) => {
   return (
-    <ScrollView style={styles.container} >
+    <ScrollView style={styles.container} 
+        showsVerticalScrollIndicator={false}
+    >
             <View style={styles.header}>
                 <View style={styles.steps}>
                     <View style={[styles.step,styles.colorActive]}></View>

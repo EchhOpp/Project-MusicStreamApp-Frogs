@@ -1,23 +1,22 @@
 import { FlatList , Text, View, ScrollView,TextInput, Image, TouchableOpacity } from 'react-native'
 import React, {useState, useEffect}from 'react'
 import styles from './styles/SignInStep1'
+import { getGenre } from '../../../services/ChooseMusic'
 
 
 const SignInStep1 = ({ navigation }) => {
-    const genre = [
-        { key: 'Hip-hop' },
-        { key: 'R&B' },
-        { key: 'Alternative' },
-        { key: 'Pop' },
-        { key: 'Rock' },
-        { key: 'Electronic' },
-        { key: 'Country' },
-        { key: 'Classical' },
-        { key: 'Jazz' },
-        { key: 'Blues' },
-        { key: 'House' },
-        { key: 'Experimental' },
-    ];
+    const [genre, setGenre] = useState([]);
+    const [search, setSearch] = useState('');
+    
+    // Lấy genre từ firebase
+    useEffect(() => {
+        getGenre().then((data) => {
+            setGenre(data);
+        });
+    }, [navigation]);
+
+    // Lọc danh sách genre dựa trên từ khóa tìm kiếm
+    const genreFilter = search === '' ? genre : genre.filter((item) => item.toLowerCase().includes(search.toLowerCase()));
     
     const artists = [
         { key: 'The Weeknd' },
@@ -49,20 +48,24 @@ const SignInStep1 = ({ navigation }) => {
             </View>
             {/* Choose */}
             <View style={styles.choose1}>
-                <TextInput style={[styles.fonttext16, styles.txtInput]} placeholder='Search Genre or Artist' placeholderTextColor='rgba(255, 255, 255, 0.8)' />
+                <TextInput 
+                    style={[styles.fonttext16, styles.txtInput]} 
+                    placeholder='Search Genre or Artist' 
+                    placeholderTextColor='rgba(255, 255, 255, 0.8)' 
+                    value={search}
+                    onChangeText={(text) => setSearch(text)}
+                    />
                 <FlatList
                     nestedScrollEnabled={true} 
                     style={{ flex: 1 }}
-                    data={genre}
+                    data={genreFilter}
                     renderItem={({ item }) => (
-                        <View style={styles.litsItem}>
-                            <TouchableOpacity >
-                                <Text style={[styles.fonttext16, styles.itemN]}>{item.key}</Text>
-                            </TouchableOpacity>
-                        </View>
+                        <TouchableOpacity style={styles.litsItem}>
+                            <Text style={[styles.fonttext16, styles.itemN]}>{item}</Text>
+                        </TouchableOpacity>
                     )}
                     numColumns={3}
-                    keyExtractor={item => item.key}
+                    keyExtractor={(item) => item}
                     showsHorizontalScrollIndicator={false}
                 />
             </View>

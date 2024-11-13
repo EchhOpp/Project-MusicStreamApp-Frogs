@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
   },
   itemN: {
     color: Colors.neutral.white,
-    paddingHorizontal: 24,
+    paddingHorizontal: 20,
     paddingVertical: 10,
   },
 
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   fonttext16: {
-    fontSize: 16,
+    fontSize: 14,
   },
   fonttext14: {
     fontSize: 14,

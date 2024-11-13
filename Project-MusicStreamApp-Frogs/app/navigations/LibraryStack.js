@@ -24,7 +24,7 @@ const LibraryStack = () => {
       };
     
     return (
-        <Stack.Navigator initialRouteName='Library'>
+        <Stack.Navigator>
             <Stack.Screen
                 name="Library"
                 component={Library}
