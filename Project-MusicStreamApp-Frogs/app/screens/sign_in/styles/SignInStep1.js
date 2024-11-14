@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   choose1: {
     width: width,
     paddingHorizontal: 20,
-    marginBottom: 30,
+    marginVertical: 30,
   },
   
   choose: {
@@ -60,12 +60,22 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     backgroundColor: '#1e1e1e',
-    marginRight: 12,
+    marginRight: 8,
     borderRadius: 50,
+    borderWidth: 1,
+
   },
+
+  itemSelect: {
+    //rbg(223, 49, 49, 0.2)
+    backgroundColor: 'rgba(223, 49, 49, 0.4)',
+    borderWidth: 1,
+    borderColor: Colors.primary.main,
+  },
+
   itemN: {
     color: Colors.neutral.white,
-    paddingHorizontal: 20,
+    paddingHorizontal: 12,
     paddingVertical: 10,
   },
 

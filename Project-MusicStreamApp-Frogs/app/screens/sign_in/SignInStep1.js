@@ -1,37 +1,63 @@
 import { FlatList , Text, View, ScrollView,TextInput, Image, TouchableOpacity } from 'react-native'
-import React, {useState, useEffect}from 'react'
+import React, {useState, useEffect, useRef}from 'react'
 import styles from './styles/SignInStep1'
-import { getGenre } from '../../../services/ChooseMusic'
+import { getGenre, getArtists } from '../../../services/ChooseMusic'
 
 
 const SignInStep1 = ({ navigation }) => {
+    // Khai báo biến cho genre và search
     const [genre, setGenre] = useState([]);
     const [search, setSearch] = useState('');
+    const [selectedGenre, setSelectedGenre] = useState([]);
     
+    // Khai báo biến cho artist
+    const [artists, setArtists] = useState([]);
+
+    // Đăt biến cờ để kiểm tra xem component đã được mount hay chưa
+    const isMounted = useRef(true);
+
     // Lấy genre từ firebase
     useEffect(() => {
         getGenre().then((data) => {
-            setGenre(data);
+            if (isMounted.current) {
+                setGenre(data);
+            }
         });
-    }, [navigation]);
+        return () => {
+            isMounted.current = false; // Khi component unmount, đặt biến cờ thành false
+        };
+    }, [isMounted]);
 
-    // Lọc danh sách genre dựa trên từ khóa tìm kiếm
-    const genreFilter = search === '' ? genre : genre.filter((item) => item.toLowerCase().includes(search.toLowerCase()));
+    // Hiển thị genre đã chọn
+    const handleSelectGenre = (item) => {
+        // Nếu genre đã được chọn thì bỏ chọn, ngược lại thì thêm vào mảng genre đã chọn
+        if (selectedGenre.includes(item)) {
+            setSelectedGenre(selectedGenre.filter((genre) => genre !== item));
+        } 
+        // Nếu genre chưa được chọn thì thêm vào mảng genre đã chọn
+        else {
+            setSelectedGenre([...selectedGenre, item]);
+        }
+    };
+
+    // Lấy artist từ firebase
+    useEffect(() => {
+        getArtists().then((data) => {
+            if (isMounted.current) {
+                const flattenedData = data.flat();
+                setArtists(flattenedData);
+            }
+        });
+
+        alert(JSON.stringify(artists)); // Hiển thị dữ liệu dưới dạng chuỗi JSON
+        return () => {
+            isMounted.current = false; 
+        }
+    }, []);
+
+    // Lọc danh sách genre dựa trên từ khóa tìm kiếm và nếu có chọn genre hiển thi cả 2 
+    const genreFilter = genre.filter((item) => item.toLowerCase().includes(search.toLowerCase()) || selectedGenre.includes(item));
     
-    const artists = [
-        { key: 'The Weeknd' },
-        { key: 'Drake' },
-        { key: 'Kanye West' },
-        { key: 'Kendrick Lamar' },
-        { key: 'Frank Ocean' },
-        { key: 'Beyonce' },
-        { key: 'Rihanna' },
-        { key: 'Ariana Grande' },
-        { key: 'Taylor Swift' },
-        { key: 'Billie Eilish' },
-        { key: 'Lady Gaga' },
-        { key: 'SZA' },
-    ];
 
     return (
         <View style={styles.container} >
@@ -55,38 +81,45 @@ const SignInStep1 = ({ navigation }) => {
                     value={search}
                     onChangeText={(text) => setSearch(text)}
                     />
+
+                {/* Select Genre */}
                 <FlatList
                     scrollEnabled={false}
-                    style={{ flex: 1 }}
                     data={genreFilter}
                     renderItem={({ item }) => (
-                        <TouchableOpacity style={styles.litsItem}>
+                        <TouchableOpacity 
+                            style={[styles.litsItem, selectedGenre.includes(item) && styles.itemSelect]}
+                            onPress={() => handleSelectGenre(item)}
+                        >
                             <Text style={[styles.fonttext16, styles.itemN]}>{item}</Text>
                         </TouchableOpacity>
                     )}
                     numColumns={3}
                     keyExtractor={(item) => item}
                     showsHorizontalScrollIndicator={false}
+                    columnWrapperStyle={{ width: '100%'}}
                 />
             </View>
             <View style={styles.choose1}>
                 <Text style={[styles.fonttext24, styles.Artists]}>Artists</Text>
                 {/* Sổ list Artits */}
-                <FlatList
-                    scrollEnabled={false}
-                    data={artists}
-                    numColumns={3}
-                    renderItem={({ item }) => (
-                        <TouchableOpacity style={styles.itemAva}>
-                            <Image source={require('../../../assets/images/avtArtists.png')} style={styles.avaImage} />
-                            <Text style={[styles.fonttext14, styles.colortext]}>{item.key}</Text>
-                        </TouchableOpacity>
-                        
-                    )}
-                    keyExtractor={item => item.key}
-                    columnWrapperStyle={{ justifyContent: 'space-between' }}
-                    showsHorizontalScrollIndicator={false}
-                />
+                    <FlatList
+                        scrollEnabled={false}
+                        data={artists}
+                        numColumns={3}
+                        keyExtractor={item => item.id + Math.random()}
+                        renderItem={({ item }) => (
+                            <TouchableOpacity style={styles.itemAva}>
+                                <Image 
+                                    source={{uri: 'https://drive.google.com/uc?export=view&id=11mVNq-KG2ZeD3WXU4f8PSJoVQ5Uappnr'}} 
+                                    style={styles.avaImage} 
+                                />
+                                <Text style={[styles.fonttext14, styles.colortext]}>{item.name}</Text>
+                            </TouchableOpacity>
+                        )}
+                        columnWrapperStyle={{ justifyContent: 'space-between' }}
+                        showsHorizontalScrollIndicator={false}
+                    />
             </View>
 
             {/* 
