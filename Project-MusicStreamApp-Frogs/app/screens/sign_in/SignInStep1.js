@@ -2,6 +2,7 @@ import { FlatList , Text, View, ScrollView,TextInput, Image, TouchableOpacity } 
 import React, {useState, useEffect, useRef}from 'react'
 import styles from './styles/SignInStep1'
 import { getGenre, getArtists } from '../../../services/ChooseMusic'
+import { set } from 'firebase/database'
 
 
 const SignInStep1 = ({ navigation }) => {
@@ -9,6 +10,7 @@ const SignInStep1 = ({ navigation }) => {
     const [genre, setGenre] = useState([]);
     const [search, setSearch] = useState('');
     const [selectedGenre, setSelectedGenre] = useState([]);
+    const [isLoaded, setIsLoaded] = useState(false);
     
     // Khai báo biến cho artist
     const [artists, setArtists] = useState([]);
@@ -16,18 +18,33 @@ const SignInStep1 = ({ navigation }) => {
     // Đăt biến cờ để kiểm tra xem component đã được mount hay chưa
     const isMounted = useRef(true);
 
-    // Lấy genre từ firebase
+    // Lấy dữ liệu genre từ API hoặc Firebase
     useEffect(() => {
-        getGenre().then((data) => {
-            if (isMounted.current) {
-                setGenre(data);
-            }
-        });
-        return () => {
-            isMounted.current = false; // Khi component unmount, đặt biến cờ thành false
-        };
-    }, [isMounted]);
+        if(!isLoaded) {
+            getGenre().then((data) => {
+                if (isMounted.current) {
+                    setGenre(data);
+                    setIsLoaded(true);
+                }
+            });
+    
+            // Lấy dữ liệu artist từ API hoặc Firebase
+            getArtists().then((data) => {
+                if (isMounted.current) {
+                    // Dùng flat() để làm phẳng mảng 2 chiều
+                    const flattenedData = data.flat();
+                    // Nếu có dữ liệu mới set vào state
+                    if (flattenedData.length > 0) setArtists(flattenedData);
+                }
+            });
+        }
 
+        // Cleanup khi component unmount
+        return () => {
+            isMounted.current = false;
+        };
+    }, [isLoaded]);
+    
     // Hiển thị genre đã chọn
     const handleSelectGenre = (item) => {
         // Nếu genre đã được chọn thì bỏ chọn, ngược lại thì thêm vào mảng genre đã chọn
@@ -39,21 +56,6 @@ const SignInStep1 = ({ navigation }) => {
             setSelectedGenre([...selectedGenre, item]);
         }
     };
-
-    // Lấy artist từ firebase
-    useEffect(() => {
-        getArtists().then((data) => {
-            if (isMounted.current) {
-                const flattenedData = data.flat();
-                setArtists(flattenedData);
-            }
-        });
-
-        alert(JSON.stringify(artists)); // Hiển thị dữ liệu dưới dạng chuỗi JSON
-        return () => {
-            isMounted.current = false; 
-        }
-    }, []);
 
     // Lọc danh sách genre dựa trên từ khóa tìm kiếm và nếu có chọn genre hiển thi cả 2 
     const genreFilter = genre.filter((item) => item.toLowerCase().includes(search.toLowerCase()) || selectedGenre.includes(item));
@@ -95,7 +97,7 @@ const SignInStep1 = ({ navigation }) => {
                         </TouchableOpacity>
                     )}
                     numColumns={3}
-                    keyExtractor={(item) => item}
+                    keyExtractor={(item) => Math.random().toString() + item}
                     showsHorizontalScrollIndicator={false}
                     columnWrapperStyle={{ width: '100%'}}
                 />
@@ -111,7 +113,7 @@ const SignInStep1 = ({ navigation }) => {
                         renderItem={({ item }) => (
                             <TouchableOpacity style={styles.itemAva}>
                                 <Image 
-                                    source={{uri: 'https://drive.google.com/uc?export=view&id=11mVNq-KG2ZeD3WXU4f8PSJoVQ5Uappnr'}} 
+                                    source={{uri: item.image}} 
                                     style={styles.avaImage} 
                                 />
                                 <Text style={[styles.fonttext14, styles.colortext]}>{item.name}</Text>

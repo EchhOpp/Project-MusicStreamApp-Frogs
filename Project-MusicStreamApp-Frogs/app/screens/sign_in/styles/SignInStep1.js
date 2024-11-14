@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   choose1: {
     width: width,
     paddingHorizontal: 20,
-    marginVertical: 30,
+    marginVertical: 20,
   },
   
   choose: {
@@ -84,18 +84,20 @@ const styles = StyleSheet.create({
   Artists: {
     fontWeight: 'bold',
     color: Colors.neutral.white,
+    marginHorizontal: 10,
   },
 
   itemAva: {
-    width: '30%',
+    width: width / 3 - 20,
     marginTop: 20,
     marginBottom: 10,
     alignItems: 'center',
+    backgroundColor: '#1e1e1e',
   },
 
   avaImage: {
-    height: 100,
-    width: 100,
+    height: 90,
+    width: 90,
     borderRadius: 50,
     marginBottom: 10,
   },
@@ -122,7 +124,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   btn: {
-    marginTop: 20,
     backgroundColor: '#df3132',
     width: '85%',
     height: 50,
