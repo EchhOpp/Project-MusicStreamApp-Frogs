@@ -112,14 +112,14 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   btn: {
-    marginTop: 50,
+    marginTop: 20,
     backgroundColor: '#df3132',
     width: '85%',
     height: 50,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 25,
-    marginBottom: 50,
+    marginBottom: 20,
     alignSelf: 'center',
   },
 });

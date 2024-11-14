@@ -56,7 +56,7 @@ const SignInStep1 = ({ navigation }) => {
                     onChangeText={(text) => setSearch(text)}
                     />
                 <FlatList
-                    nestedScrollEnabled={true} 
+                    scrollEnabled={false}
                     style={{ flex: 1 }}
                     data={genreFilter}
                     renderItem={({ item }) => (
@@ -73,7 +73,7 @@ const SignInStep1 = ({ navigation }) => {
                 <Text style={[styles.fonttext24, styles.Artists]}>Artists</Text>
                 {/* Sổ list Artits */}
                 <FlatList
-                    nestedScrollEnabled={true}
+                    scrollEnabled={false}
                     data={artists}
                     numColumns={3}
                     renderItem={({ item }) => (
