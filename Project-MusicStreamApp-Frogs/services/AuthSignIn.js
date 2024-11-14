@@ -1,5 +1,5 @@
 // Lấy thông tin từ form đăng ký và gọi hàm tạo tài khoản người dùng mới
-import { signInWithEmailAndPassword} from "firebase/auth";
+import { signInWithEmailAndPassword, getAuth} from "firebase/auth";
 import { auth } from "../config/firebaseConfig";
 import { Alert } from "react-native";
 
@@ -23,5 +23,7 @@ const signInUser = (email, password) => {
       throw new Error(`Error ${errorCode}: ${errorMessage}`);
     });
 };
+
+
 
 export default signInUser;

@@ -1,8 +1,11 @@
 import { FlatList , Text, View, ScrollView,TextInput, Image, TouchableOpacity } from 'react-native'
 import React, {useState, useEffect, useRef}from 'react'
 import styles from './styles/SignInStep1'
-import { getGenre, getArtists } from '../../../services/ChooseMusic'
-import { set } from 'firebase/database'
+import { Ionicons } from '@expo/vector-icons'
+
+
+// Services Firebase
+import { getGenre, getArtists, saveGenreAndArtists, getCurrentUser } from '../../../services/ChooseMusic'
 
 
 const SignInStep1 = ({ navigation }) => {
@@ -14,6 +17,9 @@ const SignInStep1 = ({ navigation }) => {
     
     // Khai báo biến cho artist
     const [artists, setArtists] = useState([]);
+    const [selectedArtists, setSelectedArtists] = useState([]);
+    // Lấy tên các artist đã chọn 
+    const [artistName, setArtistName] = useState([]); 
 
     // Đăt biến cờ để kiểm tra xem component đã được mount hay chưa
     const isMounted = useRef(true);
@@ -33,7 +39,6 @@ const SignInStep1 = ({ navigation }) => {
                 if (isMounted.current) {
                     // Dùng flat() để làm phẳng mảng 2 chiều
                     const flattenedData = data.flat();
-                    // Nếu có dữ liệu mới set vào state
                     if (flattenedData.length > 0) setArtists(flattenedData);
                 }
             });
@@ -45,6 +50,7 @@ const SignInStep1 = ({ navigation }) => {
         };
     }, [isLoaded]);
     
+
     // Hiển thị genre đã chọn
     const handleSelectGenre = (item) => {
         // Nếu genre đã được chọn thì bỏ chọn, ngược lại thì thêm vào mảng genre đã chọn
@@ -57,10 +63,27 @@ const SignInStep1 = ({ navigation }) => {
         }
     };
 
-    // Lọc danh sách genre dựa trên từ khóa tìm kiếm và nếu có chọn genre hiển thi cả 2 
-    const genreFilter = genre.filter((item) => item.toLowerCase().includes(search.toLowerCase()) || selectedGenre.includes(item));
-    
+    // Hiển thị artist đã chọn
+    const handleSelectArtists = (item) => {
+        // Nếu artist đã được chọn thì bỏ chọn, ngược lại thì thêm vào mảng artist đã chọn
+        if (selectedArtists.includes(item)) {
+            setSelectedArtists(selectedArtists.filter((artist) => artist !== item));
+        }
+        // Nếu artist chưa được chọn thì thêm vào mảng artist đã chọn
+        else {
+            setSelectedArtists([...selectedArtists, item]);
+        }
+    };
 
+    // Lọc danh sách genre dựa trên từ khóa tìm kiếm và nếu có chọn genre hiển thi cả 2 và loc theo artist
+    const genreFilter = genre.filter((item) => item.toLowerCase().includes(search.toLowerCase()) || selectedGenre.includes(item));
+    const artistFilter = artists.filter((item) => item.name.toLowerCase().includes(search.toLowerCase()) || selectedArtists.includes(item));
+
+    // Lấy tên các artist đã chọn
+    useEffect(() => {
+        setArtistName(selectedArtists.map((artist) => artist.name));
+    }, [selectedArtists]);
+    
     return (
         <View style={styles.container} >
             <ScrollView style={styles.scrollContainer} 
@@ -107,15 +130,28 @@ const SignInStep1 = ({ navigation }) => {
                 {/* Sổ list Artits */}
                     <FlatList
                         scrollEnabled={false}
-                        data={artists}
+                        data={artistFilter}
                         numColumns={3}
                         keyExtractor={item => item.id + Math.random()}
                         renderItem={({ item }) => (
-                            <TouchableOpacity style={styles.itemAva}>
-                                <Image 
-                                    source={{uri: item.image}} 
-                                    style={styles.avaImage} 
-                                />
+                            <TouchableOpacity 
+                                style={styles.itemAva}
+                                onPress={() => handleSelectArtists(item)}
+                            >
+                                <View style={styles.avaImageContainer}>
+                                    <Image 
+                                        source={{uri: item.image}} 
+                                        style={[styles.avaImage, selectedArtists.includes(item) && styles.itemSelect]} 
+                                    />
+                                    <View style={styles.checkIconContainer}>
+                                        <Ionicons
+                                            name='checkmark-circle' 
+                                            size={18}
+                                            color={selectedArtists.includes(item) ? '#DF3131' : 'transparent'} 
+                                            style={styles.checkIcon}
+                                        />
+                                    </View>
+                                </View>
                                 <Text style={[styles.fonttext14, styles.colortext]}>{item.name}</Text>
                             </TouchableOpacity>
                         )}
@@ -132,7 +168,11 @@ const SignInStep1 = ({ navigation }) => {
              */}
             <View>
                 <TouchableOpacity style={styles.btn}
-                    onPress={() => navigation.navigate('SignInStep2')}
+                    onPress={() => {
+                        alert(JSON.stringify(selectedGenre));
+                        alert(JSON.stringify(selectedArtists));
+                        saveGenreAndArtists(getCurrentUser(), selectedGenre, artistName);
+                    }}
                 >
                     <Text style={[styles.fonttext16, styles.colortext]}>Get started </Text>
                 </TouchableOpacity>

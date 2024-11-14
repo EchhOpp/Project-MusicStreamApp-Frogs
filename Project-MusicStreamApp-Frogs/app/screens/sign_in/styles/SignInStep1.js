@@ -66,6 +66,17 @@ const styles = StyleSheet.create({
 
   },
 
+  avaImageContainer: {
+    position: 'relative',
+  },
+
+
+  checkIconContainer: {
+    position: 'absolute',
+    right: 8,
+    bottom: 8,
+  },
+
   itemSelect: {
     //rbg(223, 49, 49, 0.2)
     backgroundColor: 'rgba(223, 49, 49, 0.4)',
@@ -92,7 +103,6 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 10,
     alignItems: 'center',
-    backgroundColor: '#1e1e1e',
   },
 
   avaImage: {
