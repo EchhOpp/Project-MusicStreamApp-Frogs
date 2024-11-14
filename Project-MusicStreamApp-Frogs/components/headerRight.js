@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   text: {
     backgroundColor: 'rgba(255, 255, 255, 0.2)',
     padding: 10,
-    borderRadius: '50%',
+    borderRadius: 50,
   },
   body: {
     color: Colors.neutral.white,

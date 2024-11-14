@@ -169,9 +169,8 @@ const SignInStep1 = ({ navigation }) => {
             <View>
                 <TouchableOpacity style={styles.btn}
                     onPress={() => {
-                        alert(JSON.stringify(selectedGenre));
-                        alert(JSON.stringify(selectedArtists));
                         saveGenreAndArtists(getCurrentUser(), selectedGenre, artistName);
+                        navigation.navigate('SignInStep2');
                     }}
                 >
                     <Text style={[styles.fonttext16, styles.colortext]}>Get started </Text>

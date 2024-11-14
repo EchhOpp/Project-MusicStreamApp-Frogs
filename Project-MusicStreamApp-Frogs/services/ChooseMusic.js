@@ -1,7 +1,7 @@
 // Lấy genre và artists từ firebase
 import { database } from "../config/firebaseConfig";
 import { getAuth } from "firebase/auth";
-import { ref, onValue, child, push, update } from "firebase/database";
+import { ref, onValue, update } from "firebase/database";
 
 // Hàm lấy genre từ Firebase
 const getGenre = async () => {

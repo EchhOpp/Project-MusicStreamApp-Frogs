@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import styles from './styles/SignIn';
 
 // Services Firebase
-import AuthSignIn from '../../../services/AuthSignIn';
+import  {signInUser , checkGenreAndArtists} from '../../../services/AuthSignIn';
 
 const SignIn = ({ navigation }) => {
     const [userName, setUserName] = useState("");
@@ -13,7 +13,7 @@ const SignIn = ({ navigation }) => {
     const [passwordBorderColor, setPasswordBorderColor] = useState('#7e7e7e');
     const [showError, setShowError] = useState(false);
 
-    const handleSignIn = () => {
+    const handleSignIn = async () => {
         let valid = true;
         if (userName.trim() === "") {
             setUserNameBorderColor('#fb4343');
@@ -29,19 +29,23 @@ const SignIn = ({ navigation }) => {
         }
 
         if (valid) {
-            AuthSignIn(userName, passWord)
-                .then((user) => {
-                    console.log('User signed in:', user);
+            try {
+                const user = await signInUser(userName, passWord);
+                console.log('User signed in:', user);
+                const hasSelectedGenreAndArtists = await checkGenreAndArtists();
+                if (hasSelectedGenreAndArtists) {
+                    navigation.navigate('Main')
+                } else {
                     navigation.reset({
-                        index: 0, // Đặt chỉ mục màn hình hiện tại
-                        routes: [{ name: 'SignInStep1' }], // Đặt màn hình SignInStep1 là màn hình duy nhất
+                        index: 0,
+                        routes: [{ name: 'SignInStep1' }],
                     });
-                    setShowError(false);
-                })
-                .catch((error) => {
+                }
+                setShowError(false);
+                } catch (error) {
                     setShowError(true);
-                    alert("Username or Password is incorrect");
-                });
+                    alert(error);
+                }
         } else {
             setShowError(true);
         }
