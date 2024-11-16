@@ -132,7 +132,11 @@ const NavigationTabs = () => {
             />
 
             {/* Tab Clips */}
-            <Tab.Screen name="Clips" component={ClipsStack} />
+            <Tab.Screen name="Clips" component={ClipsStack} 
+                options={{
+                    headerShown: false,
+                }}
+            />
 
             {/* Tab library */}
             <Tab.Screen name="Library" component={LibraryStack} 
@@ -154,7 +158,7 @@ const NavigationTabs = () => {
 
 const MainStack = () => {
     return (
-        <Stack.Navigator initialRouteName="Auth">
+        <Stack.Navigator initialRouteName="Main">
             <Stack.Screen
                 name="Auth"
                 component={AuthStack}
