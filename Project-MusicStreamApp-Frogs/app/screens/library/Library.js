@@ -15,7 +15,9 @@ const Library = ({navigation }) => {
         <View style={styles.followings}>
           <View style={styles.listenTitle}>
             <Text style={[styles.Color, styles.textH1]}>Followings</Text>
-            <TouchableOpacity style={styles.btnMore}>
+            <TouchableOpacity style={styles.btnMore}
+              onPress={() => navigation.navigate('ArtistProfile')}
+            >
               <Text style={[styles.Color, styles.textH2]}>View all</Text>
             </TouchableOpacity>
           </View>

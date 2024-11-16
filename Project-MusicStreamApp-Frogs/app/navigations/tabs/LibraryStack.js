@@ -1,11 +1,16 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';  
+
 import { Colors } from '../../../constants/Colors';
 import LeftLibrary from '../../screens/library/LeftLibrary';
 import RightLibrary from '../../screens/library/RightLibrary';
 import Library from '../../screens/library/Library';
 import PlayListScreen from '../../screens/playlists/PlayLists';
 import SavedClips from '../../screens/saved_clips/SavedClips';
+import ArtissProfile from '../../screens/Artist_Profile/ArtissProfile';
+import ArtistProfileRight from '../../screens/Artist_Profile/ArtistProfileRight';
+import ArtistProfileLeft from '../../screens/Artist_Profile/ArtistProfileLeft';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -89,6 +94,25 @@ const LibraryStack = () => {
                       close: config,
                     },
                     animation: 'slide_from_right',
+                }}
+            />
+            <Stack.Screen
+                name="ArtistProfile"
+                component={ArtissProfile}
+                options={{
+                    headerShown: false,
+                    // headerShadowVisible: false,
+                    // headerStyle: {
+                    //     // backgroundColor: Colors.neutral.rgba1,
+                    //     backgroundColor: 'transparent', // Làm cho nền của header trong suốt
+                    // },
+                    // title: '',
+                    // headerLeft: () => (
+                    //     <ArtistProfileLeft />
+                    // ),
+                    // headerRight: () => (
+                    //     <ArtistProfileRight />
+                    // ),
                 }}
             />
         </Stack.Navigator>
