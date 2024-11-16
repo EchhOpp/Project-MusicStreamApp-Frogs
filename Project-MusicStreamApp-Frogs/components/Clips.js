@@ -28,10 +28,10 @@ const styles = StyleSheet.create({
     icon: {
         position: 'absolute',
         top: 10,
-        left: 10,
+        left: 12,
         zIndex: 1,
         backgroundColor: 'rgba(255, 255, 255, 0.2)',
-        padding: 10,
+        padding: 8,
         borderRadius: 50, 
         fontSize: 16
     },
@@ -41,13 +41,13 @@ const styles = StyleSheet.create({
     name: {
         position: 'absolute',
         bottom: 10,
-        left: 10,
+        left: 16,
         zIndex: 1,
         width: '84%',
     },
     nameMusic: {
         color: 'white',
-        fontSize: 16,
+        fontSize: 14,
         fontWeight: 'bold',
     },
     nameAuthor: {

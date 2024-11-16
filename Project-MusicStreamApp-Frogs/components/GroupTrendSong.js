@@ -33,17 +33,17 @@ const GroupTrendSong = () => {
         <View style={styles.btn}>
             <View style={styles.btnFunc}>
                 <TouchableOpacity>
-                    <Ionicons name="play" size={24} color="white" style={[styles.icon, styles.play]}/>
+                    <Ionicons name="play" size={20} color="white" style={[styles.icon, styles.play]}/>
                 </TouchableOpacity>
                 <TouchableOpacity>
-                    <MaterialIcons name="cast" size={24} color="white" style={styles.icon} />
+                    <MaterialIcons name="cast" size={20} color="white" style={styles.icon} />
                 </TouchableOpacity>
                 <TouchableOpacity>
-                    <Ionicons name="add" size={24} color="white" style={styles.icon}/>
+                    <Ionicons name="add" size={20} color="white" style={styles.icon}/>
                 </TouchableOpacity>
             </View>
             <TouchableOpacity>
-                <Ionicons name="ellipsis-vertical" size={24} color="white" style={styles.iconVer}/>
+                <Ionicons name="ellipsis-vertical" size={20} color="white" style={styles.iconVer}/>
             </TouchableOpacity>
         </View>
     </LinearGradient>
@@ -56,17 +56,17 @@ const styles = StyleSheet.create({
     container: {
         borderRadius: 10,
         padding: 16,
-        width: 360,
+        width: 300,
         marginRight: 16,
     },
 
     header: {
         flexDirection: 'row',
         marginTop: 16,
+        width: '74%',   
     },
 
-    content: {
-        width: '74%',      
+    content: {   
         marginLeft: 16,
     },
     img: {
@@ -75,7 +75,8 @@ const styles = StyleSheet.create({
     title: {
         color: Colors.neutral.white,
         fontSize: Popins.Heading4.size,
-        fontWeight: 'bold',
+        fontWeight: Popins.FontFamilies.SemiBold,
+        fontFamily: Popins.FontBold,
     },
     context: {
         color: Colors.neutral.white,
@@ -99,7 +100,7 @@ const styles = StyleSheet.create({
 
     play: {
         backgroundColor: 'rgba(255, 255, 255, 0.2)',
-        padding: 12,
+        padding: 8,
         borderRadius: 50,
     },
 })

@@ -1,17 +1,17 @@
 import { View, Text, ScrollView, TouchableOpacity, FlatList } from 'react-native';
-import React, {useEffect} from 'react';
+import React from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import styles from './style/Home';
 import ListListenMusic from '@/components/ListListenMusic';
 import NewReleases from '@/components/NewReleases';
 import Clips from '@/components/Clips';
-import { useFonts } from 'expo-font';
 import ListSong from '@/components/ListSong';
 import GroupTrendSong from '@/components/GroupTrendSong';
 import LastestVideos from '@/components/LastestVideos';
 import MoodGenres from '@/components/MoodGenres';
 import * as SplashScreen from 'expo-splash-screen';
 import useLoadFonts from '@/hooks/useLoadFonts';
+import { getRandomColor } from '@/utils/getRandomColor';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -30,7 +30,7 @@ const Home = ({ navigation }) => {
         {/* List again */}
         <View style={styles.listenAgain}>
           <View style={styles.listenTitle}>
-            <Text style={[styles.Color, styles.textH1]}>Listen again</Text>
+            <Text style={[styles.Color, styles.textH1]}>List again</Text>
             <TouchableOpacity style={styles.btnMore}>
               <Text style={[styles.Color, styles.textH2]}>More</Text>
             </TouchableOpacity>
@@ -39,8 +39,11 @@ const Home = ({ navigation }) => {
           <FlatList
             scrollEnabled={false}
             data={[1, 2, 3, 4, 5]}
-            keyExtractor={item => item.toString() + 'listenAgain'}
-            renderItem={({ item }) => <ListListenMusic />}
+            keyExtractor={item => item.toString() + 'listAgain'}
+            renderItem={
+              ({ item }) => 
+                <ListListenMusic />
+              }
           />
         </View>
 
@@ -55,9 +58,15 @@ const Home = ({ navigation }) => {
 
           {/* Sổ các new releases */}
           <FlatList
-            data={[1, 2, 3, 4, 5]}
-            keyExtractor={item => item.toString() + 'newReleases'}
-            renderItem={({ item }) => <NewReleases />}
+            data={[
+              { id: 1, title: 'Song 1', artist: 'Artist A' },
+              { id: 2, title: 'Song 2', artist: 'Artist B' },
+              { id: 3, title: 'Song 3', artist: 'Artist C' },
+              { id: 4, title: 'Song 4', artist: 'Artist D' },
+              { id: 5, title: 'Song 5', artist: 'Artist E' },
+            ]}
+            keyExtractor={item => item.id.toString()}
+            renderItem={({ item }) => <NewReleases music={{ title: item.title, artist: item.artist}}/>}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
           />
@@ -110,12 +119,11 @@ const Home = ({ navigation }) => {
 
           {/* List group lại */}
           <FlatList
-            scrollEnabled={false}
             data={[1, 2, 3, 4, 5]}
             renderItem={({ item }) => <GroupTrendSong />}
             keyExtractor={item => item.toString()}
             horizontal={true}
-            style={{ marginTop: 30 }}
+            style={{ marginTop: 40 }}
             showsHorizontalScrollIndicator={false}
           />
         </View>
@@ -267,6 +275,7 @@ const Home = ({ navigation }) => {
 
           {/* Sổ các mood & genres */}
           <FlatList
+            style={{ marginTop: 20 }}
             scrollEnabled={false}
             data={[1, 2, 3, 4, 5, 6]}
             renderItem={({ item }) => <MoodGenres />}
