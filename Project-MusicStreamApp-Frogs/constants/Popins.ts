@@ -1,8 +1,8 @@
 import { Button } from "react-native";
 
-const Regular = '400';
-const Medium = '500';
-const Bold = '600';
+const Regular = 'regular';
+const Medium = 'medium';
+const Bold = 'bold';
 
 export const Popins = {
     Heading1: {
@@ -18,15 +18,15 @@ export const Popins = {
         weight: Bold
     },
     Heading4: {
-        size: 24,
+        size: 20,
         weight: Bold
     },
     Heading5: {
-        size: 18,
+        size: 14,
         weight: Bold
     },
     Heading6: {
-        size: 16,
+        size: 12,
         weight: Bold
     },
 
