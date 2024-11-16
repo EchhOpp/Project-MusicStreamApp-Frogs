@@ -6,6 +6,7 @@ import RightLibrary from '../../screens/library/RightLibrary';
 import Library from '../../screens/library/Library';
 import PlayListScreen from '../../screens/playlists/PlayLists';
 import SavedClips from '../../screens/saved_clips/SavedClips';
+import ArtissProfile from '../../screens/Artist_Profile/ArtissProfile';
 
 const Stack = createNativeStackNavigator();
 
