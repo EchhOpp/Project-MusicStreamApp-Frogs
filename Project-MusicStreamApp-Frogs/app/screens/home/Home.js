@@ -1,5 +1,5 @@
 import { View, Text, ScrollView, TouchableOpacity, FlatList } from 'react-native';
-import React from 'react';
+import React, {useState, useEffect}from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import styles from './style/Home';
 import ListListenMusic from '@/components/ListListenMusic';
@@ -11,13 +11,25 @@ import LastestVideos from '@/components/LastestVideos';
 import MoodGenres from '@/components/MoodGenres';
 import * as SplashScreen from 'expo-splash-screen';
 import useLoadFonts from '@/hooks/useLoadFonts';
-import { getRandomColor } from '@/utils/getRandomColor';
+import { getSongs, getAlbums} from '@/services/getMusicApi';  
+import { get, set } from 'firebase/database';
 
 SplashScreen.preventAutoHideAsync();
 
 const Home = ({ navigation }) => {
-  // 
+  const [songs, setSongs] = useState([]);
+  const [albums, setAlbums] = useState([]);
   const { loaded, error } = useLoadFonts();
+
+  useEffect(() => {
+    getSongs((songsArray) => {
+      setSongs(songsArray);
+    });
+
+    getAlbums((albumsArray) => {
+      setAlbums(albumsArray);
+    });
+  }, []);
 
   if (!loaded && !error) {
     return null;
@@ -38,11 +50,11 @@ const Home = ({ navigation }) => {
           {/* Sổ list data */}
           <FlatList
             scrollEnabled={false}
-            data={[1, 2, 3, 4, 5]}
-            keyExtractor={item => item.toString() + 'listAgain'}
+            data={songs}
+            keyExtractor={item => item.id.toString()}
             renderItem={
               ({ item }) => 
-                <ListListenMusic />
+                <ListListenMusic items={item}/>  
               }
           />
         </View>
@@ -58,15 +70,9 @@ const Home = ({ navigation }) => {
 
           {/* Sổ các new releases */}
           <FlatList
-            data={[
-              { id: 1, title: 'Song 1', artist: 'Artist A' },
-              { id: 2, title: 'Song 2', artist: 'Artist B' },
-              { id: 3, title: 'Song 3', artist: 'Artist C' },
-              { id: 4, title: 'Song 4', artist: 'Artist D' },
-              { id: 5, title: 'Song 5', artist: 'Artist E' },
-            ]}
-            keyExtractor={item => item.id.toString()}
-            renderItem={({ item }) => <NewReleases music={{ title: item.title, artist: item.artist}}/>}
+            data={albums}
+            keyExtractor={item => item}
+            renderItem={({ item }) => <NewReleases music={item}/>}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
           />

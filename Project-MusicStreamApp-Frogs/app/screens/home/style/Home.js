@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
 
     // Clips
     clips: {
-        marginTop: 40,
+        marginTop: 30,
         marginHorizontal: 20,
     },
 

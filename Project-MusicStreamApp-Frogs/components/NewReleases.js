@@ -14,7 +14,7 @@ const NewReleases = ({ music}) => {
           <View style={[styles.img]}>
               <Image source={require('../assets/images/NewReleases1.png')} style={{width: 150, height: 150, borderRadius: 10}} />
           </View>
-          <Text style={styles.nameMusic}>{music.title}</Text>
+          <Text style={styles.nameMusic}>{music.albumName}</Text>
         </View>
       </TouchableOpacity>
       <View>
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'column',
         marginRight: 12,
-        marginTop: 20,
+        marginTop: 12,
     },
 
     collection: {

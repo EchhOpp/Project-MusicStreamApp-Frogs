@@ -4,22 +4,23 @@ import Feather from '@expo/vector-icons/Feather';
 import { Colors } from '@/constants/Colors'
 import { Popins } from '@/constants/Popins'
 
-const ListListenMusic = (
-    {navigation}
-) => {
-  return (
-    <View style={styles.container}>
-        <TouchableOpacity style={styles.music}>
-            <Image source={require('@/assets/images/musiccover.png')} style={{width: 52, height: 52}} />
-            <View style={styles.textName}>
-                <Text style={styles.nameMucsic}>I Can See You</Text>
-                <Text style={styles.authour}>Taylor Swift</Text>
-            </View>
-        </TouchableOpacity>
-        <TouchableOpacity>
-            <Feather name="more-vertical" size={24} color="white" />
-        </TouchableOpacity>
-    </View>
+const ListListenMusic = ({items}) => {
+    if (!items) 
+        return null
+
+    return (
+        <View style={styles.container}>
+            <TouchableOpacity style={styles.music}>
+                <Image source={{ uri: items.image }} style={{width: 52, height: 52}} />
+                <View style={styles.textName}>
+                    <Text style={styles.nameMucsic}>{items.title}</Text>
+                    <Text style={styles.authour}>{items.author}</Text>
+                </View>
+            </TouchableOpacity>
+            <TouchableOpacity>
+                <Feather name="more-vertical" size={24} color="white" />
+            </TouchableOpacity>
+        </View>
   )
 }
 
