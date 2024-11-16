@@ -4,6 +4,7 @@ import { View, StyleSheet } from 'react-native';
 import { Colors } from '../../constants/Colors';
 import { Ionicons, FontAwesome } from '@expo/vector-icons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import { BlurView } from 'expo-blur';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
@@ -30,18 +31,27 @@ const NavigationTabs = () => {
                     tabBarActiveTintColor: Colors.primary.main,
                     tabBarInactiveTintColor: Colors.neutral.white,
                     tabBarStyle: {
-                        backgroundColor: 'rgba(0, 0, 0, 0.9)',
                         position: 'absolute',
                         bottom: 0,
                         borderTopWidth: 0,
                         borderTopRightRadius: 20,
                         borderTopLeftRadius: 20,
-                        height: 62,
+                        height: 60,
+                        paddingVertical: 10,
+                        backgroundColor: Colors.neutral.black,
                     },
                     tabBarLabelStyle: {
-                        fontSize: 12,
-                        marginBottom: 12,
+                        fontSize: 10,
+                        height: 24,
                     },
+                    tabBarBackground: () => (
+                        <BlurView intensity={90} tint="dark" style={{
+                            ...StyleSheet.absoluteFillObject,
+                            overflow: 'hidden',
+                            borderTopRightRadius: 20,
+                            borderTopLeftRadius: 20,
+                            }} />
+                    ),
                 })}
             >
                 {/* Tab Home */}
@@ -92,7 +102,7 @@ const NavigationTabs = () => {
 const styles = StyleSheet.create({
     playlistContainer: {
         position: 'absolute',
-        bottom: 62,
+        bottom: 50,
         left: 0,
         right: 0,
         zIndex: 10, 

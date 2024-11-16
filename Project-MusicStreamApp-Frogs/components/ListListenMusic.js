@@ -10,7 +10,7 @@ const ListListenMusic = (
   return (
     <View style={styles.container}>
         <TouchableOpacity style={styles.music}>
-            <Image source={require('@/assets/images/musiccover.png')}/>
+            <Image source={require('@/assets/images/musiccover.png')} style={{width: 50, height: 50}} />
             <View style={styles.textName}>
                 <Text style={styles.nameMucsic}>I Can See You</Text>
                 <Text style={styles.authour}>Taylor Swift</Text>
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
 
     nameMucsic: {
         color: Colors.neutral.white,
-        fontSize: Popins.Heading6.size,
+        fontSize: Popins.Heading5.size,
         fontWeight: 'bold',
     },
     textName: {
@@ -48,6 +48,6 @@ const styles = StyleSheet.create({
     
     authour: {
         color: 'rgba(255, 255, 255, 0.5)',
-        fontSize: 14,
+        fontSize: 12,
     }
 })

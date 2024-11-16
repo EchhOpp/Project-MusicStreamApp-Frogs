@@ -9,7 +9,6 @@ import ListSong from '@/components/ListSong';
 import GroupTrendSong from '@/components/GroupTrendSong';
 import LastestVideos from '@/components/LastestVideos';
 import MoodGenres from '@/components/MoodGenres';
-import LiveMusicBottom from '@/components/LiveMusicBottom';
 
 const Home = ({ navigation }) => {
   return (

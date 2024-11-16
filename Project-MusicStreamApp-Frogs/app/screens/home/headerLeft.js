@@ -6,7 +6,7 @@ import Entypo from '@expo/vector-icons/Entypo';
 const headerLeft = () => {
   return (
     <TouchableOpacity style={styles.container}>
-      <Image source={require('../assets/images/Profileicon.png')}/>
+      <Image source={require('../../../assets/images/Profileicon.png')}/>
       <View style={styles.body}>
         <Text style={[styles.text, styles.textBold]}>Thanh Luan</Text>
         <Text style={styles.text}>Good morning

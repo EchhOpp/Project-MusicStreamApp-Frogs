@@ -1,8 +1,8 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from '../../screens/home/Home';
-import HeaderLeft from '@/components/headerLeft';
-import HeaderRight from '@/components/headerRight';
+import HeaderLeft from '../../screens/home/headerLeft';
+import HeaderRight from '../../screens/home/headerRight';
 import { Colors } from '@/constants/Colors';
 import Search from '../../screens/search/Search'
 import SearchHeaderRight from '../../screens/search/SearchHeaderRight'
