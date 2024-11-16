@@ -37,10 +37,10 @@ const styles = StyleSheet.create({
   btn: {
     backgroundColor: '#DF3131',
     width: '90%',
-    height: '5.8%',
+    padding: '4%',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: '50%',
+    borderRadius: 50,
     marginTop: '8%',
     marginBottom: '30%',
   }

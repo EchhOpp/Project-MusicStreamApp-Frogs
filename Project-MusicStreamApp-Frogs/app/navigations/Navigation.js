@@ -26,7 +26,7 @@ const Tab = createBottomTabNavigator();
 
 const AuthStack = () => {
     return (
-        <Stack.Navigator initialRouteName="SignInStep1">
+        <Stack.Navigator initialRouteName="SignInStep2">
             <Stack.Screen
                 name="GetStart"
                 component={GetStart}
@@ -44,22 +44,19 @@ const AuthStack = () => {
                 name="SignIn"
                 component={SignIn}
                 options={{
-                    headerTitle: '',
+                    title: 'Login',
                     headerStyle: {
                         backgroundColor: Colors.neutral.black,
                     },
                     headerTintColor: Colors.neutral.white,
                     headerShadowVisible: false,
-                    headerRight: () => (
-                        <Ionicons name="ellipsis-vertical" size={24} color={Colors.neutral.white} style={{ marginRight: 20 }} />
-                    ),
                 }}
             />
             <Stack.Screen
                 name="SignUp"
                 component={SignUp}
                 options={{
-                    title: 'Sign Up',
+                    title: 'Sign up',
                     headerStyle: {
                         backgroundColor: Colors.neutral.black,
                     },
@@ -82,14 +79,14 @@ const AuthStack = () => {
             <Stack.Screen
                 name="SignInStep2"
                 component={SignInStep2}
-                options={{ 
+                options={{
                     title: 'Choose music',
                     headerStyle: {
                         backgroundColor: Colors.neutral.black,
                     },
                     headerTintColor: Colors.neutral.white,
                     headerShadowVisible: false,
-                 }}
+                }}
             />
         </Stack.Navigator>
     );
@@ -97,8 +94,7 @@ const AuthStack = () => {
 
 const NavigationTabs = () => {
     return (
-        <Tab.Navigator 
-            initialRouteName='library'
+        <Tab.Navigator
             screenOptions={({ route }) => ({
                 tabBarIcon: ({ color, size }) => {
                     let iconName;
@@ -136,7 +132,11 @@ const NavigationTabs = () => {
             />
 
             {/* Tab Clips */}
-            <Tab.Screen name="Clips" component={ClipsStack} />
+            <Tab.Screen name="Clips" component={ClipsStack} 
+                options={{
+                    headerShown: false,
+                }}
+            />
 
             {/* Tab library */}
             <Tab.Screen name="Library" component={LibraryStack} 
@@ -158,7 +158,7 @@ const NavigationTabs = () => {
 
 const MainStack = () => {
     return (
-        <Stack.Navigator initialRouteName="Auth">
+        <Stack.Navigator initialRouteName="Main">
             <Stack.Screen
                 name="Auth"
                 component={AuthStack}

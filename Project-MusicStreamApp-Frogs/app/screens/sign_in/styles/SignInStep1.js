@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   choose1: {
     width: width,
     paddingHorizontal: 20,
-    marginBottom: 30,
+    marginVertical: 20,
   },
   
   choose: {
@@ -60,12 +60,33 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     backgroundColor: '#1e1e1e',
-    marginRight: 12,
+    marginRight: 8,
     borderRadius: 50,
+    borderWidth: 1,
+
   },
+
+  avaImageContainer: {
+    position: 'relative',
+  },
+
+
+  checkIconContainer: {
+    position: 'absolute',
+    right: 8,
+    bottom: 8,
+  },
+
+  itemSelect: {
+    //rbg(223, 49, 49, 0.2)
+    backgroundColor: 'rgba(223, 49, 49, 0.4)',
+    borderWidth: 1,
+    borderColor: Colors.primary.main,
+  },
+
   itemN: {
     color: Colors.neutral.white,
-    paddingHorizontal: 24,
+    paddingHorizontal: 12,
     paddingVertical: 10,
   },
 
@@ -74,18 +95,19 @@ const styles = StyleSheet.create({
   Artists: {
     fontWeight: 'bold',
     color: Colors.neutral.white,
+    marginHorizontal: 10,
   },
 
   itemAva: {
-    width: '30%',
+    width: width / 3 - 20,
     marginTop: 20,
     marginBottom: 10,
     alignItems: 'center',
   },
 
   avaImage: {
-    height: 100,
-    width: 100,
+    height: 90,
+    width: 90,
     borderRadius: 50,
     marginBottom: 10,
   },
@@ -100,7 +122,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   fonttext16: {
-    fontSize: 16,
+    fontSize: 14,
   },
   fonttext14: {
     fontSize: 14,
@@ -112,14 +134,13 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   btn: {
-    marginTop: 50,
     backgroundColor: '#df3132',
     width: '85%',
     height: 50,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 25,
-    marginBottom: 50,
+    marginBottom: 20,
     alignSelf: 'center',
   },
 });
