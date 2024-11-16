@@ -1,5 +1,7 @@
 import { StyleSheet, Text, View, Image} from 'react-native'
 import React from 'react'
+import { Colors } from '../constants/Colors'
+import { Popins } from '../constants/Popins'
 
 const ListSong = () => {
   return (
@@ -15,7 +17,7 @@ export default ListSong
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: 20,
+        marginTop: 16,
         marginRight: 20,
         position: 'relative',
     },
@@ -24,12 +26,13 @@ const styles = StyleSheet.create({
         borderRadius: 10,
     },
     nameMusic: {
-        color: 'white',
-        fontSize: 16,
-        marginVertical: 5,
+        color: Colors.neutral.white,
+        fontSize: 14,
+        marginVertical: 4,
     },
     nameAuthor: {
-        color: 'rgba(255, 255, 255, 0.8)',
+        color: Colors.neutral.rgba3,
         fontSize: 12,
+        marginTop: -2
     },
 })

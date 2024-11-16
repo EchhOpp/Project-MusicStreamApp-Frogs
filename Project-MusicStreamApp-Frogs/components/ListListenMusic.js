@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native'
 import React from 'react'
-import { Ionicons } from '@expo/vector-icons'
+import Feather from '@expo/vector-icons/Feather';
 import { Colors } from '@/constants/Colors'
 import { Popins } from '@/constants/Popins'
 
@@ -10,14 +10,14 @@ const ListListenMusic = (
   return (
     <View style={styles.container}>
         <TouchableOpacity style={styles.music}>
-            <Image source={require('@/assets/images/musiccover.png')} style={{width: 50, height: 50}} />
+            <Image source={require('@/assets/images/musiccover.png')} style={{width: 52, height: 52}} />
             <View style={styles.textName}>
                 <Text style={styles.nameMucsic}>I Can See You</Text>
                 <Text style={styles.authour}>Taylor Swift</Text>
             </View>
         </TouchableOpacity>
         <TouchableOpacity>
-            <Ionicons name="ellipsis-vertical" size={24} color="white" />
+            <Feather name="more-vertical" size={24} color="white" />
         </TouchableOpacity>
     </View>
   )
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        marginTop: 18,
+        marginTop: 16,
     },
     music: {
         flexDirection: 'row',
@@ -40,14 +40,14 @@ const styles = StyleSheet.create({
     nameMucsic: {
         color: Colors.neutral.white,
         fontSize: Popins.Heading5.size,
-        fontWeight: 'bold',
+        fontWeight: Popins.FontFamilies.Bold,
     },
     textName: {
-        marginLeft: 10,
+        marginLeft: 12,
     },
     
     authour: {
-        color: 'rgba(255, 255, 255, 0.5)',
+        color: Colors.neutral.rgba3,
         fontSize: 12,
     }
 })

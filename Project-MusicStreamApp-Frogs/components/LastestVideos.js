@@ -68,6 +68,10 @@ const styles = StyleSheet.create({
         color: Colors.neutral.white,
         fontSize: 12,
     },
+    name: {
+        marginTop: 4,
+        marginHorizontal: 4,
+    },
     title: {
         color: Colors.neutral.white,
         fontSize: Popins.Heading5.size,
