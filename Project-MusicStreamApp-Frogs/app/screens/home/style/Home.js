@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
 
     textH1: {
         fontSize: Popins.Heading4.size,
-        fontWeight: 'bold',
+        fontWeight: Popins.Heading4.weight,
     },
 
     textH2: {
