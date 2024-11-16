@@ -1,16 +1,28 @@
 import { View, Text, ScrollView, TouchableOpacity, FlatList } from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import styles from './style/Home';
 import ListListenMusic from '@/components/ListListenMusic';
 import NewReleases from '@/components/NewReleases';
 import Clips from '@/components/Clips';
+import { useFonts } from 'expo-font';
 import ListSong from '@/components/ListSong';
 import GroupTrendSong from '@/components/GroupTrendSong';
 import LastestVideos from '@/components/LastestVideos';
 import MoodGenres from '@/components/MoodGenres';
+import * as SplashScreen from 'expo-splash-screen';
+import useLoadFonts from '@/hooks/useLoadFonts';
+
+SplashScreen.preventAutoHideAsync();
 
 const Home = ({ navigation }) => {
+  // 
+  const { loaded, error } = useLoadFonts();
+
+  if (!loaded && !error) {
+    return null;
+  }
+
   return (
     <GestureHandlerRootView>
     <View style={styles.container}>

@@ -25,9 +25,10 @@ export const Colors = {
   neutral: {
     white: '#FFFFFF',
     black: '#000000',
-    gray: '#131313',
+    gray: '#121212',
     rgba1: 'rgba(0, 0, 0, 0.9)',
     rgba2: 'rgba(0, 0, 0, 0.7)',
+    rgba3: 'rgba(255, 255, 255, 0.56)',
   },
   state: {
     tint: '#F6CBCB',

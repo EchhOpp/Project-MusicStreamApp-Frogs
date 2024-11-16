@@ -1,12 +1,13 @@
-import { StyleSheet } from 'react-native'
-import { Popins } from '@/constants/Popins';
+import { StyleSheet, ActivityIndicator} from 'react-native'
+import { Popins} from '@/constants/Popins';
 import { Colors } from '@/constants/Colors';
 
-
 const styles = StyleSheet.create({
+    
     container: {
         flex: 1,
         backgroundColor: Colors.neutral.gray,
+        
     },
 
     bodyContent: {
@@ -25,7 +26,7 @@ const styles = StyleSheet.create({
 
     // Header
     listenAgain: {
-        marginTop: 20,
+        marginTop: 10,
         marginHorizontal: 20,
     },
     listenTitle: {
@@ -36,7 +37,8 @@ const styles = StyleSheet.create({
 
     textH1: {
         fontSize: Popins.Heading4.size,
-        fontWeight: Popins.Heading4.weight,
+        fontWeight: Popins.FontFamilies.SemiBold,
+        fontFamily: Popins.FontBold,
     },
 
     textH2: {
