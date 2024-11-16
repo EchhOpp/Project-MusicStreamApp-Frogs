@@ -2,16 +2,18 @@ import { StyleSheet,Image, Text, View, TouchableOpacity} from 'react-native'
 import React from 'react'
 import { Colors } from '@/constants/Colors';
 import Entypo from '@expo/vector-icons/Entypo';
+import { Popins} from '@/constants/Popins';
 
 const headerLeft = () => {
   return (
     <TouchableOpacity style={styles.container}>
-      <Image source={require('../../../assets/images/Profileicon.png')}/>
+      <Image source={require('../../../assets/images/Profileicon.png')} style={{width: 30, height: 30, borderRadius: 50}}/>
       <View style={styles.body}>
-        <Text style={[styles.text, styles.textBold]}>Thanh Luan</Text>
-        <Text style={styles.text}>Good morning
-            <Entypo name="hand" size={18} color="#ffd14a" style={{marginHorizontal: 4}}/>
-        </Text>
+        <Text style={[styles.textName, styles.textBold]}>Thanh Luan</Text>
+        <View style={styles.period}>
+          <Text style={styles.textTime}>Good Morning</Text>
+          <Entypo name="hand" size={12} color="#ffd14a" style={{paddingHorizontal: 4}}/>
+        </View>
       </View>
     </TouchableOpacity>
   )
@@ -26,12 +28,22 @@ const styles = StyleSheet.create({
     },
     body: {
     },
-    text: {
+    textName: {
         color: Colors.neutral.white,
-        fontSize: 18,
+        fontSize: 16,
+        marginLeft: 10,
+    },
+    period: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    textTime: {
+        color: Colors.neutral.rgba3,
+        fontSize: 12,
         marginLeft: 10,
     },
     textBold: {
-        fontWeight: 'bold',
+        fontWeight: Popins.FontFamilies.SemiBold,
+        fontFamily: Popins.FontBold,
     }
 })

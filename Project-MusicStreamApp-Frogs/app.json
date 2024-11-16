@@ -24,7 +24,17 @@
       "output": "static"
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      [
+        "expo-font",
+        {
+          "fonts": [
+            {
+              "ExpoArabicBold": "./assets/fonts/ExpoArabicBold.ttf"
+            }
+          ]
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true

@@ -3,8 +3,22 @@ import { Button } from "react-native";
 const Regular = 'regular';
 const Medium = 'medium';
 const Bold = 'bold';
+const FontBold = 'ExpoArabicBold';
+const FontMedium = 'ExpoArabicMedium';
+const FontRegular = 'ExpoArabicBook';
+
+const FontFamilies = {
+    Regular: 'regular',
+    Medium: 'medium',
+    Bold: 'bold',
+    SemiBold: 'semibold'
+};
 
 export const Popins = {
+    FontBold: FontBold,
+    FontMedium: FontMedium,
+    FontRegular: FontRegular,
+    FontFamilies: FontFamilies,
     Heading1: {
         size: 48,
         weight: Bold

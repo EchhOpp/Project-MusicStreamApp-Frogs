@@ -1,8 +1,7 @@
-import { StyleSheet, Text, View,TouchableOpacity } from 'react-native'
+import { Text, View,TouchableOpacity, FlatList} from 'react-native'
 import React from 'react'
 import styles from './styles/SavedClips'
 import { FontAwesome } from '@expo/vector-icons'
-import { FlatList } from 'react-native-web'
 import SavedClipItem from '../../../components/SavedClips'
 import LiveMusicBottom from '@/components/LiveMusicBottom'
 
