@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         zIndex: 1,
         backgroundColor: 'rgba(255, 255, 255, 0.3)',
         padding: 10,
-        borderRadius: '50%',
+        borderRadius: 50,
         fontSize: 16
     },
     img: {

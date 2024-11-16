@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(255, 255, 255, 0.2)',
         paddingHorizontal: 12,
         paddingVertical: 4,
-        borderRadius: '100%', 
+        borderRadius: 50, 
         color: Colors.neutral.white,
         fontSize: 12,
     },
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
         zIndex: 1,
         backgroundColor: 'rgba(255, 255, 255, 0.2)',
         padding: 8,
-        borderRadius: '50%', 
+        borderRadius: 50, 
     },
 
     iconImg: {

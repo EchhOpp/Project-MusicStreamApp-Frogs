@@ -1,6 +1,7 @@
 // Lấy genre và artists từ firebase
 import { database } from "../config/firebaseConfig";
-import { ref, onValue } from "firebase/database";
+import { getAuth } from "firebase/auth";
+import { ref, onValue, update } from "firebase/database";
 
 // Hàm lấy genre từ Firebase
 const getGenre = async () => {
@@ -40,4 +41,34 @@ const getArtists = async () => {
     });
 }
 
-export { getGenre, getArtists };
+// Tạo ra 1 trường trong user để lưu genre và artist đã chọn
+// Để lưu dữ liệu vào Firebase, chúng ta sẽ sử dụng hàm update() của Firebase
+// Hãy xem cách sử dụng hàm update() trong tài liệu Firebase
+// https://firebase.google.com/docs/database/web/read-and-write#update_specific_fields
+
+const saveGenreAndArtists = async (userId, genre, artists) => {
+    const userRef = ref(database, `users/${userId}`);
+    const data = {
+        genre: genre,
+        artists: artists
+    };
+
+    return new Promise((resolve, reject) => {
+        update(userRef, data)
+            .then(() => {
+                resolve('Data saved successfully');
+            })
+            .catch((error) => {
+                reject(error);
+            });
+    });
+}
+
+// Lấy người dùng hiện tại
+const getCurrentUser = () => {
+    const auth = getAuth();
+    const user = auth.currentUser;
+    return user.uid;
+  }
+
+export { getGenre, getArtists, saveGenreAndArtists, getCurrentUser};
