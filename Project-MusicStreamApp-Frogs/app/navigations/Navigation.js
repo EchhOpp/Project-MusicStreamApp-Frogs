@@ -26,7 +26,7 @@ const Tab = createBottomTabNavigator();
 
 const AuthStack = () => {
     return (
-        <Stack.Navigator>
+        <Stack.Navigator initialRouteName="SignInStep2">
             <Stack.Screen
                 name="GetStart"
                 component={GetStart}
