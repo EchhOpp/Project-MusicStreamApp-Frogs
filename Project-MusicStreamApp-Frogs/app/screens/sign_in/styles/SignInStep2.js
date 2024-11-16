@@ -34,22 +34,23 @@ const styles = StyleSheet.create({
     },
     txtHeader: {
         color: Colors.neutral.white,
-        width: '80%',
+        width: '100%',
         fontWeight: 'bold',
+        paddingHorizontal: 20,
     },
     content:{
         width: width,
         height: 0.65 * height,
-        padding: 40,
+        paddingHorizontal: 40,
+        marginTop: 30,
     },
     contenttext: {
-        marginTop: 20,
+        marginTop: 10,
         width: '100%',
     },
     itemContent: {
         width: '100%',
-        marginTop: 20,
-        marginBottom: 20,
+        marginVertical: 30,
     },
 
     colortext2: {
@@ -79,10 +80,10 @@ const styles = StyleSheet.create({
     },
 
     btn: {
-        marginTop: 50,
+        marginTop: 30,
         backgroundColor: '#df3132',
         width: '85%',
-        height: 50,
+        paddingVertical: '4%',
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 25,

@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     },
     input: {
         width: '100%',
-        height: 60,
+        padding: '4%',
         borderColor: '#7e7e7e',
         borderWidth: 1,
         borderRadius: 12,
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     btn: {
         backgroundColor: '#1e1e1e',
         width: '100%',
-        height: '12.8%',
+        padding: '5%',
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 50,
@@ -73,12 +73,11 @@ const styles = StyleSheet.create({
     btnfooter: {
         backgroundColor: '#1e1e1e',
         width: '100%',
-        height: '30%',
+        padding: '5%',
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 50,
         marginTop: '12%',
-        marginBottom: '12%',
     },
 
     footer: {
@@ -86,6 +85,7 @@ const styles = StyleSheet.create({
         width: 0.9 * width,
         height: 0.3 * height,
         alignSelf: 'center',
+        marginBottom: '12%', 
     },
     footerText: {
         width: '100%',

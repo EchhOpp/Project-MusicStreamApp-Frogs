@@ -52,7 +52,7 @@ const SignIn = ({ navigation }) => {
     };
 
     return (
-        <TouchableWithoutFeedback >
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <SafeAreaView style={styles.container}>
                 <View style={styles.body}>
                     <View style={styles.viewInputs}>
