@@ -6,9 +6,7 @@ const SignInStep2 = (
     {navigation}
 ) => {
   return (
-    <ScrollView style={styles.container} 
-        showsVerticalScrollIndicator={false}
-    >
+    <ScrollView style={styles.container}>
             {/* Header Section */}
             <View style={styles.header}>
                 <View style={styles.steps}>
@@ -23,7 +21,7 @@ const SignInStep2 = (
             <View style={styles.content}>
                 <View style={styles.itemContent}>
                     <Image source={require('../../../assets/images/Board.png')} />
-                    <Text style={[styles.fonttext16, styles.colortext2,styles.contenttext]}>
+                    <Text style={[styles.fonttext14, styles.colortext2,styles.contenttext]}>
                         Discover genres that resonate with you and your unique taste.
                     </Text>
                 </View>
@@ -41,11 +39,12 @@ const SignInStep2 = (
                 </View>
 
             </View>
-            <TouchableOpacity style={styles.btn}
-                onPress={() => navigation.navigate('Main')}
-            >
-                <Text style={[styles.fonttext16, styles.colortext]}>Get started </Text>
-            </TouchableOpacity>
+            <View style={styles.footer}>
+                <TouchableOpacity style={styles.btn}
+                    onPress={() => navigation.navigate('Main')}>
+                    <Text style={[styles.fonttext16, styles.colortext]}>Get started </Text>
+                </TouchableOpacity>
+            </View>
         </ScrollView>
   )
 }

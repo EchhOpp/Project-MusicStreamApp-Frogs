@@ -1,11 +1,11 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';  
-import { Colors } from '../../constants/Colors';
-import LeftLibrary from '../screens/library/LeftLibrary';
-import RightLibrary from '../screens/library/RightLibrary';
-import Library from '../screens/library/Library';
-import PlayListScreen from '../screens/playlists/PlayLists';
-import SavedClips from '../screens/saved_clips/SavedClips';
+import { Colors } from '../../../constants/Colors';
+import LeftLibrary from '../../screens/library/LeftLibrary';
+import RightLibrary from '../../screens/library/RightLibrary';
+import Library from '../../screens/library/Library';
+import PlayListScreen from '../../screens/playlists/PlayLists';
+import SavedClips from '../../screens/saved_clips/SavedClips';
 
 const Stack = createNativeStackNavigator();
 

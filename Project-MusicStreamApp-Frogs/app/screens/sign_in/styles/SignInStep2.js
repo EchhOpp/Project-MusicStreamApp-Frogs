@@ -6,9 +6,10 @@ const styles = StyleSheet.create({
     container: {
         width: width,
         height: height,
-        backgroundColor: Colors.neutral.black
+        backgroundColor: Colors.neutral.black,
     },
     header: {
+        flex: 1,
         width: width,
         alignItems: 'flex-start',
         height: 0.15 * height,
@@ -19,7 +20,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginBottom: 26,
+        marginBottom: 24,
     },
     step: {
         width: '48%',
@@ -36,13 +37,12 @@ const styles = StyleSheet.create({
         color: Colors.neutral.white,
         width: '100%',
         fontWeight: 'bold',
-        paddingHorizontal: 20,
     },
     content:{
+        flex: 2,
         width: width,
-        height: 0.65 * height,
+        height: 0.60 * height,
         paddingHorizontal: 40,
-        marginTop: 30,
     },
     contenttext: {
         marginTop: 10,
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     },
     itemContent: {
         width: '100%',
-        marginVertical: 30,
+        marginVertical: 18,
     },
 
     colortext2: {
@@ -72,22 +72,28 @@ const styles = StyleSheet.create({
         fontSize: 14,
     },
     fonttext24: {
-        fontSize: 24,
+        fontSize: 18,
 
     },
     fonttext12: {
         fontSize: 12,
     },
 
+    footer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginHorizontal: 20,
+    },
+
     btn: {
-        marginTop: 30,
+        flex: 1,
         backgroundColor: '#df3132',
-        width: '85%',
+        width: '100%',
         paddingVertical: '4%',
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 25,
-        marginBottom: 50,
         alignSelf: 'center',
     },
 });

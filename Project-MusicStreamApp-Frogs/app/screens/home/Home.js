@@ -265,12 +265,7 @@ const Home = ({ navigation }) => {
             horizontal={false}
           />
         </View>
-        
       </ScrollView>
-      {/* Tab live in bottom */}
-      <View style={styles.bottomNav}>
-        <LiveMusicBottom />
-      </View>
     </View>
     </GestureHandlerRootView>
   );
