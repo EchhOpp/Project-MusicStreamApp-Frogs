@@ -13,6 +13,7 @@ import LiveMusicBottom from '@/components/LiveMusicBottom'
 import LastestVideos from '@/components/LastestVideos'
 import FeaturedOnComponent from './FeaturedOnComponent';
 import styles from '../Artist_Profile/style/ArtissProfile'
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 const ArtissProfile = () => {
     const data = [
@@ -38,6 +39,7 @@ const ArtissProfile = () => {
         },
     ]
     return (
+        <GestureHandlerRootView>
         <View style={styles.container}>
             <ScrollView style={styles.container}>
                 <View style={styles.headerContent}>
@@ -70,9 +72,9 @@ const ArtissProfile = () => {
                                 style={{ marginTop: 20 }}
                                 data={data}
                                 renderItem={({ item }) => (
-                                    <View style={styles.itemkey}>
+                                    <TouchableOpacity style={styles.itemkey}>
                                         <Text style={[styles.Color, styles.textH2]}>{item.name}</Text>
-                                    </View>
+                                    </TouchableOpacity>
                                 )}
                                 keyExtractor={item => item.id.toString()}
                                 horizontal={true}
@@ -218,13 +220,31 @@ const ArtissProfile = () => {
                         showsHorizontalScrollIndicator={false}
                     />
                 </View>
-
+                <View style={styles.ItemComponent}>
+                    <View style={styles.ItemComponentTitle}>
+                        <Text style={[styles.Color, styles.textH1]}>Simillar Artists</Text>
+                        
+                    </View>
+                    <FlatList
+                        data={[1, 2, 3, 4, 5]}
+                        renderItem={({ item }) => (
+                            <View style={styles.similarArtist}>
+                                <Image source={require('@/assets/images/similarArtist.png')} style={styles.imgSimilar} />
+                                <Text style={[styles.color2, styles.textH2]}>Billie Eilish</Text>
+                            </View>
+                        )}
+                        keyExtractor={item => item.toString()}
+                        horizontal={true}
+                        showsHorizontalScrollIndicator={false}
+                    />
+                </View>
             </ScrollView>
             {/* Tab live in bottom */}
             <View style={styles.bottomNav}>
                 <LiveMusicBottom />
             </View>
         </View>
+        </GestureHandlerRootView>
     )
 }
 

@@ -110,6 +110,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+
+    similarArtist: {
+        marginTop: 40,
+        marginRight: 20,
+        justifyContent:'center',
+        alignItems:'center'
+    }
 })
 
 export default styles;
