@@ -26,6 +26,8 @@ const styles = StyleSheet.create({
         marginHorizontal: 20,
         marginBottom: 24,
     },
+
+    //
     Color: {
         color: Colors.neutral.white,
     },

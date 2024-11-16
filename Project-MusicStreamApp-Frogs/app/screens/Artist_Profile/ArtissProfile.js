@@ -14,6 +14,7 @@ import LastestVideos from '@/components/LastestVideos'
 import FeaturedOnComponent from './FeaturedOnComponent';
 import styles from '../Artist_Profile/style/ArtissProfile'
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import ArtistComponet1st from './ArtistComponet1st';
 
 const ArtissProfile = () => {
     const data = [
@@ -237,6 +238,9 @@ const ArtissProfile = () => {
                         horizontal={true}
                         showsHorizontalScrollIndicator={false}
                     />
+                </View>
+                <View style={styles.ItemComponent}>
+                        <ArtistComponet1st />
                 </View>
             </ScrollView>
             {/* Tab live in bottom */}
