@@ -4,6 +4,7 @@ import Feather from '@expo/vector-icons/Feather';
 import { Colors } from '@/constants/Colors'
 import { Popins } from '@/constants/Popins'
 
+
 const ListListenMusic = ({items}) => {
     if (!items) 
         return null
@@ -11,7 +12,7 @@ const ListListenMusic = ({items}) => {
     return (
         <View style={styles.container}>
             <TouchableOpacity style={styles.music}>
-                <Image source={{ uri: items.image }} style={{width: 52, height: 52}} />
+                <Image source={{ uri: items.image }} style={{width: 52, height: 52, borderRadius: 4}} />
                 <View style={styles.textName}>
                     <Text style={styles.nameMucsic}>{items.title}</Text>
                     <Text style={styles.authour}>{items.author}</Text>

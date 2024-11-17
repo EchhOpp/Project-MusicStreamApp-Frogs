@@ -1,13 +1,23 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native'
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { LinearGradient } from 'expo-linear-gradient'; 
 import { Colors } from '@/constants/Colors';
 import { Popins } from '@/constants/Popins';
 import { FlatList } from 'react-native-gesture-handler';
 import { Ionicons, MaterialIcons} from '@expo/vector-icons'; 
 import ListListenMusic from './ListListenMusic';
+import { getSongs} from '@/services/getMusicApi';  
 
 const GroupTrendSong = () => {
+  const [songs, setSongs] = useState([]);
+
+  useEffect(() => {
+        getSongs((songsArray) => {
+      // Only take first 3 songs
+        setSongs(songsArray.slice(0, 3));
+    });
+  }, []);
+
   return (
     <LinearGradient
      colors={['#1A3D5C', '#4A8CAA', '#F2A47C']}
@@ -24,8 +34,8 @@ const GroupTrendSong = () => {
         {/* Sổ các list */}
         <View>
             <FlatList
-                data={[1, 2, 3, 4, 5].slice(0, 3)}
-                renderItem={({ item }) => <ListListenMusic />}
+                data={songs}
+                renderItem={({ item }) => <ListListenMusic items={item}/>}
                 keyExtractor={item => item.toString()}
             />
         </View>
