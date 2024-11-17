@@ -5,14 +5,11 @@ import { Colors } from '@/constants/Colors';
 
 export const styles = StyleSheet.create({
 
-    container: {
+    container: {    
         flex: 1,
         backgroundColor: Colors.neutral.gray,
-        justifyContent: 'center',
-        alignItems: 'center',
     },
     content: {
-        flex: 1,
         width: '100%',
         height: '100%',
     },
@@ -41,7 +38,7 @@ export const styles = StyleSheet.create({
     row: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center',
+        // alignItems: 'center',
         marginTop: 5
     },
     colorwhite: {
@@ -64,10 +61,11 @@ export const styles = StyleSheet.create({
     },
     btnPlay: {
         backgroundColor: 'rgba(255, 255, 255, 0.2)',
-        // padding: 10,
         paddingHorizontal: 15,
-        paddingVertical: 8,
+        height: 40,
         borderRadius: 50,
+        alignSelf: 'center',
+
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -87,9 +85,9 @@ export const styles = StyleSheet.create({
         marginRight: 10,
     },
     controllplayer: {
-        height: 180,
+        height: 100,
         marginBottom: 20,
-        marginHorizontal: 36,
+        marginHorizontal: 20,
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'flex-start',
