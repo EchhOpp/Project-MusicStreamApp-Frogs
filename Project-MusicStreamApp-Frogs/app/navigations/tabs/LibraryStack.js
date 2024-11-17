@@ -10,7 +10,7 @@ import ArtissProfile from '../../screens/Artist_Profile/ArtissProfile';
 import ArtistProfileRight from '../../screens/Artist_Profile/ArtistProfileRight';
 import ArtistProfileLeft from '../../screens/Artist_Profile/ArtistProfileLeft';
 import MucsicPlayer from '../../screens/music_player/MucsicPlayer';
-
+import Next from '../../screens/next/Next';
 
 const Stack = createNativeStackNavigator();
 
@@ -134,6 +134,14 @@ const LibraryStack = () => {
                     // ),
                 }}
             />
+            <Stack.Screen
+                name="Next"
+                component={Next}
+                options={{
+                    headerShown: false,
+                }}
+            />
+
         </Stack.Navigator>
     );
 }

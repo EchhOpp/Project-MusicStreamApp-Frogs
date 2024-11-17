@@ -9,9 +9,11 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import {styles} from './style/MucsicPlayer'
+import { useNavigation } from '@react-navigation/native';
 
 
 const MucsicPlayer = () => {
+    const navigation = useNavigation();
     return (
         
         <View style={styles.container}>
@@ -54,7 +56,9 @@ const MucsicPlayer = () => {
                                         <Feather name="download" size={18} color="white" />
                                     </TouchableOpacity>
                                 </View>
-                                <TouchableOpacity style={[styles.btnicon]}>
+                                <TouchableOpacity 
+                                    onPress={() => navigation.navigate('Next')}
+                                    style={[styles.btnicon]}>
                                     <Feather name="more-vertical" size={18} color="white" />
                                 </TouchableOpacity>
                             </View>
