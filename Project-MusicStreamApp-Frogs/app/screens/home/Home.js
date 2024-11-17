@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, TouchableOpacity, FlatList } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity,FlatList } from 'react-native';
 import React, {useState, useEffect}from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import styles from './style/Home';
@@ -11,14 +11,14 @@ import LastestVideos from '@/components/LastestVideos';
 import MoodGenres from '@/components/MoodGenres';
 import * as SplashScreen from 'expo-splash-screen';
 import useLoadFonts from '@/hooks/useLoadFonts';
-import { getSongs, getAlbums} from '@/services/getMusicApi';  
-import { get, set } from 'firebase/database';
+import { getSongs, getAlbums, getClips} from '@/services/getMusicApi';  
 
 SplashScreen.preventAutoHideAsync();
 
 const Home = ({ navigation }) => {
   const [songs, setSongs] = useState([]);
   const [albums, setAlbums] = useState([]);
+  const [clips, setClips] = useState([]);
   const { loaded, error } = useLoadFonts();
 
   useEffect(() => {
@@ -29,6 +29,11 @@ const Home = ({ navigation }) => {
     getAlbums((albumsArray) => {
       setAlbums(albumsArray);
     });
+
+    getClips((clipsArray) => {
+      setClips(clipsArray);
+    });
+
   }, []);
 
   if (!loaded && !error) {
@@ -51,7 +56,7 @@ const Home = ({ navigation }) => {
           <FlatList
             scrollEnabled={false}
             data={songs}
-            keyExtractor={item => item.id.toString()}
+            keyExtractor={(item) => item.id}
             renderItem={
               ({ item }) => 
                 <ListListenMusic items={item}/>  
@@ -71,7 +76,7 @@ const Home = ({ navigation }) => {
           {/* Sổ các new releases */}
           <FlatList
             data={albums}
-            keyExtractor={item => item}
+            keyExtractor={(item) => Math.random().toString() + item.artist}
             renderItem={({ item }) => <NewReleases music={item}/>}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
@@ -88,11 +93,12 @@ const Home = ({ navigation }) => {
           </View>
           {/* Sổ các clips */}
           <FlatList
-            data={[1, 2, 3, 4, 5]}
-            renderItem={({ item }) => <Clips />}
+            data={clips}
+            renderItem={({ item }) => <Clips items={item}/>}
             keyExtractor={item => item.toString()}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
+            style={{ width: '100%' }}
           />
         </View>
 
@@ -125,8 +131,8 @@ const Home = ({ navigation }) => {
 
           {/* List group lại */}
           <FlatList
-            data={[1, 2, 3, 4, 5]}
-            renderItem={({ item }) => <GroupTrendSong />}
+            data={albums}
+            renderItem={({ item }) => <GroupTrendSong items={item}/>}
             keyExtractor={item => item.toString()}
             horizontal={true}
             style={{ marginTop: 40 }}

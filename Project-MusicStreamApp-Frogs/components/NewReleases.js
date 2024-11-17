@@ -12,7 +12,7 @@ const NewReleases = ({ music}) => {
       <TouchableOpacity>
         <View style={styles.collection}>
           <View style={[styles.img]}>
-              <Image source={require('../assets/images/NewReleases1.png')} style={{width: 150, height: 150, borderRadius: 10}} />
+              <Image source={{uri: music.image}} style={{width: 140, height: 140, borderRadius: 10}} />
           </View>
           <Text style={styles.nameMusic}>{music.albumName}</Text>
         </View>

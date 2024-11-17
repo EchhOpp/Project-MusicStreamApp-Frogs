@@ -15,6 +15,7 @@ const getSongs = (callback) => {
         title: data[key].title,
         author: data[key].author,
         image: data[key].image,
+        key: data[key].id
       }));
       callback(songsArray);
     } else {
@@ -38,6 +39,7 @@ const getAlbums = (callback) => {
         return {
           albumName: albumKey,
           artist: album.artist,
+          image: album.image,
           songs: songs
         };
       });
@@ -48,17 +50,24 @@ const getAlbums = (callback) => {
   });
 };
 
-console.log(
-  getSongs((data) => {
-    console.log(data);
-  })
-);
+const getClips = (callback) => {
+  const clipsRef = ref(database, 'clips');
+  onValue(clipsRef, (snapshot) => {
+    const data = snapshot.val();
+    if (data) {
+      const clipsArray = Object.keys(data).map(key => ({
+        id: data[key].id,
+        title: data[key].title,
+        artist: data[key].artist,
+        video: data[key].video,
+        key: data[key].id
+      }));
+      callback(clipsArray);
+    } else {
+      callback([]);
+    }
+  });
+};
 
-console.log(
-  getAlbums((data) => {
-    console.log(data);
-  })
-);
-
-export { getSongs, getAlbums };
+export { getSongs, getAlbums, getClips};
 
