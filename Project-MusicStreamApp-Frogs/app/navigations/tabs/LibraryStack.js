@@ -9,6 +9,7 @@ import SavedClips from '../../screens/saved_clips/SavedClips';
 import ArtissProfile from '../../screens/Artist_Profile/ArtissProfile';
 import ArtistProfileRight from '../../screens/Artist_Profile/ArtistProfileRight';
 import ArtistProfileLeft from '../../screens/Artist_Profile/ArtistProfileLeft';
+import MucsicPlayer from '../../screens/music_player/MucsicPlayer';
 
 
 const Stack = createNativeStackNavigator();
@@ -98,6 +99,25 @@ const LibraryStack = () => {
             <Stack.Screen
                 name="ArtistProfile"
                 component={ArtissProfile}
+                options={{
+                    headerShown: false,
+                    // headerShadowVisible: false,
+                    // headerStyle: {
+                    //     // backgroundColor: Colors.neutral.rgba1,
+                    //     backgroundColor: 'transparent', // Làm cho nền của header trong suốt
+                    // },
+                    // title: '',
+                    // headerLeft: () => (
+                    //     <ArtistProfileLeft />
+                    // ),
+                    // headerRight: () => (
+                    //     <ArtistProfileRight />
+                    // ),
+                }}
+            />
+             <Stack.Screen
+                name="MucsicPlayer"
+                component={MucsicPlayer}
                 options={{
                     headerShown: false,
                     // headerShadowVisible: false,

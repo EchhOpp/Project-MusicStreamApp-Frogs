@@ -8,7 +8,7 @@ const ArtistComponet1st = () => {
             <ImageBackground
                 source={require('@/assets/images/lastbanner.png')}
                 imageStyle={{ borderRadius: 10 }}
-                style={{}}
+                style={{height: 500, borderRadius: 10}}
             >
                 <LinearGradient
                     style={styles.gradient}
@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
         marginTop: 20,
         position: 'relative',
         justifyContent: 'flex-end',
+        marginBottom: 80,
     },
     content: {
         padding: 20,
@@ -73,9 +74,10 @@ const styles = StyleSheet.create({
     },
     gradient: {
         top:250,
-        height: 290,
-        width: '100%',
+        height: 250,
+        // width: ,
         borderRadius: 10,
+        marginBottom: 5000,
     }
 
 })
