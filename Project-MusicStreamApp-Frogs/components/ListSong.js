@@ -11,8 +11,8 @@ const ListSong = ({items}) => {
             <Image 
                 source={{ uri: items.image }} 
                 style={styles.img}
-                width={92}
-                height={92}
+                width={80}
+                height={80}
             />
             <Text numberOfLines={1} style={styles.nameMusic}>{items.title}</Text>
             <Text style={styles.nameAuthor}>{items.author}</Text>
@@ -25,7 +25,6 @@ export default ListSong
 const styles = StyleSheet.create({
     container: {
         marginTop: 16,
-        marginRight: 20,
         position: 'relative',
         overflow: 'hidden',
         width: 92

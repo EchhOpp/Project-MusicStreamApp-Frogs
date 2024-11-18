@@ -13,7 +13,8 @@ const getSongs = () => {
         const songsArray = Object.keys(data).map((id) => {
           const song = data[id];
           return {
-            id: id,
+            key: id,
+            id: song.id,
             title: song.title,
             author: song.author,
             image: song.image
@@ -43,11 +44,13 @@ const getAlbums = () => {
           const album = data[id];
           const songs = album.song_ablums.map(song => song.id); // Lấy danh sách id bài hát
           return {
-            id: id,
+            key: id,
+            id: album.id,
             albumName: album.albumName,
             artist: album.artist,
             image: album.image,
-            songs: songs
+            songs: songs,
+            image_ablum: album.image_ablum
           };
         });
         resolve(albumsArray);  // Trả dữ liệu qua Promise

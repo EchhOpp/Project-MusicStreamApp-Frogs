@@ -8,12 +8,12 @@ const getFormattedVideoUrl = (url) => {
 }
 
 // Format Google Drive image URL
-export const getFormattedImageUrl = (url) => {
-    if (url.includes('drive.google.com/drive/folders')) {
-        const folderId = url.split('/folders/')[1];
-        return `https://drive.google.com/uc?export=view&id=${folderId}`;
+const getFormattedImageUrl = (url) => {
+    if (url.includes('drive.google.com/file/d/')) {
+        const fileId = url.split('/file/d/')[1].split('/')[0];
+        return `https://drive.google.com/uc?export=view&id=${fileId}`;
     }
-    return url; 
+    return url;
 }
 
-export { getFormattedVideoUrl };
+export { getFormattedVideoUrl, getFormattedImageUrl };
