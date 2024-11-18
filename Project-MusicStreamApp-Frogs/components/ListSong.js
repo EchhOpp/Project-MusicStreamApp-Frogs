@@ -3,13 +3,20 @@ import React from 'react'
 import { Colors } from '../constants/Colors'
 import { Popins } from '../constants/Popins'
 
-const ListSong = () => {
-  return (
-    <View style={styles.container}>
-        <Image source={require('../assets/images/afterhours.png')} style={styles.img}/>
-        <Text style={styles.nameMusic}>After hours</Text>
-        <Text style={styles.nameAuthor}>The Weeknd</Text>
-    </View>
+const ListSong = ({items}) => {
+    if (!items) 
+        return null;
+    return (
+        <View style={styles.container}>
+            <Image 
+                source={{ uri: items.image }} 
+                style={styles.img}
+                width={92}
+                height={92}
+            />
+            <Text numberOfLines={1} style={styles.nameMusic}>{items.title}</Text>
+            <Text style={styles.nameAuthor}>{items.author}</Text>
+        </View>
   )
 }
 
@@ -20,6 +27,8 @@ const styles = StyleSheet.create({
         marginTop: 16,
         marginRight: 20,
         position: 'relative',
+        overflow: 'hidden',
+        width: 92
     },
 
     img: {

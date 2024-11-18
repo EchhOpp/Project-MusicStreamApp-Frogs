@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, TouchableOpacity,FlatList } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity,FlatList, ActivityIndicator } from 'react-native';
 import React, {useState, useEffect}from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import styles from './style/Home';
@@ -19,25 +19,43 @@ const Home = ({ navigation }) => {
   const [songs, setSongs] = useState([]);
   const [albums, setAlbums] = useState([]);
   const [clips, setClips] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const { loaded, error } = useLoadFonts();
 
   useEffect(() => {
-    getSongs((songsArray) => {
-      setSongs(songsArray);
-    });
+    const loadData = async () => {
+      try {
+        const [songsData, albumsData, clipsData] = await Promise.all([
+          getSongs(),
+          getAlbums(),
+          getClips()
+        ]);
+        
+        setSongs(songsData);
+        setAlbums(albumsData);
+        setClips(clipsData);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setIsLoading(false);
+        SplashScreen.hideAsync();
+      }
+    };
 
-    getAlbums((albumsArray) => {
-      setAlbums(albumsArray);
-    });
-
-    getClips((clipsArray) => {
-      setClips(clipsArray);
-    });
-
+    loadData();
   }, []);
 
   if (!loaded && !error) {
     return null;
+  }
+
+  if (isLoading) {
+    return (
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#000000'}}>
+        <ActivityIndicator size="large" color="#0000ff" />
+        <Text style={{color: '#FFFFFF'}}>Loading...</Text>
+      </View>
+    );
   }
 
   return (
@@ -56,7 +74,7 @@ const Home = ({ navigation }) => {
           <FlatList
             scrollEnabled={false}
             data={songs}
-            keyExtractor={(item) => item.id}
+            keyExtractor={(item) => item.title}
             renderItem={
               ({ item }) => 
                 <ListListenMusic items={item}/>  
@@ -76,7 +94,7 @@ const Home = ({ navigation }) => {
           {/* Sổ các new releases */}
           <FlatList
             data={albums}
-            keyExtractor={(item) => Math.random().toString() + item.artist}
+            keyExtractor={(item) => item.id}
             renderItem={({ item }) => <NewReleases music={item}/>}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
@@ -95,7 +113,7 @@ const Home = ({ navigation }) => {
           <FlatList
             data={clips}
             renderItem={({ item }) => <Clips items={item}/>}
-            keyExtractor={item => item.toString()}
+            keyExtractor={item => item.id}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
             style={{ width: '100%' }}
@@ -113,18 +131,17 @@ const Home = ({ navigation }) => {
 
           {/* Sổ các trending songs */}
           <FlatList
-            data={[1, 2, 3, 4, 5]}
-            renderItem={({ item }) => <ListSong />}
-            keyExtractor={item => item.toString()}
+            data={songs}
+            renderItem={({ item }) => <ListSong items={item} />}
+            keyExtractor={item => item.id}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
           />
           <FlatList
-            scrollEnabled={false}
             style={{ marginTop: 20 }}
-            data={[1, 2, 3, 4, 5]}
-            renderItem={({ item }) => <ListSong />}
-            keyExtractor={item => item.toString()}
+            data={songs}
+            renderItem={({ item }) => <ListSong items={item} />}
+            keyExtractor={item => item.id}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
           />

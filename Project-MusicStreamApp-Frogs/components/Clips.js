@@ -2,9 +2,15 @@ import { StyleSheet, Text, View, TouchableOpacity,} from 'react-native'
 import React, {useRef } from 'react'
 import { Ionicons } from '@expo/vector-icons'
 import { Video, ResizeMode } from 'expo-av';
+import { getFormattedVideoUrl } from '../utils/getFormatted';
 
-const Clips = () => {
-    const video = useRef(null);
+const Clips = ({items}) => {
+    const videoUri = items?.video;
+    const videoRef = useRef(null); 
+   
+    if (!videoUri) {
+        return null; 
+    }
 
   return (
     <TouchableOpacity style={styles.container}>
@@ -13,9 +19,9 @@ const Clips = () => {
         </View>
         <View style={styles.video}>
             <Video
-                ref={video}
+                ref={videoRef}
                 source={{
-                    uri: 'https://drive.google.com/uc?export=download&id=1yR_o6kz62CK1RnG-EtctQXE6FaMPfEaj'
+                    uri: getFormattedVideoUrl(videoUri)
                 }}
                 style={styles.img}
                 useNativeControls={false}
@@ -25,7 +31,7 @@ const Clips = () => {
                 isLooping={true}
                 onPlaybackStatusUpdate={status => {
                     if (status.didJustFinish) {
-                        video.current.replayAsync();
+                        videoRef.current.replayAsync();
                     }
                 }}
                 showPoster={false}
@@ -35,8 +41,8 @@ const Clips = () => {
             <View style={styles.overlay} />
         </View>
         <View style={styles.name}>
-            <Text style={styles.nameMusic}>Performing “The Hills”</Text>
-            <Text style={styles.nameAuthor}>The Weeknd</Text>
+            <Text style={styles.nameMusic}>{items.title}</Text>
+            <Text style={styles.nameAuthor}>{items.artist}</Text>
         </View>
     </TouchableOpacity>
   )
