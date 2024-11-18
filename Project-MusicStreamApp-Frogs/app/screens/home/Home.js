@@ -17,13 +17,14 @@ import { getRandomColor } from '@/utils/getRandomColor';
 
 SplashScreen.preventAutoHideAsync();
 
-const Home = ({ navigation }) => {
+const Home = ({ navigation, route = {} }) => {
   const [songs, setSongs] = useState([]);
   const [albums, setAlbums] = useState([]);
   const [clips, setClips] = useState([]);
   const [genres, setGenres] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const { loaded, error } = useLoadFonts();
+  const { setCurrentSong = () => {} } = route.params || {};
 
   useEffect(() => {
     const loadData = async () => {
@@ -62,6 +63,12 @@ const Home = ({ navigation }) => {
     );
   }
 
+  const handleSongPress = (song) => {
+    setCurrentSong(song);
+  };
+
+  alert(JSON.stringify(route.params));
+
   return (
     <GestureHandlerRootView>
     <View style={styles.container}>
@@ -79,10 +86,12 @@ const Home = ({ navigation }) => {
             scrollEnabled={false}
             data={songs}
             keyExtractor={(item) => item.key}
-            renderItem={
-              ({ item }) => 
-                <ListListenMusic items={item}/>  
-              }
+            renderItem={({ item }) => (
+              <ListListenMusic 
+                items={item}
+                onPress={() => handleSongPress(item)}
+              />
+            )}
           />
         </View>
 
@@ -135,7 +144,11 @@ const Home = ({ navigation }) => {
           {/* Sổ các trending songs */}
           <FlatList
             data={songs}
-            renderItem={({ item }) => <ListSong items={item} />}
+            renderItem={({ item }) => (
+              <TouchableOpacity onPress={() => handleSongPress(item)}>
+                <ListSong items={item} />
+              </TouchableOpacity>
+            )}
             keyExtractor={item => item.id}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
@@ -144,7 +157,11 @@ const Home = ({ navigation }) => {
             scrollEnabled={false}
             style={{ marginTop: 20 }}
             data={songs}
-            renderItem={({ item }) => <ListSong items={item} />}
+            renderItem={({ item }) => (
+              <TouchableOpacity onPress={() => handleSongPress(item)}>
+                <ListSong items={item} />
+              </TouchableOpacity>
+            )}
             keyExtractor={item => item.id}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
@@ -174,7 +191,12 @@ const Home = ({ navigation }) => {
           <FlatList
             scrollEnabled={false}
             data={songs}
-            renderItem={({ item }) => <ListListenMusic items={item} />}
+            renderItem={({ item }) => (
+              <ListListenMusic 
+                items={item}
+                onPress={() => handleSongPress(item)}
+              />
+            )}
             keyExtractor={item => item.id}
             horizontal={false}
           />
@@ -224,7 +246,11 @@ const Home = ({ navigation }) => {
           {/* Sổ các from your library */}
           <FlatList
             data={songs}
-            renderItem={({ item }) => <ListSong items={item} />}
+            renderItem={({ item }) => (
+              <TouchableOpacity onPress={() => handleSongPress(item)}>
+                <ListSong items={item} />
+              </TouchableOpacity>
+            )}
             keyExtractor={item => item.id}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
@@ -232,7 +258,11 @@ const Home = ({ navigation }) => {
 
           <FlatList
             data={songs}
-            renderItem={({ item }) => <ListSong items={item} />}
+            renderItem={({ item }) => (
+              <TouchableOpacity onPress={() => handleSongPress(item)}>
+                <ListSong items={item} />
+              </TouchableOpacity>
+            )}
             keyExtractor={item => item.id}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
@@ -270,7 +300,11 @@ const Home = ({ navigation }) => {
           {/* Sổ các forgotten favorites */}
           <FlatList
             data={songs}
-            renderItem={({ item }) => <ListSong items={item} />}
+            renderItem={({ item }) => (
+              <TouchableOpacity onPress={() => handleSongPress(item)}>
+                <ListSong items={item} />
+              </TouchableOpacity>
+            )}
             keyExtractor={item => item.id}
             horizontal={true}
             showsHorizontalScrollIndicator={false}

@@ -1,9 +1,10 @@
 import { StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native'
-import Reac, {useEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react'
+import { LinearGradient } from 'expo-linear-gradient';
 
-import { LinearGradient } from 'expo-linear-gradient'; 
+const PlayList = ({ currentSong }) => {
+  if (!currentSong) return null;
 
-const PlayList = () => {
   return (
     <View style={styles.container}>
         <LinearGradient
@@ -12,12 +13,15 @@ const PlayList = () => {
         >
             <TouchableOpacity style={styles.imgContainer}>
                 <Image source={require('@/assets/images/IMG_04251.png')} style={styles.dia}/>
-                <Image source={require('@/assets/images/IMG_Playlist.png')} style={styles.avt}/>
+                <Image 
+                  source={{ uri: currentSong.image }} 
+                  style={styles.avt}
+                />
             </TouchableOpacity>
         </LinearGradient>
         <View>
-            <Text style={styles.nameMusic1}>After Hours</Text>
-            <Text style={styles.nameMusic2}>The Weeknd</Text>
+            <Text style={styles.nameMusic1}>{currentSong.title}</Text>
+            <Text style={styles.nameMusic2}>{currentSong.author}</Text>
         </View>
     </View>
   )
@@ -50,6 +54,8 @@ const styles = StyleSheet.create({
     },
 
     avt: {
+        width: 100,
+        height: 100,
         borderRadius: 10,
         zIndex: 1,
     },
