@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, TouchableOpacity,FlatList } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, FlatList, ActivityIndicator } from 'react-native';
 import React, {useState, useEffect}from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import styles from './style/Home';
@@ -11,7 +11,9 @@ import LastestVideos from '@/components/LastestVideos';
 import MoodGenres from '@/components/MoodGenres';
 import * as SplashScreen from 'expo-splash-screen';
 import useLoadFonts from '@/hooks/useLoadFonts';
-import { getSongs, getAlbums, getClips} from '@/services/getMusicApi';  
+import { getSongs, getAlbums, getClips} from '@/services/getMusicApi';
+import { getGenre } from '@/services/ChooseMusic';
+import { getRandomColor } from '@/utils/getRandomColor';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -19,32 +21,45 @@ const Home = ({ navigation }) => {
   const [songs, setSongs] = useState([]);
   const [albums, setAlbums] = useState([]);
   const [clips, setClips] = useState([]);
+  const [genres, setGenres] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const { loaded, error } = useLoadFonts();
 
   useEffect(() => {
-    getSongs().then(
-      (songsArray) => {
+    const loadData = async () => {
+      try {
+        const [songsArray, albumsArray, clipsArray, genreList] = await Promise.all([
+          getSongs(),
+          getAlbums(),
+          getClips(),
+          getGenre()
+        ]);
+
         setSongs(songsArray);
-      }
-    );
-    getAlbums().then(
-      (albumsArray) => {
         setAlbums(albumsArray);
-      }
-    );
-
-    getClips().then(
-      (clipsArray) => {
         setClips(clipsArray);
+        setGenres(genreList);
+      } catch (error) {
+        console.error('Error loading data:', error);
+      } finally {
+        setIsLoading(false);
+        SplashScreen.hideAsync();
       }
-    );
+    };
 
-    SplashScreen.hideAsync();
-
+    loadData();
   }, []);
 
   if (!loaded && !error) {
     return null;
+  }
+
+  if (isLoading) {
+    return (
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#000'}}>
+        <ActivityIndicator size="large" color="#1DB954" />
+      </View>
+    );
   }
 
   return (
@@ -158,9 +173,9 @@ const Home = ({ navigation }) => {
           {/* Sổ các quick picks */}
           <FlatList
             scrollEnabled={false}
-            data={[1, 2, 3, 4, 5]}
-            renderItem={({ item }) => <ListListenMusic />}
-            keyExtractor={item => item.toString()}
+            data={songs}
+            renderItem={({ item }) => <ListListenMusic items={item} />}
+            keyExtractor={item => item.id}
             horizontal={false}
           />
         </View>
@@ -187,9 +202,9 @@ const Home = ({ navigation }) => {
             {/* List group lại */}
             <FlatList
               scrollEnabled={false}
-              data={[1, 2, 3, 4, 5]}
-              renderItem={({ item }) => <GroupTrendSong />}
-              keyExtractor={item => item.toString()}
+              data={albums}
+              renderItem={({ item }) => <GroupTrendSong items={item} />}
+              keyExtractor={item => item.id}
               horizontal={true}
               style={{ marginTop: 30 }}
               showsHorizontalScrollIndicator={false}
@@ -208,20 +223,19 @@ const Home = ({ navigation }) => {
 
           {/* Sổ các from your library */}
           <FlatList
-            data={[1, 2, 3, 4, 5]}
-            renderItem={({ item }) => <ListSong />}
-            keyExtractor={item => item.toString()}
+            data={songs}
+            renderItem={({ item }) => <ListSong items={item} />}
+            keyExtractor={item => item.id}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
           />
 
           <FlatList
-            data={[1, 2, 3, 4, 5]}
-            renderItem={({ item }) => <ListSong />}
-            keyExtractor={item => item.toString()}
+            data={songs}
+            renderItem={({ item }) => <ListSong items={item} />}
+            keyExtractor={item => item.id}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
-            style={{ marginTop: 20 }}
           />
         </View>
 
@@ -255,9 +269,9 @@ const Home = ({ navigation }) => {
 
           {/* Sổ các forgotten favorites */}
           <FlatList
-            data={[1, 2, 3, 4, 5]}
-            renderItem={({ item }) => <ListSong />}
-            keyExtractor={item => item.toString()}
+            data={songs}
+            renderItem={({ item }) => <ListSong items={item} />}
+            keyExtractor={item => item.id}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
           />
@@ -292,16 +306,23 @@ const Home = ({ navigation }) => {
           </View>
 
           {/* Sổ các mood & genres */}
-          <FlatList
-            style={{ marginTop: 20 }}
-            scrollEnabled={false}
-            data={[1, 2, 3, 4, 5, 6]}
-            renderItem={({ item }) => <MoodGenres />}
-            keyExtractor={item => item.toString()}
-            numColumns={2}
-            columnWrapperStyle={{ justifyContent: 'space-between' }}
-            horizontal={false}
-          />
+          <View style={{ marginTop: 20 }}>
+            <FlatList
+              data={genres.slice(0, Math.ceil(genres.length/2))}
+              renderItem={({ item }) => <MoodGenres genre={item} color={getRandomColor()} />}
+              keyExtractor={item => item}
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
+              style={{ marginBottom: 10 }}
+            />
+            <FlatList 
+              data={genres.slice(Math.ceil(genres.length/2))}
+              renderItem={({ item }) => <MoodGenres genre={item} color={getRandomColor()} />}
+              keyExtractor={item => item}
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
+            />
+          </View>
         </View>
       </ScrollView>
     </View>
