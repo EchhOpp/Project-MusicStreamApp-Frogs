@@ -94,7 +94,4 @@ export const styles = StyleSheet.create({
         justifyContent: 'space-around',
         alignItems: 'flex-start',
     },
-    scrollview:{
-        flex:1
-    }
 })

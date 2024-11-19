@@ -16,11 +16,11 @@ const MucsicPlayer = () => {
     const navigation = useNavigation();
     return (
         
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             <ImageBackground
                 source={require('../../../assets/images/Imgtheme2.png')}
             >
-                <ScrollView style={styles.scrollview}>
+                {/* <ScrollView style={styles.scrollview}> */}
                 <View style={styles.content}>
                     <View style={styles.header}>
                         <TouchableOpacity style={styles.btndown}>
@@ -93,9 +93,9 @@ const MucsicPlayer = () => {
                         </View>
                     </View>
                 </View>
-                </ScrollView>
+                {/* </ScrollView> */}
             </ImageBackground>
-        </View>
+        </ScrollView>
     )
 }
 
