@@ -45,7 +45,6 @@ const getAlbums = () => {
           const songs = album.song_ablums.map(song => song.id); // Lấy danh sách id bài hát
           return {
             key: id,
-            id: album.id,
             albumName: album.albumName,
             artist: album.artist,
             image: album.image,
@@ -88,8 +87,6 @@ const getClips = () => {
     });
   });
 };
-
-console.log(JSON.stringify(getAlbums()));
 
 export { getSongs, getAlbums, getClips};
 

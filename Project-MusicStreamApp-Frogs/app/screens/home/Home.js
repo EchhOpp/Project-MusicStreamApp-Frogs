@@ -67,8 +67,6 @@ const Home = ({ navigation, route = {} }) => {
     setCurrentSong(song);
   };
 
-  alert(JSON.stringify(route.params));
-
   return (
     <GestureHandlerRootView>
     <View style={styles.container}>
