@@ -34,7 +34,9 @@ const MucsicPlayer = () => {
                                     <Text style={styles.title}>Until I Bleed Out</Text>
                                     <Text style={[styles.subTitle, styles.color2]}>The Weeknd</Text>
                                 </View>
-                                <TouchableOpacity style={[styles.row, styles.btnPlay]}>
+                                <TouchableOpacity 
+                                        onPress={() => navigation.navigate('Clips')}
+                                        style={[styles.row, styles.btnPlay]}>
                                     <Feather name="play" size={16} color="white" style={{ marginRight: 5 }} />
                                     <Text style={[styles.subTitle, styles.colorwhite]}>Video</Text>
                                 </TouchableOpacity>
