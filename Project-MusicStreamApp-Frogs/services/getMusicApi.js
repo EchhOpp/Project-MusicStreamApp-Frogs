@@ -146,7 +146,7 @@ const getCurrentSong = (callback) => {
       );
 
       // Return unsubscribe function
-      return unsubscribe;
+      return () => unsubscribe();
     } catch (error) {
       console.error("Error in getCurrentSong:", error);
       reject(error);

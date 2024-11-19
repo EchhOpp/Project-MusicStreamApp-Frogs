@@ -8,7 +8,7 @@ import { BlurView } from 'expo-blur';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 // Stack screens
-import PlayList from '../../components/LiveMusicBottom';
+import LiveMusicBottom from '../../components/LiveMusicBottom';
 import HomeStack from './tabs/HomeStack';
 import LibraryStack from './tabs/LibraryStack';
 import ClipsStack from './tabs/ClipsStack';
@@ -21,7 +21,7 @@ const NavigationTabs = () => {
         <View style={{ flex: 1 }}>
             {/* Play */}
             <View style={styles.playlistContainer}>
-                <PlayList />
+                <LiveMusicBottom />
             </View>
             {/* Tab Navigator */}
             <Tab.Navigator

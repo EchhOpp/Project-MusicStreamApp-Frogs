@@ -5,19 +5,24 @@ import { Colors } from '@/constants/Colors'
 import { Audio } from 'expo-av'
 import Slider from '@react-native-community/slider'
 import { getCurrentSong } from '@/services/getMusicApi'
+import { set } from 'firebase/database'
 
 const LiveMusicBottom = () => {
   const [sound, setSound] = useState();
   const [isPlaying, setIsPlaying] = useState(false);
   const [position, setPosition] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);  
   const [currentSong, setCurrentSong] = useState(null);
 
   useEffect(() => {
     const loadCurrentSong = async () => {
       try {
         const song = await getCurrentSong();
+        if (!song) {
+          console.error("No song returned from getCurrentSong");
+          return;
+        }
         setCurrentSong(song);
       } catch (error) {
         console.error("Error loading current song:", error);
@@ -32,12 +37,14 @@ const LiveMusicBottom = () => {
 
     return () => {
       if (unsubscribe) {
-        unsubscribe();
+        getCurrentSong((song) => {
+          setCurrentSong(song);
+        });
       }
     };
   }, []);
 
-  async function playSound() {
+  const playSound = async () => {
     try {
       if (sound && isLoaded) {
         if (isPlaying) {
@@ -55,29 +62,31 @@ const LiveMusicBottom = () => {
           console.error("No song loaded");
           return;
         }
-
+  
         await Audio.setAudioModeAsync({
           allowsRecordingIOS: false,
           staysActiveInBackground: true,
           playsInSilentModeIOS: true,
           shouldDuckAndroid: true,
-          playThroughEarpieceAndroid: false
+          playThroughEarpieceAndroid: false,
         });
-
+  
+        // Convert Google Drive link to direct download link
+  
         const { sound: newSound } = await Audio.Sound.createAsync(
-          require('../assets/mp3/spotifydown.mp3'),
+          { uri: 'https://drive.google.com/uc?export=download&id=14E42-pSCjxJ2XYfYQSrg7DSYPUMkP9Zd' },
           { shouldPlay: true },
           onPlaybackStatusUpdate
         );
-
+  
         setSound(newSound);
         setIsLoaded(true);
         setIsPlaying(true);
       }
     } catch (error) {
-      console.error("Lỗi khi phát nhạc:", error);
+      console.error("Error playing music:", error);
     }
-  }
+  };  
 
   const onPlaybackStatusUpdate = (status) => {
     if (status.isLoaded) {
@@ -113,7 +122,7 @@ const LiveMusicBottom = () => {
      <View style={styles.container}>
         <View style={styles.topContainer}>
           <TouchableOpacity style={styles.music}>
-              <Image source={require('../assets/images/avatarArtists.png')} style={{width: 40, height: 40, borderRadius: 4}}/>
+              <Image source={currentSong?.image ? {uri: currentSong.image} : require('../assets/images/avatarArtists.png')} style={{width: 40, height: 40, borderRadius: 4}}/>
               <View style={styles.textName}>
                   <Text style={styles.nameMusic}>{currentSong?.title || 'Tên bài hát'}</Text>
                   <Text style={styles.nameAuthor}>{currentSong?.artist || 'Tên ca sĩ'}</Text>
