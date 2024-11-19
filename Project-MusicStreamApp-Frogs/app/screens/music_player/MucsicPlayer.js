@@ -49,7 +49,9 @@ const MucsicPlayer = () => {
                                     <TouchableOpacity style={[styles.btnicon,styles.marginright]}>
                                         <Feather name="bookmark" size={18} color="white" />
                                     </TouchableOpacity>
-                                    <TouchableOpacity style={[styles.btnicon,styles.marginright]}>
+                                    <TouchableOpacity 
+                                        onPress={() => navigation.navigate('Related')}
+                                        style={[styles.btnicon,styles.marginright]}>
                                         <AntDesign name="sharealt" size={18} color="white" />
                                     </TouchableOpacity>
                                     <TouchableOpacity 

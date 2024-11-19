@@ -12,6 +12,7 @@ import ArtistProfileLeft from '../../screens/Artist_Profile/ArtistProfileLeft';
 import MucsicPlayer from '../../screens/music_player/MucsicPlayer';
 import Next from '../../screens/next/Next';
 import Lyrics from '../../screens/lyrics/Lyrics';
+import Related from '../../screens/related/Related';
 
 const Stack = createNativeStackNavigator();
 
@@ -145,6 +146,13 @@ const LibraryStack = () => {
             <Stack.Screen
                 name="Lyrics"
                 component={Lyrics}
+                options={{
+                    headerShown: false,
+                }}
+            />
+            <Stack.Screen
+                name="Related"
+                component={Related}
                 options={{
                     headerShown: false,
                 }}
