@@ -19,9 +19,9 @@ const MucsicPlayer = () => {
         <View style={styles.container}>
             <ImageBackground
                 source={require('../../../assets/images/Imgtheme2.png')}
-                style={{ width: '100%', height: '100%' }}
             >
-                <ScrollView style={styles.content}>
+                <ScrollView style={styles.scrollview}>
+                <View style={styles.content}>
                     <View style={styles.header}>
                         <TouchableOpacity style={styles.btndown}>
                             <AntDesign name="down" size={24} color="white" style={styles.icon} />
@@ -52,7 +52,9 @@ const MucsicPlayer = () => {
                                     <TouchableOpacity style={[styles.btnicon,styles.marginright]}>
                                         <AntDesign name="sharealt" size={18} color="white" />
                                     </TouchableOpacity>
-                                    <TouchableOpacity style={[styles.btnicon,styles.marginright]}>
+                                    <TouchableOpacity 
+                                            onPress={() => navigation.navigate('Lyrics')}
+                                            style={[styles.btnicon,styles.marginright]}>
                                         <Feather name="download" size={18} color="white" />
                                     </TouchableOpacity>
                                 </View>
@@ -90,6 +92,7 @@ const MucsicPlayer = () => {
                             </View>
                         </View>
                     </View>
+                </View>
                 </ScrollView>
             </ImageBackground>
         </View>

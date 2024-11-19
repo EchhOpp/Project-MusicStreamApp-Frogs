@@ -8,10 +8,12 @@ export const styles = StyleSheet.create({
     container: {    
         flex: 1,
         backgroundColor: Colors.neutral.gray,
+        height:1000
+
     },
     content: {
-        width: '100%',
-        height: '100%',
+        flex: 1,
+        height: 890,
     },
     header: {
         flexDirection: 'row',
@@ -92,4 +94,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'space-around',
         alignItems: 'flex-start',
     },
+    scrollview:{
+        flex:1
+    }
 })
