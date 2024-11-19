@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, StyleSheet } from 'react-native';
-
 import { Colors } from '../../constants/Colors';
 import { Ionicons, FontAwesome } from '@expo/vector-icons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
@@ -18,15 +17,12 @@ import ProfileStack from './tabs/ProfileStack';
 const Tab = createBottomTabNavigator();
 
 const NavigationTabs = () => {
-    const [currentSong, setCurrentSong] = useState(null);
-
     return (
         <View style={{ flex: 1 }}>
             {/* Play */}
             <View style={styles.playlistContainer}>
-                <PlayList currentSong={currentSong} />
+                <PlayList />
             </View>
-
             {/* Tab Navigator */}
             <Tab.Navigator
                 screenOptions={() => ({
@@ -57,9 +53,8 @@ const NavigationTabs = () => {
                 })}
             >
                 {/* Tab Home */}
-                <Tab.Screen name="Home" 
+                <Tab.Screen name="HomeTab" 
                     component={HomeStack}
-                    initialParams={{ setCurrentSong }}
                     options={{
                         headerShown: false,
                         tabBarIcon: ({ color }) => (
@@ -70,9 +65,8 @@ const NavigationTabs = () => {
                 />
 
                 {/* Tab Clips */}
-                <Tab.Screen name="Clips" 
+                <Tab.Screen name="ClipsTab" 
                     component={ClipsStack}
-                    initialParams={{ setCurrentSong }}
                     options={{
                         headerShown: false,
                         tabBarIcon: ({ color }) => (
@@ -82,9 +76,8 @@ const NavigationTabs = () => {
                 />
 
                 {/* Tab Library */}
-                <Tab.Screen name="Library" 
+                <Tab.Screen name="LibraryTab" 
                     component={LibraryStack}
-                    initialParams={{ setCurrentSong }}
                     options={{
                         headerShown: false,
                         tabBarIcon: ({ color }) => (
@@ -94,9 +87,8 @@ const NavigationTabs = () => {
                 />
 
                 {/* Tab Profile */}
-                <Tab.Screen name="Profile" 
+                <Tab.Screen name="ProfileTab" 
                     component={ProfileStack}
-                    initialParams={{ setCurrentSong }}
                     options={{
                         headerShown: false,
                         tabBarIcon: ({ color }) => (

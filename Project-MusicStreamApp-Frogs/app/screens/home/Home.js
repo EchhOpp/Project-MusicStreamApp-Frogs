@@ -11,9 +11,10 @@ import LastestVideos from '@/components/LastestVideos';
 import MoodGenres from '@/components/MoodGenres';
 import * as SplashScreen from 'expo-splash-screen';
 import useLoadFonts from '@/hooks/useLoadFonts';
-import { getSongs, getAlbums, getClips} from '@/services/getMusicApi';
+import { getSongs, getAlbums, getClips, updateCurrentSong} from '@/services/getMusicApi';
 import { getGenre } from '@/services/ChooseMusic';
 import { getRandomColor } from '@/utils/getRandomColor';
+import getKey from '@/utils/getKey';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -27,14 +28,22 @@ const Home = ({ navigation, route = {} }) => {
   const { setCurrentSong = () => {} } = route.params || {};
 
   useEffect(() => {
+    let isMounted = true;
+
     const loadData = async () => {
       try {
-        const [songsArray, albumsArray, clipsArray, genreList] = await Promise.all([
-          getSongs(),
-          getAlbums(),
-          getClips(),
-          getGenre()
-        ]);
+        // Load data sequentially instead of using Promise.all to avoid AggregateError
+        const songsArray = await getSongs();
+        if (!isMounted) return;
+        
+        const albumsArray = await getAlbums();
+        if (!isMounted) return;
+        
+        const clipsArray = await getClips();
+        if (!isMounted) return;
+        
+        const genreList = await getGenre();
+        if (!isMounted) return;
 
         setSongs(songsArray);
         setAlbums(albumsArray);
@@ -43,12 +52,19 @@ const Home = ({ navigation, route = {} }) => {
       } catch (error) {
         console.error('Error loading data:', error);
       } finally {
-        setIsLoading(false);
-        SplashScreen.hideAsync();
+        if (isMounted) {
+          setIsLoading(false);
+          SplashScreen.hideAsync();
+        }
       }
     };
 
     loadData();
+
+    // Cleanup function
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   if (!loaded && !error) {
@@ -62,9 +78,21 @@ const Home = ({ navigation, route = {} }) => {
       </View>
     );
   }
-
-  const handleSongPress = (song) => {
-    setCurrentSong(song);
+  
+  const handleSongPress = async (song) => {
+    try {
+      if (!song.mp_audio) {
+        console.error("Song missing mp3 URL");
+        return;
+      }
+      
+      await updateCurrentSong(song);
+      if (setCurrentSong) {
+        setCurrentSong(song);
+      }
+    } catch (error) {
+      console.error("Error updating current song:", error);
+    }
   };
 
   return (
@@ -83,7 +111,7 @@ const Home = ({ navigation, route = {} }) => {
           <FlatList
             scrollEnabled={false}
             data={songs}
-            keyExtractor={(item) => item.key}
+            keyExtractor={() => getKey()}
             renderItem={({ item }) => (
               <ListListenMusic 
                 items={item}
@@ -105,7 +133,7 @@ const Home = ({ navigation, route = {} }) => {
           {/* Sổ các new releases */}
           <FlatList
             data={albums}
-            keyExtractor={(item) => item.id}
+            keyExtractor={() => getKey()}
             renderItem={({ item }) => <NewReleases music={item}/>}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
@@ -124,7 +152,7 @@ const Home = ({ navigation, route = {} }) => {
           <FlatList
             data={clips}
             renderItem={({ item }) => <Clips items={item}/>}
-            keyExtractor={item => item.id}
+            keyExtractor={() => getKey()}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
             style={{ width: '100%' }}
@@ -147,7 +175,7 @@ const Home = ({ navigation, route = {} }) => {
                 <ListSong items={item} />
               </TouchableOpacity>
             )}
-            keyExtractor={item => item.id}
+            keyExtractor={() => getKey()}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
           />
@@ -160,7 +188,7 @@ const Home = ({ navigation, route = {} }) => {
                 <ListSong items={item} />
               </TouchableOpacity>
             )}
-            keyExtractor={item => item.id}
+            keyExtractor={() => getKey()}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
           />
@@ -169,7 +197,7 @@ const Home = ({ navigation, route = {} }) => {
           <FlatList
             data={albums}
             renderItem={({ item }) => <GroupTrendSong items={item}/>}
-            keyExtractor={item => item.toString()}
+            keyExtractor={() => getKey()}
             horizontal={true}
             style={{ marginTop: 40 }}
             showsHorizontalScrollIndicator={false}
@@ -195,7 +223,7 @@ const Home = ({ navigation, route = {} }) => {
                 onPress={() => handleSongPress(item)}
               />
             )}
-            keyExtractor={item => item.id}
+            keyExtractor={() => getKey()}
             horizontal={false}
           />
         </View>
@@ -213,7 +241,7 @@ const Home = ({ navigation, route = {} }) => {
             <FlatList
               data={[1, 2, 3, 4, 5]}
               renderItem={({ item }) => <NewReleases />}
-              keyExtractor={item => item.toString()}
+              keyExtractor={() => getKey()}
               horizontal={true}
               showsHorizontalScrollIndicator={false}
             />
@@ -224,7 +252,7 @@ const Home = ({ navigation, route = {} }) => {
               scrollEnabled={false}
               data={albums}
               renderItem={({ item }) => <GroupTrendSong items={item} />}
-              keyExtractor={item => item.id}
+              keyExtractor={() => getKey()}
               horizontal={true}
               style={{ marginTop: 30 }}
               showsHorizontalScrollIndicator={false}
@@ -249,7 +277,7 @@ const Home = ({ navigation, route = {} }) => {
                 <ListSong items={item} />
               </TouchableOpacity>
             )}
-            keyExtractor={item => item.id}
+            keyExtractor={() => getKey()}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
           />
@@ -261,7 +289,7 @@ const Home = ({ navigation, route = {} }) => {
                 <ListSong items={item} />
               </TouchableOpacity>
             )}
-            keyExtractor={item => item.id}
+            keyExtractor={() => getKey()}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
           />
@@ -280,7 +308,7 @@ const Home = ({ navigation, route = {} }) => {
           <FlatList
             data={clips}
             renderItem={({ item }) => <Clips items={item} />}
-            keyExtractor={item => item.id}
+            keyExtractor={() => getKey()}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
           />
@@ -303,7 +331,7 @@ const Home = ({ navigation, route = {} }) => {
                 <ListSong items={item} />
               </TouchableOpacity>
             )}
-            keyExtractor={item => item.id}
+            keyExtractor={() => getKey()}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
           />
@@ -322,7 +350,7 @@ const Home = ({ navigation, route = {} }) => {
           <FlatList
             data={[1, 2, 3, 4, 5]}
             renderItem={({ item }) => <LastestVideos />}
-            keyExtractor={item => item.toString()}
+            keyExtractor={() => getKey()}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
           />
@@ -342,7 +370,7 @@ const Home = ({ navigation, route = {} }) => {
             <FlatList
               data={genres.slice(0, Math.ceil(genres.length/2))}
               renderItem={({ item }) => <MoodGenres genre={item} color={getRandomColor()} />}
-              keyExtractor={item => item}
+              keyExtractor={() => getKey()}
               horizontal={true}
               showsHorizontalScrollIndicator={false}
               style={{ marginBottom: 10 }}
@@ -350,7 +378,7 @@ const Home = ({ navigation, route = {} }) => {
             <FlatList 
               data={genres.slice(Math.ceil(genres.length/2))}
               renderItem={({ item }) => <MoodGenres genre={item} color={getRandomColor()} />}
-              keyExtractor={item => item}
+              keyExtractor={() => getKey()}
               horizontal={true}
               showsHorizontalScrollIndicator={false}
             />

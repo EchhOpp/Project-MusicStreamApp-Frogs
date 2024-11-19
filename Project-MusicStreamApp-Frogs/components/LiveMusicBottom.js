@@ -4,6 +4,7 @@ import { Ionicons } from '@expo/vector-icons'
 import { Colors } from '@/constants/Colors'
 import { Audio } from 'expo-av'
 import Slider from '@react-native-community/slider'
+import { getCurrentSong } from '@/services/getMusicApi'
 
 const LiveMusicBottom = () => {
   const [sound, setSound] = useState();
@@ -11,6 +12,30 @@ const LiveMusicBottom = () => {
   const [position, setPosition] = useState(0);
   const [duration, setDuration] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [currentSong, setCurrentSong] = useState(null);
+
+  useEffect(() => {
+    const loadCurrentSong = async () => {
+      try {
+        const song = await getCurrentSong();
+        setCurrentSong(song);
+      } catch (error) {
+        console.error("Error loading current song:", error);
+      }
+    };
+    loadCurrentSong();
+
+    // Listen for changes to current song
+    const unsubscribe = getCurrentSong((song) => {
+      setCurrentSong(song);
+    });
+
+    return () => {
+      if (unsubscribe) {
+        unsubscribe();
+      }
+    };
+  }, []);
 
   async function playSound() {
     try {
@@ -26,6 +51,11 @@ const LiveMusicBottom = () => {
           setIsPlaying(true);
         }
       } else {
+        if (!currentSong?.mp_audio) {
+          console.error("No song loaded");
+          return;
+        }
+
         await Audio.setAudioModeAsync({
           allowsRecordingIOS: false,
           staysActiveInBackground: true,
@@ -45,7 +75,7 @@ const LiveMusicBottom = () => {
         setIsPlaying(true);
       }
     } catch (error) {
-      console.error("Error playing sound:", error);
+      console.error("Lỗi khi phát nhạc:", error);
     }
   }
 
@@ -83,10 +113,10 @@ const LiveMusicBottom = () => {
      <View style={styles.container}>
         <View style={styles.topContainer}>
           <TouchableOpacity style={styles.music}>
-              <Image source={require('../assets/images/afterhoursLive.png')} style={{width: 40, height: 40, borderRadius: 4}}/>
+              <Image source={require('../assets/images/avatarArtists.png')} style={{width: 40, height: 40, borderRadius: 4}}/>
               <View style={styles.textName}>
-                  <Text style={styles.nameMusic}>Until I Bleed Out</Text>
-                  <Text style={styles.nameAuthor}>The Weeknd</Text>
+                  <Text style={styles.nameMusic}>{currentSong?.title || 'Tên bài hát'}</Text>
+                  <Text style={styles.nameAuthor}>{currentSong?.artist || 'Tên ca sĩ'}</Text>
               </View>
           </TouchableOpacity>
           <View style={styles.iconLive}>
