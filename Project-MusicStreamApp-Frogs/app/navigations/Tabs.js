@@ -8,7 +8,6 @@ import { BlurView } from 'expo-blur';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 // Stack screens
-import LiveMusicBottom from '../../components/LiveMusicBottom';
 import HomeStack from './tabs/HomeStack';
 import LibraryStack from './tabs/LibraryStack';
 import ClipsStack from './tabs/ClipsStack';
@@ -19,10 +18,6 @@ const Tab = createBottomTabNavigator();
 const NavigationTabs = () => {
     return (
         <View style={{ flex: 1 }}>
-            {/* Play */}
-            <View style={styles.playlistContainer}>
-                <LiveMusicBottom />
-            </View>
             {/* Tab Navigator */}
             <Tab.Navigator
                 screenOptions={() => ({
@@ -72,6 +67,7 @@ const NavigationTabs = () => {
                         tabBarIcon: ({ color }) => (
                             <MaterialIcons name="web-stories" size={24} color={color} />
                         ),
+                        title: 'Clip',
                     }}
                 />
 
@@ -83,7 +79,9 @@ const NavigationTabs = () => {
                         tabBarIcon: ({ color }) => (
                             <Ionicons name="bookmark" size={24} color={color} />
                         ),
+                        title: 'Library',
                     }}
+
                 />
 
                 {/* Tab Profile */}
@@ -94,6 +92,7 @@ const NavigationTabs = () => {
                         tabBarIcon: ({ color }) => (
                             <FontAwesome name="user" size={24} color={color} />
                         ),
+                        title: 'Profile',
                     }}
                 />
             </Tab.Navigator>

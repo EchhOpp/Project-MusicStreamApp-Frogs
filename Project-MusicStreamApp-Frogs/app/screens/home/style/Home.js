@@ -6,22 +6,20 @@ const styles = StyleSheet.create({
     
     container: {
         flex: 1,
+        position: 'relative',
         backgroundColor: Colors.neutral.gray,
-        
     },
 
     bodyContent: {
+        flex: 1,
         marginBottom: 40,
     },
 
     bottomNav: {
         position: 'absolute',
-        bottom: 0,
+        bottom: 60,
         left: 0,
         right: 0,
-        backgroundColor: Colors.neutral.gray,
-        flexDirection: 'row',
-        justifyContent: 'space-around',
     },
 
     // Header
@@ -117,7 +115,6 @@ const styles = StyleSheet.create({
     moodGenres: {
         marginTop: 40,
         marginHorizontal: 20,
-        marginBottom: 100,
     },
 })
 

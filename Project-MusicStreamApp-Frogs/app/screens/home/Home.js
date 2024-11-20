@@ -2,13 +2,14 @@ import { View, Text, ScrollView, TouchableOpacity, FlatList, ActivityIndicator }
 import React, {useState, useEffect}from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import styles from './style/Home';
-import ListListenMusic from '@/components/ListListenMusic';
+import ListListenMusic from '../../../components/ListListenMusic';
 import NewReleases from '@/components/NewReleases';
 import Clips from '@/components/Clips';
 import ListSong from '@/components/ListSong';
 import GroupTrendSong from '@/components/GroupTrendSong';
 import LastestVideos from '@/components/LastestVideos';
 import MoodGenres from '@/components/MoodGenres';
+import LiveMusicBottom from '../../../components/LiveMusicBottom';
 import * as SplashScreen from 'expo-splash-screen';
 import useLoadFonts from '@/hooks/useLoadFonts';
 import { getSongs, getAlbums, getClips, updateCurrentSong} from '@/services/getMusicApi';
@@ -26,13 +27,13 @@ const Home = ({ navigation, route = {} }) => {
   const [isLoading, setIsLoading] = useState(true);
   const { loaded, error } = useLoadFonts();
   const { setCurrentSong = () => {} } = route.params || {};
+  const [loadMusic, setLoadMusic] = useState(false);
 
   useEffect(() => {
     let isMounted = true;
 
     const loadData = async () => {
       try {
-        // Load data sequentially instead of using Promise.all to avoid AggregateError
         const songsArray = await getSongs();
         if (!isMounted) return;
         
@@ -85,7 +86,6 @@ const Home = ({ navigation, route = {} }) => {
         console.error("Song missing mp3 URL");
         return;
       }
-      
       await updateCurrentSong(song);
       if (setCurrentSong) {
         setCurrentSong(song);
@@ -118,7 +118,11 @@ const Home = ({ navigation, route = {} }) => {
             renderItem={({ item }) => (
               <ListListenMusic 
                 items={item}
-                onPress={() => handleSongPress(item)}
+                onPress={() => {
+                    handleSongPress(item)
+                    setLoadMusic(true)
+                  }
+                }
               />
             )}
           />
@@ -223,7 +227,10 @@ const Home = ({ navigation, route = {} }) => {
             renderItem={({ item }) => (
               <ListListenMusic 
                 items={item}
-                onPress={() => handleSongPress(item)}
+                onPress={() => {
+                  handleSongPress(item);
+                  setLoadMusic(true);
+                }}
               />
             )}
             keyExtractor={() => getKey()}
@@ -386,8 +393,12 @@ const Home = ({ navigation, route = {} }) => {
               showsHorizontalScrollIndicator={false}
             />
           </View>
+
         </View>
       </ScrollView>
+      <View style={styles.bottomNav}>
+        <LiveMusicBottom loadMusic={loadMusic} />
+      </View>
     </View>
     </GestureHandlerRootView>
   );
