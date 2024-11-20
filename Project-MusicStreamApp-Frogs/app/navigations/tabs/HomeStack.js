@@ -7,6 +7,7 @@ import { Colors } from '@/constants/Colors';
 import Search from '../../screens/search/Search'
 import SearchHeaderRight from '../../screens/search/SearchHeaderRight'
 import SearchHeaderLeft from '../../screens/search/SearchHeaderLeft';
+import SearchListAgain from '../../screens/search/searchlistagain';
 
 const Stack = createNativeStackNavigator();
 
@@ -40,6 +41,23 @@ const HomeStack = () => {
                         backgroundColor: Colors.neutral.gray,
                         height: 80,
                         justifyContent: 'space-between',
+                    },
+                    headerLeft: () => (
+                        <SearchHeaderLeft />
+                    ),
+                    headerRight: () => (
+                        <SearchHeaderRight />
+                    ),
+                }}
+            />
+            <Stack.Screen
+                name="SearchListAgain"
+                component={SearchListAgain}
+                options={{
+                    headerShadowVisible: false,
+                    headerStyle: {
+                        backgroundColor: Colors.neutral.gray,
+                        height: 80
                     },
                     headerLeft: () => (
                         <SearchHeaderLeft />

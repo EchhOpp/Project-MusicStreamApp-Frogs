@@ -103,7 +103,10 @@ const Home = ({ navigation, route = {} }) => {
         <View style={styles.listenAgain}>
           <View style={styles.listenTitle}>
             <Text style={[styles.Color, styles.textH1]}>List again</Text>
-            <TouchableOpacity style={styles.btnMore}>
+            <TouchableOpacity 
+              style={styles.btnMore}
+              onPress={() => navigation.navigate('SearchListAgain')}
+            >
               <Text style={[styles.Color, styles.textH2]}>More</Text>
             </TouchableOpacity>
           </View>

@@ -1,14 +1,17 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity} from 'react-native'
 import React from 'react'
 import { Colors } from '@/constants/Colors'
 import { Popins } from '@/constants/Popins'
-
+import { useNavigation } from '@react-navigation/native'
+import { AntDesign } from '@expo/vector-icons'
 
 const SearchHeaderLeft = () => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
-      <TouchableOpacity>
-        <Image source={require('@/assets/images/Profileicon.png')} style={styles.avt}/>
+      <TouchableOpacity onPress={() => navigation.goBack()}>
+        <AntDesign name="arrowleft" size={20} color={Colors.neutral.white} />
       </TouchableOpacity>
       <Text style={styles.nameFunc}>Search</Text>
     </View>
@@ -27,5 +30,5 @@ const styles = StyleSheet.create({
     fontSize: Popins.Heading4.size,
     fontWeight: 'bold',
     marginLeft: 10
-  },
+  }
 })
