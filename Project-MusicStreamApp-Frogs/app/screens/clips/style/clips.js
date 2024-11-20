@@ -107,7 +107,12 @@ const styles = StyleSheet.create({
     followtext: {
       fontSize: 12,
       color: Colors.neutral.white
-    }
+    },
+    loadingContainer: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
   })
 
 export default styles;

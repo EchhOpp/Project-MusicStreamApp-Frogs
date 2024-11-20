@@ -25,8 +25,8 @@ const SavedClips = () => {
         loadClips();
     }, []);
 
-    const handlePress = () => {
-        navigation.navigate('clipsItem');
+    const handlePress = (id) => {
+        navigation.navigate('clipsItem',{id: id});
     }
     
   return (
@@ -40,7 +40,8 @@ const SavedClips = () => {
         <FlatList
             style={styles.bodyContent}
             data={clips}
-            renderItem={({ item }) => <SavedClipItem onPress={handlePress} item={item} />}
+            // renderItem={({ item }) => <SavedClipItem onPress={() => handlePress(item.id)} item={item} />}
+            renderItem={({ item }) => <SavedClipItem item={item} />}
             keyExtractor={item => item.toString()}
             numColumns={'2'}
         />

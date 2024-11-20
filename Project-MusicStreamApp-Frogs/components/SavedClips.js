@@ -7,19 +7,19 @@ import { Video, ResizeMode } from 'expo-av';
 import { getFormattedVideoUrl } from '../utils/getFormatted';
 
 
-const SavedClipItem = ({onPress,item}) => {
+const SavedClipItem = ({item}) => {
     const navigation = useNavigation();
     const videoUri = item?.video;
     const videoRef = useRef(item?.video);
     const [isLoading, setIsLoading] = useState(true);
-    const handlePress = () => {
-        navigation.navigate('clipsItem');
+    const handlePress = (id) => {
+        navigation.navigate('clipsItem',{id: id});
     }
     const videoSource = videoUri ? { uri: getFormattedVideoUrl(videoUri) } : require('../assets/clips/theweekend.mp4');
     return (
         <View style={styles.container}>
             <TouchableOpacity
-                onPress={handlePress}
+                onPress={() => handlePress(item.id)}
             >
                 <View style={styles.icon}>
                     <Ionicons name="play" size={16} color="white" />
@@ -27,9 +27,9 @@ const SavedClipItem = ({onPress,item}) => {
                 {/* <Image source={require('../assets/images/clips-eminem.png')} style={styles.img} />
                  */}
                 <Video
-                    // source={require('../assets/clips/theweekend.mp4')}
                     ref={videoRef}
                     source={{videoSource}}
+                    // source={{ uri: getFormattedVideoUrl(videoUri) }}
                     style={{
                         width: '100%',
                         height: 250,
@@ -61,7 +61,7 @@ const SavedClipItem = ({onPress,item}) => {
                     style={styles.avtContainer}
                     >
                     <View style={styles.info}>
-                        <Text style={styles.songName}>{item.title}</Text>
+                        <Text style={styles.songName}>{item.title} {item.id}</Text>
                         <Text style={styles.authorName}>{item.title}</Text>
                     </View>
                 </LinearGradient>
