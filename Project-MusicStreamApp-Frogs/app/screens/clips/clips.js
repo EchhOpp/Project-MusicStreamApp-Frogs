@@ -7,7 +7,7 @@ import { Feather } from '@expo/vector-icons';
 import { Video, ResizeMode } from 'expo-av';
 import styles from './style/clips';
 
-const clips = () => {
+const Clips = () => {
   return (
     <View style={styles.container}>
       <Video
@@ -65,7 +65,7 @@ const clips = () => {
   )
 }
 
-export default clips
+export default Clips
 
 // const styles = StyleSheet.create({
 //   container: {

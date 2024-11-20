@@ -1,11 +1,34 @@
 import { Text, View,TouchableOpacity, FlatList} from 'react-native'
-import React from 'react'
+import React,{ useState, useEffect } from 'react'
 import styles from './styles/SavedClips'
 import { FontAwesome } from '@expo/vector-icons'
 import SavedClipItem from '../../../components/SavedClips'
 import LiveMusicBottom from '@/components/LiveMusicBottom'
+import { useNavigation } from '@react-navigation/native'
+import { getClips } from '@/services/getMusicApi'
 
 const SavedClips = () => {
+    const navigation = useNavigation();
+    const [clips, setClips] = useState([]);
+    const [loading, setLoading] = useState(true); // State để xử lý loading
+    useEffect(() => {
+        const loadClips = async () => {
+            try {
+                const clips = await getClips();
+                setClips(clips);
+            } catch (error) {
+                console.error('Error loading clips:', error);
+            } finally {
+                setLoading(false);
+            }
+        }
+        loadClips();
+    }, []);
+
+    const handlePress = () => {
+        navigation.navigate('clipsItem');
+    }
+    
   return (
     <View style={styles.container}>
         <View style={styles.titles}>
@@ -16,8 +39,8 @@ const SavedClips = () => {
         </View>
         <FlatList
             style={styles.bodyContent}
-            data={[1, 2, 3, 4, 5 ,6, 7, 8, 9, 10]}
-            renderItem={({ item }) => <SavedClipItem />}
+            data={clips}
+            renderItem={({ item }) => <SavedClipItem onPress={handlePress} item={item} />}
             keyExtractor={item => item.toString()}
             numColumns={'2'}
         />
