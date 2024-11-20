@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-
 import { Colors } from '../../constants/Colors';
 import { Ionicons, FontAwesome } from '@expo/vector-icons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
@@ -9,7 +8,7 @@ import { BlurView } from 'expo-blur';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 // Stack screens
-import PlayList from '../../components/LiveMusicBottom';
+import LiveMusicBottom from '../../components/LiveMusicBottom';
 import HomeStack from './tabs/HomeStack';
 import LibraryStack from './tabs/LibraryStack';
 import ClipsStack from './tabs/ClipsStack';
@@ -22,9 +21,8 @@ const NavigationTabs = () => {
         <View style={{ flex: 1 }}>
             {/* Play */}
             <View style={styles.playlistContainer}>
-                <PlayList />
+                <LiveMusicBottom />
             </View>
-
             {/* Tab Navigator */}
             <Tab.Navigator
                 screenOptions={() => ({
@@ -55,7 +53,8 @@ const NavigationTabs = () => {
                 })}
             >
                 {/* Tab Home */}
-                <Tab.Screen name="Home" component={HomeStack}
+                <Tab.Screen name="HomeTab" 
+                    component={HomeStack}
                     options={{
                         headerShown: false,
                         tabBarIcon: ({ color }) => (
@@ -66,7 +65,8 @@ const NavigationTabs = () => {
                 />
 
                 {/* Tab Clips */}
-                <Tab.Screen name="Clips" component={ClipsStack}
+                <Tab.Screen name="ClipsTab" 
+                    component={ClipsStack}
                     options={{
                         headerShown: false,
                         tabBarIcon: ({ color }) => (
@@ -76,7 +76,8 @@ const NavigationTabs = () => {
                 />
 
                 {/* Tab Library */}
-                <Tab.Screen name="Library" component={LibraryStack}
+                <Tab.Screen name="LibraryTab" 
+                    component={LibraryStack}
                     options={{
                         headerShown: false,
                         tabBarIcon: ({ color }) => (
@@ -86,7 +87,8 @@ const NavigationTabs = () => {
                 />
 
                 {/* Tab Profile */}
-                <Tab.Screen name="Profile" component={ProfileStack}
+                <Tab.Screen name="ProfileTab" 
+                    component={ProfileStack}
                     options={{
                         headerShown: false,
                         tabBarIcon: ({ color }) => (

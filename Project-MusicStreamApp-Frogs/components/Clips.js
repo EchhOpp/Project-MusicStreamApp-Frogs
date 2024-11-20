@@ -1,10 +1,17 @@
-import { StyleSheet, Text, View, TouchableOpacity,} from 'react-native'
-import React, {useRef } from 'react'
+import { StyleSheet, Text, View, TouchableOpacity, ActivityIndicator } from 'react-native'
+import React, {useRef, useState} from 'react'
 import { Ionicons } from '@expo/vector-icons'
 import { Video, ResizeMode } from 'expo-av';
+import { getFormattedVideoUrl } from '../utils/getFormatted';
 
-const Clips = () => {
-    const video = useRef(null);
+const Clips = ({items}) => {
+    const videoUri = items?.video;
+    const videoRef = useRef(items?.video);
+    const [isLoading, setIsLoading] = useState(true);
+   
+    if (!videoUri) {
+        return null; 
+    }
 
   return (
     <TouchableOpacity style={styles.container}>
@@ -12,10 +19,15 @@ const Clips = () => {
             <Ionicons name="play" size={16} color="white"/>
         </View>
         <View style={styles.video}>
+            {isLoading && (
+                <View style={styles.loadingContainer}>
+                    <ActivityIndicator size="large" color="#FFFFFF" />
+                </View>
+            )}
             <Video
-                ref={video}
+                ref={videoRef}
                 source={{
-                    uri: 'https://drive.google.com/uc?export=download&id=1yR_o6kz62CK1RnG-EtctQXE6FaMPfEaj'
+                    uri: getFormattedVideoUrl(videoUri)
                 }}
                 style={styles.img}
                 useNativeControls={false}
@@ -24,8 +36,14 @@ const Clips = () => {
                 shouldPlay={true}
                 isLooping={true}
                 onPlaybackStatusUpdate={status => {
-                    if (status.didJustFinish) {
-                        video.current.replayAsync();
+                    if (status.isLoaded) {
+                        setIsLoading(false);
+                    }
+                    if (status.didJustFinish && videoRef.current) {
+                        videoRef.current.replayAsync();
+                    }
+                    if (status.error) {
+                        console.error('Error playing video:', status.error);
                     }
                 }}
                 showPoster={false}
@@ -35,8 +53,8 @@ const Clips = () => {
             <View style={styles.overlay} />
         </View>
         <View style={styles.name}>
-            <Text style={styles.nameMusic}>Performing “The Hills”</Text>
-            <Text style={styles.nameAuthor}>The Weeknd</Text>
+            <Text style={styles.nameMusic}>{items.title}</Text>
+            <Text style={styles.nameAuthor}>{items.artist}</Text>
         </View>
     </TouchableOpacity>
   )
@@ -78,6 +96,17 @@ const styles = StyleSheet.create({
         right: 0,
         bottom: 0,
         backgroundColor: 'rgba(0, 0, 0, 0)',
+    },
+    loadingContainer: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        zIndex: 2
     },
     name: {
         position: 'absolute',

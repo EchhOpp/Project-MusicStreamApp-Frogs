@@ -10,7 +10,6 @@ import SearchHeaderLeft from '../../screens/search/SearchHeaderLeft';
 
 const Stack = createNativeStackNavigator();
 
-
 // Home
 const HomeStack = () => {
     return (
@@ -49,7 +48,6 @@ const HomeStack = () => {
                         <SearchHeaderRight />
                     ),
                 }}
-                
             />
         </Stack.Navigator>
     );
