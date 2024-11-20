@@ -16,12 +16,12 @@ const MucsicPlayer = () => {
     const navigation = useNavigation();
     return (
         
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             <ImageBackground
                 source={require('../../../assets/images/Imgtheme2.png')}
-                style={{ width: '100%', height: '100%' }}
             >
-                <ScrollView style={styles.content}>
+                {/* <ScrollView style={styles.scrollview}> */}
+                <View style={styles.content}>
                     <View style={styles.header}>
                         <TouchableOpacity style={styles.btndown}>
                             <AntDesign name="down" size={24} color="white" style={styles.icon} />
@@ -34,7 +34,9 @@ const MucsicPlayer = () => {
                                     <Text style={styles.title}>Until I Bleed Out</Text>
                                     <Text style={[styles.subTitle, styles.color2]}>The Weeknd</Text>
                                 </View>
-                                <TouchableOpacity style={[styles.row, styles.btnPlay]}>
+                                <TouchableOpacity 
+                                        onPress={() => navigation.navigate('Clips')}
+                                        style={[styles.row, styles.btnPlay]}>
                                     <Feather name="play" size={16} color="white" style={{ marginRight: 5 }} />
                                     <Text style={[styles.subTitle, styles.colorwhite]}>Video</Text>
                                 </TouchableOpacity>
@@ -49,10 +51,14 @@ const MucsicPlayer = () => {
                                     <TouchableOpacity style={[styles.btnicon,styles.marginright]}>
                                         <Feather name="bookmark" size={18} color="white" />
                                     </TouchableOpacity>
-                                    <TouchableOpacity style={[styles.btnicon,styles.marginright]}>
+                                    <TouchableOpacity 
+                                        onPress={() => navigation.navigate('Related')}
+                                        style={[styles.btnicon,styles.marginright]}>
                                         <AntDesign name="sharealt" size={18} color="white" />
                                     </TouchableOpacity>
-                                    <TouchableOpacity style={[styles.btnicon,styles.marginright]}>
+                                    <TouchableOpacity 
+                                            onPress={() => navigation.navigate('Lyrics')}
+                                            style={[styles.btnicon,styles.marginright]}>
                                         <Feather name="download" size={18} color="white" />
                                     </TouchableOpacity>
                                 </View>
@@ -90,9 +96,10 @@ const MucsicPlayer = () => {
                             </View>
                         </View>
                     </View>
-                </ScrollView>
+                </View>
+                {/* </ScrollView> */}
             </ImageBackground>
-        </View>
+        </ScrollView>
     )
 }
 

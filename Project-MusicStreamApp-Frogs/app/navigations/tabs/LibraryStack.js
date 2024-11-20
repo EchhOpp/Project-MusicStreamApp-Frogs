@@ -11,6 +11,9 @@ import ArtistProfileRight from '../../screens/Artist_Profile/ArtistProfileRight'
 import ArtistProfileLeft from '../../screens/Artist_Profile/ArtistProfileLeft';
 import MucsicPlayer from '../../screens/music_player/MucsicPlayer';
 import Next from '../../screens/next/Next';
+import Lyrics from '../../screens/lyrics/Lyrics';
+import Related from '../../screens/related/Related';
+import clips from '../../screens/clips/clips';
 
 const Stack = createNativeStackNavigator();
 
@@ -137,6 +140,27 @@ const LibraryStack = () => {
             <Stack.Screen
                 name="Next"
                 component={Next}
+                options={{
+                    headerShown: false,
+                }}
+            />
+            <Stack.Screen
+                name="Lyrics"
+                component={Lyrics}
+                options={{
+                    headerShown: false,
+                }}
+            />
+            <Stack.Screen
+                name="Related"
+                component={Related}
+                options={{
+                    headerShown: false,
+                }}
+            />
+            <Stack.Screen
+                name="Clips"
+                component={clips}
                 options={{
                     headerShown: false,
                 }}
