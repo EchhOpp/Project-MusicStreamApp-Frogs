@@ -180,4 +180,26 @@ const updateCurrentSong = async (song) => {
   }
 };
 
-export { getSongs, getAlbums, getClips, getCurrentSong, updateCurrentSong};
+// hàm lấy video theo id từ firebase
+const getVideoById = async (id) => {
+  try {
+    const videoRef = ref(database, `clips/${id}`);
+    const snapshot = await get(videoRef);
+    if(snapshot.exists()) {
+      const data = snapshot.val();
+      return {
+        id: id,
+        title: data.title,
+        artist: data.artist,
+        video: data.video
+      }
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error("Error in getVideoById:", error);
+    throw error;
+  }
+}
+
+export { getSongs, getAlbums, getClips, getCurrentSong, updateCurrentSong, getVideoById};

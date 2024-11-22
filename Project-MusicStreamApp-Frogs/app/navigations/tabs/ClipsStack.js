@@ -5,6 +5,8 @@ import SavedClips from '../../screens/saved_clips/SavedClips';
 import { Colors } from '@/constants/Colors';
 import LeftLibrary from '../../screens/library/LeftLibrary';
 import RightLibrary from '../../screens/library/RightLibrary';
+import HerderRight from '../../screens/saved_clips/HerderRight';
+import Clips from '../../screens/clips/clips';
 
 
 const Stack = createNativeStackNavigator();
@@ -26,10 +28,18 @@ const ClipsStack = () => {
                         <LeftLibrary />
                     ),
                     headerRight: () => (
-                        <RightLibrary />
+                        <HerderRight />
                     )
                  }}
 
+            />
+            <Stack.Screen
+                name="clipsItem"
+                component={Clips}
+                options={{
+                    headerShown: false,
+                }}
+                
             />
         </Stack.Navigator>
     );
