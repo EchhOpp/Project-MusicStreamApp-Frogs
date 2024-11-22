@@ -1,25 +1,68 @@
-import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View, TouchableOpacity, Image,ActivityIndicator } from 'react-native'
+import React,{useRef, useState} from 'react'
 import { Ionicons } from '@expo/vector-icons'
 import { LinearGradient } from 'expo-linear-gradient';
+import { useNavigation } from '@react-navigation/native'
+import { Video, ResizeMode } from 'expo-av';
+import { getFormattedVideoUrl } from '../utils/getFormatted';
 
-const SavedClipItem = () => {
-    
+
+const SavedClipItem = ({item}) => {
+    const navigation = useNavigation();
+    const videoUri = item?.video;
+    const videoRef = useRef(item?.video);
+    const [isLoading, setIsLoading] = useState(true);
+    const handlePress = (id) => {
+        navigation.navigate('clipsItem',{id: id});
+    }
+    const videoSource = videoUri ? { uri: getFormattedVideoUrl(videoUri) } : require('../assets/clips/theweekend.mp4');
     return (
         <View style={styles.container}>
-
-            <TouchableOpacity>
+            <TouchableOpacity
+                onPress={() => handlePress(item.id)}
+            >
                 <View style={styles.icon}>
                     <Ionicons name="play" size={16} color="white" />
                 </View>
-                <Image source={require('../assets/images/clips-eminem.png')} style={styles.img} />
+                {/* <Image source={require('../assets/images/clips-eminem.png')} style={styles.img} />
+                 */}
+                <Video
+                    ref={videoRef}
+                    source={{videoSource}}
+                    // source={{ uri: getFormattedVideoUrl(videoUri) }}
+                    style={{
+                        width: '100%',
+                        height: 250,
+                        overflow: 'hidden',
+                        borderRadius: 10,
+                    }}
+                    useNativeControls={false}
+                    resizeMode={ResizeMode.STRETCH}
+                    isMuted={true}
+                    shouldPlay={true}
+                    isLooping={true}
+                    showControls={true}
+                    onPlaybackStatusUpdate={status => {
+                        if (status.isLoaded) {
+                            setIsLoading(false);
+                        }
+                        if (status.didJustFinish && videoRef.current) {
+                            videoRef.current.replayAsync();
+                        }
+                        if (status.error) {
+                            console.error('Error playing video:', status.error);
+                        }
+                    }}
+                    showPoster={false}
+                    usePoster={false}
+                />
                 <LinearGradient
                     colors={['rgba(255, 255, 255, 0.0)', 'rgba(226, 226, 226,0.8)']}
                     style={styles.avtContainer}
                     >
                     <View style={styles.info}>
-                        <Text style={styles.songName}>Lose Yourself</Text>
-                        <Text style={styles.authorName}>Eminem</Text>
+                        <Text style={styles.songName}>{item.title} {item.id}</Text>
+                        <Text style={styles.authorName}>{item.title}</Text>
                     </View>
                 </LinearGradient>
             </TouchableOpacity>

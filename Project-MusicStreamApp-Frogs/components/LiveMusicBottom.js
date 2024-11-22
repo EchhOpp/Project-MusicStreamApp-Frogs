@@ -1,3 +1,4 @@
+// Import các thư viện cần thiết
 import { StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { Ionicons } from '@expo/vector-icons'
@@ -5,16 +6,17 @@ import { Colors } from '@/constants/Colors'
 import { Audio } from 'expo-av'
 import Slider from '@react-native-community/slider'
 import { getCurrentSong } from '@/services/getMusicApi'
-import { set } from 'firebase/database'
 
 const LiveMusicBottom = () => {
-  const [sound, setSound] = useState();
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [position, setPosition] = useState(0);
-  const [duration, setDuration] = useState(0);
-  const [isLoaded, setIsLoaded] = useState(false);  
-  const [currentSong, setCurrentSong] = useState(null);
+  // Khai báo các state cần thiết
+  const [sound, setSound] = useState(); // Quản lý âm thanh
+  const [isPlaying, setIsPlaying] = useState(false); // Trạng thái phát nhạc
+  const [position, setPosition] = useState(0); // Vị trí hiện tại của bài hát
+  const [duration, setDuration] = useState(0); // Tổng thời lượng bài hát
+  const [isLoaded, setIsLoaded] = useState(false); // Trạng thái tải bài hát
+  const [currentSong, setCurrentSong] = useState(null); // Bài hát hiện tại
 
+  // Effect để tải bài hát hiện tại khi component mount
   useEffect(() => {
     const loadCurrentSong = async () => {
       try {
@@ -23,30 +25,88 @@ const LiveMusicBottom = () => {
           console.error("No song returned from getCurrentSong");
           return;
         }
+
         setCurrentSong(song);
       } catch (error) {
         console.error("Error loading current song:", error);
       }
     };
     loadCurrentSong();
-
-    // Listen for changes to current song
+    // Lắng nghe sự thay đổi của bài hát hiện tại
     const unsubscribe = getCurrentSong((song) => {
       setCurrentSong(song);
     });
 
+    // Cleanup khi component unmount
     return () => {
       if (unsubscribe) {
         getCurrentSong((song) => {
           setCurrentSong(song);
         });
       }
+      if (sound) {
+        sound.unloadAsync();
+      }
     };
   }, []);
 
+  // Effect để tải và phát bài hát mới khi currentSong thay đổi
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadAndPlayNewSong = async () => {
+      try {
+        if (!currentSong?.mp_audio) return;
+        // Dừng và giải phóng bài hát trước đó nếu có
+        if (sound) {
+          await sound.stopAsync();
+          await sound.unloadAsync();
+          setSound(null);
+          setIsLoaded(false);
+          setIsPlaying(false);
+        }
+
+        // Cấu hình chế độ âm thanh
+        await Audio.setAudioModeAsync({
+          allowsRecordingIOS: false,
+          staysActiveInBackground: true,
+          playsInSilentModeIOS: true,
+          shouldDuckAndroid: true,
+          playThroughEarpieceAndroid: false,
+        });
+        // Tạo và phát bài hát mới
+        const { sound: newSound } = await Audio.Sound.createAsync(
+          { uri: currentSong.mp_audio },
+          { shouldPlay: false }, // Thay đổi thành true để tự động phát
+          onPlaybackStatusUpdate
+        );
+        
+        // Kiểm tra xem component còn mounted không
+        if (isMounted) {
+          setSound(newSound);
+          setIsLoaded(true);
+          setIsPlaying(false);
+          setPosition(0);
+        } else {
+          // Cleanup nếu component unmount trong quá trình tải
+          await newSound.unloadAsync();
+        }
+      } catch (error) {
+        console.error("Error loading new song:", error);
+      }
+    };
+    loadAndPlayNewSong();
+    setPosition(0); // Reset vị trí slider khi bài hát thay đổi
+
+    return () => {
+      isMounted = false;
+    };
+  }, [currentSong]);
+
+  // Hàm xử lý phát/dừng nhạc
   const playSound = async () => {
     try {
-      if (sound && isLoaded) {
+      if (sound && isLoaded) { // Kiểm tra xem âm thanh đã được tải và sẵn sàng để phát chưa
         if (isPlaying) {
           await sound.pauseAsync();
           setIsPlaying(false);
@@ -63,6 +123,7 @@ const LiveMusicBottom = () => {
           return;
         }
   
+        // Cấu hình chế độ âm thanh
         await Audio.setAudioModeAsync({
           allowsRecordingIOS: false,
           staysActiveInBackground: true,
@@ -71,10 +132,9 @@ const LiveMusicBottom = () => {
           playThroughEarpieceAndroid: false,
         });
   
-        // Convert Google Drive link to direct download link
-  
+        // Tạo và phát bài hát mới
         const { sound: newSound } = await Audio.Sound.createAsync(
-          { uri: 'https://drive.google.com/uc?export=download&id=14E42-pSCjxJ2XYfYQSrg7DSYPUMkP9Zd' },
+          { uri: currentSong.mp_audio },
           { shouldPlay: true },
           onPlaybackStatusUpdate
         );
@@ -88,6 +148,7 @@ const LiveMusicBottom = () => {
     }
   };  
 
+  // Callback cập nhật trạng thái phát nhạc
   const onPlaybackStatusUpdate = (status) => {
     if (status.isLoaded) {
       setPosition(status.positionMillis);
@@ -103,25 +164,32 @@ const LiveMusicBottom = () => {
     }
   };
 
+  // Xử lý khi kéo thả slider
   const onSlidingComplete = async (value) => {
     if (sound && isLoaded) {
       await sound.setPositionAsync(value);
     }
   };
 
+  // Effect cleanup khi component unmount
   useEffect(() => {
     return () => {
       if (sound) {
         sound.unloadAsync();
         setIsLoaded(false);
+        setIsPlaying(false);
       }
     };
   }, [sound]);
 
+  // Render giao diện
   return (
      <View style={styles.container}>
         <View style={styles.topContainer}>
-          <TouchableOpacity style={styles.music}>
+          <TouchableOpacity 
+            style={styles.music}
+            onPress={playSound}
+          >
               <Image source={currentSong?.image ? {uri: currentSong.image} : require('../assets/images/avatarArtists.png')} style={{width: 40, height: 40, borderRadius: 4}}/>
               <View style={styles.textName}>
                   <Text style={styles.nameMusic}>{currentSong?.title || 'Tên bài hát'}</Text>
@@ -156,7 +224,9 @@ const LiveMusicBottom = () => {
 
 export default LiveMusicBottom
 
+// Định nghĩa styles
 const styles = StyleSheet.create({
+    // Container chính
     container: {
         justifyContent: 'center',
         alignItems: 'center',
@@ -168,6 +238,7 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
     },
 
+    // Container phần trên
     topContainer: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -175,9 +246,9 @@ const styles = StyleSheet.create({
         width: '100%',
         height: 54,
         padding: 2,
-
     },
 
+    // Style cho phần thông tin bài hát
     music: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -190,7 +261,7 @@ const styles = StyleSheet.create({
     },
 
     nameMusic: {
-        color:  Colors.neutral.white,
+        color: Colors.neutral.white,
         fontWeight: 'bold',
         fontSize: 14,
         marginVertical: 2,
@@ -201,6 +272,7 @@ const styles = StyleSheet.create({
         fontSize: 12,
     },
 
+    // Style cho phần player
     playerContainer: {
         width: '106%',
         position: 'absolute',
@@ -223,6 +295,7 @@ const styles = StyleSheet.create({
         fontSize: 12,
     },
 
+    // Style cho các nút điều khiển
     iconLive: {
         flexDirection: 'row',
         alignItems: 'center',

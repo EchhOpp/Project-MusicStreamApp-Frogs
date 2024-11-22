@@ -1,33 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import { View, TextInput, FlatList, Text, StyleSheet, ScrollView, TouchableOpacity, ActivityIndicator } from 'react-native';
-import styles from '../search/style/Search';
+import { View, TextInput, FlatList, Text, ScrollView, TouchableOpacity, ActivityIndicator } from 'react-native';
+import styles from './style/Search';
 import ListListenMusic from '@/components/ListListenMusic';
 import { getSongs } from '@/services/getMusicApi';
 import { Colors } from '@/constants/Colors';
 
-const Search = () => {
+const SearchListAgain = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [songs, setSongs] = useState([]);
     const [filteredSongs, setFilteredSongs] = useState([]);
     const [loading, setLoading] = useState(false);
     const [selectedCriteria, setSelectedCriteria] = useState('');
 
+    // Modified criteria to focus on recently played/history
     const criteriaData = [
-        { id: '1', label: 'Trending' },
-        { id: '2', label: 'New Releases' },
-        { id: '3', label: 'Popular' },
-        { id: '4', label: 'Recommended' },
-        { id: '5', label: 'Hip Hop' },
-        { id: '6', label: 'Rock' },
-        { id: '7', label: 'Pop' },
-        { id: '8', label: 'R&B' },
-        { id: '9', label: 'Jazz' },
-        { id: '10', label: 'Classical' },
-        { id: '11', label: 'Electronic' },
-        { id: '12', label: 'Country' },
-        { id: '13', label: 'Latin' },
-        { id: '14', label: 'K-Pop' },
-        { id: '15', label: 'Indie' }
+        { id: '1', label: 'Recently Played' },
+        { id: '2', label: 'Most Played' },
+        { id: '3', label: 'Last Week' },
+        { id: '4', label: 'Last Month' },
+        { id: '5', label: 'Favorites' }
     ];
 
     useEffect(() => {
@@ -42,8 +33,12 @@ const Search = () => {
         try {
             setLoading(true);
             const songsData = await getSongs();
-            setSongs(songsData);
-            setFilteredSongs(songsData);
+            // Sort songs by last played date (assuming there's a lastPlayed field)
+            const sortedSongs = songsData.sort((a, b) => {
+                return new Date(b.lastPlayed) - new Date(a.lastPlayed);
+            });
+            setSongs(sortedSongs);
+            setFilteredSongs(sortedSongs);
         } catch (error) {
             console.error('Error loading songs:', error);
         } finally {
@@ -54,7 +49,6 @@ const Search = () => {
     const filterSongs = () => {
         let filtered = [...songs];
 
-        // Filter by search query if exists
         if (searchQuery.trim()) {
             filtered = filtered.filter(song => 
                 song.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -62,11 +56,29 @@ const Search = () => {
             );
         }
 
-        // Filter by selected criteria/genre if exists
+        // Modified filtering based on history criteria
         if (selectedCriteria) {
-            filtered = filtered.filter(song => 
-                song.genre?.toLowerCase() === selectedCriteria.toLowerCase()
-            );
+            switch(selectedCriteria) {
+                case 'Recently Played':
+                    filtered = filtered.slice(0, 10); // Show last 10 played
+                    break;
+                case 'Most Played':
+                    filtered = filtered.sort((a, b) => (b.playCount || 0) - (a.playCount || 0));
+                    break;
+                case 'Last Week':
+                    const lastWeek = new Date();
+                    lastWeek.setDate(lastWeek.getDate() - 7);
+                    filtered = filtered.filter(song => new Date(song.lastPlayed) > lastWeek);
+                    break;
+                case 'Last Month':
+                    const lastMonth = new Date();
+                    lastMonth.setMonth(lastMonth.getMonth() - 1);
+                    filtered = filtered.filter(song => new Date(song.lastPlayed) > lastMonth);
+                    break;
+                case 'Favorites':
+                    filtered = filtered.filter(song => song.isFavorite);
+                    break;
+            }
         }
 
         setFilteredSongs(filtered);
@@ -81,12 +93,11 @@ const Search = () => {
             style={[
                 styles.itemCriteria, 
                 selectedCriteria === item.label && {
+                    backgroundColor: Colors.primary.main,
                     borderColor: Colors.primary.main,
-                    borderWidth: 1
                 }
             ]}
             onPress={() => {
-                // Toggle selection - if already selected, clear it
                 setSelectedCriteria(selectedCriteria === item.label ? '' : item.label);
             }}
         >
@@ -120,11 +131,11 @@ const Search = () => {
                 <View style={styles.searchContainer}>
                     <TextInput
                         style={[styles.searchInput, styles.fontSize16]} 
-                        placeholder="What do you want to listen to?"
+                        placeholder="Search in your history..."
                         placeholderTextColor="rgba(255,255,255,0.6)"
                         value={searchQuery}
                         onChangeText={handleSearch}
-                        autoFocus={true}
+                        autoFocus={false}
                     />
                 </View>
                 
@@ -135,7 +146,10 @@ const Search = () => {
                         scrollEnabled={false}
                         data={filteredSongs}
                         renderItem={({ item }) => (
-                            <ListListenMusic items={item} />
+                            <ListListenMusic 
+                                items={item}
+                                showLastPlayed={true} // Add timestamp for when song was last played
+                            />
                         )}
                         keyExtractor={(item) => item.id.toString()}
                         style={styles.flastListStyle}
@@ -143,7 +157,7 @@ const Search = () => {
                     />
                 ) : (
                     <View style={[styles.centerContent, {marginTop: 40}]}>
-                        <Text style={[styles.whiteColor, styles.fontSize16]}>No music found</Text>
+                        <Text style={[styles.whiteColor, styles.fontSize16]}>No history found</Text>
                     </View>
                 )}
                 <View style={{height: 108}} />
@@ -152,4 +166,4 @@ const Search = () => {
     );
 };
 
-export default Search;
+export default SearchListAgain;

@@ -1,17 +1,53 @@
 import { StyleSheet, View, Text, Image, FlatList, ImageBackground, ScrollView, TouchableOpacity } from 'react-native';
-import React from 'react'
-import { Popins } from '@/constants/Popins';
-import { Colors } from '@/constants/Colors';
+import React,{useRef,useState,useEffect} from 'react'
 import { AntDesign } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import { Video, ResizeMode } from 'expo-av';
 import styles from './style/clips';
+import { useRoute,useNavigation } from '@react-navigation/native';
+import { getVideoById } from '@/services/getMusicApi';
+import { getFormattedVideoUrl } from '@/utils/getFormatted';
+import { ActivityIndicator } from 'react-native';
 
-const clips = () => {
+const Clips = () => {
+  const navigation = useNavigation();
+  const route = useRoute();
+  const { id } = route.params;
+  const [video, setVideo] = useState(null);
+  const videoRef = useRef(null);
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    const loadVideo = async () => {
+      try {
+        const videoData = await getVideoById(id);
+        if (videoData) {
+          setVideo(videoData);
+        }else {
+          console.log('Video not found');
+        }
+      } catch (error) {
+        console.error('Error loading video:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    loadVideo();
+  }, [id]);
+  // Nếu video tồn tại thì sử dụng video từ firebase, nếu không thì sử dụng video mặc định
+  const videoSource = video?.video 
+    ? { uri: getFormattedVideoUrl(video.video) }
+    : require('../../../assets/clips/theweekend.mp4'); //
   return (
     <View style={styles.container}>
+      {isLoading && (
+        <View style={styles.loadingContainer}>
+          <ActivityIndicator size="large" color="#FFFFFF" />
+        </View>
+      )}
       <Video
-        source={require('../../../assets/clips/theweekend.mp4')}
+        // source={require('../../../assets/clips/theweekend.mp4')}
+        ref={videoRef}
+        source={videoSource}
         style={styles.video}
         useNativeControls={false}
         resizeMode={ResizeMode.COVER}
@@ -33,7 +69,9 @@ const clips = () => {
             <Text style={[styles.ly, styles.color]}>I just wanna feel the ground when I’m coming down</Text>
           </View>
           <View style={styles.controllicon}>
-            <TouchableOpacity style={styles.icon}>
+            <TouchableOpacity 
+              onPress={() => navigation.goBack()}
+              style={styles.icon}>
               <AntDesign name="hearto" size={20} color="white" />
             </TouchableOpacity>
             <TouchableOpacity style={styles.icon}>
@@ -51,8 +89,8 @@ const clips = () => {
           <View style={styles.imagecontainer}>
             <Image source={require('../../../assets/images/afterhoursLive.png')} style={styles.image} />
             <View style={styles.info}>
-              <Text style={[styles.color, styles.title]}>After Hours Live</Text>
-              <Text style={[styles.color2, styles.subtitle]}>The Weeknd</Text>
+              <Text style={[styles.color, styles.title]}>{video?.title}</Text>
+              <Text style={[styles.color2, styles.subtitle]}>{video?.artist}</Text>
             </View>
           </View>
           <TouchableOpacity style={styles.follow}>
@@ -65,7 +103,7 @@ const clips = () => {
   )
 }
 
-export default clips
+export default Clips
 
 // const styles = StyleSheet.create({
 //   container: {

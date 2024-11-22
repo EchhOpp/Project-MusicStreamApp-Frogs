@@ -8,23 +8,23 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: Colors.neutral.gray,
         position: 'relative',
+        
     },
     searchInput: {
         marginTop: 20,
-        width: '90%',
+        width: '96%',
         backgroundColor: 'rgba(255, 255, 255, 0.1)',
-        height: 50,
-        borderRadius: 48,
+        height: 48,
+        borderRadius: 50,
         alignSelf: 'center',
         color: Colors.neutral.white,
-        padding: 5,
+        padding: 4,
         borderWidth: 2,
         borderColor: 'rgba(255, 255, 255, 0.1)',
-        height:60,
         paddingLeft: 20
     },
     fontSize16: {
-        fontSize: 16
+        fontSize: 14
     },
     fontSize14: {
         fontSize: 14,
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     },
     viewCriteria: {
         marginTop: 18,
-        width: '90%',
+        width: '96%',
         alignSelf: 'center',
         flexDirection: 'row',
         alignItems: 'center'
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
         borderColor: 'rgba(255, 255, 255, 0.1)'
     },
     flastListStyle: {
-        width: '90%', 
+        width: '96%', 
         alignSelf: 'center',
         marginTop: 18,
         padding: 10,
