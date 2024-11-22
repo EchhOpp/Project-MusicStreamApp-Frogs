@@ -13,7 +13,7 @@ import MucsicPlayer from '../../screens/music_player/MucsicPlayer';
 import Next from '../../screens/next/Next';
 import Lyrics from '../../screens/lyrics/Lyrics';
 import Related from '../../screens/related/Related';
-import clips from '../../screens/clips/clips';
+import Clips from '../../screens/clips/clips';
 
 const Stack = createNativeStackNavigator();
 
@@ -160,7 +160,7 @@ const LibraryStack = () => {
             />
             <Stack.Screen
                 name="Clips"
-                component={clips}
+                component={Clips}
                 options={{
                     headerShown: false,
                 }}

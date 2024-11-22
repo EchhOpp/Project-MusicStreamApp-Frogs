@@ -1,18 +1,27 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { Ionicons } from '@expo/vector-icons'
 import { Colors } from '@/constants/Colors'
 import { getCurrentSong } from '../services/getMusicApi'
 import { Audio } from 'expo-av'
 import Slider from '@react-native-community/slider'
 
-const LiveMusicBottom = ({ loadMusic }) => {
+const LiveMusicBottom = () => {
   const [currentSong, setCurrentSong] = useState(null)
   const [sound, setSound] = useState(null)
   const [isPlaying, setIsPlaying] = useState(false)
   const [position, setPosition] = useState(0)
   const [duration, setDuration] = useState(0)
 
+  const onPlaybackStatusUpdate = useCallback((status) => {
+    if (status.isLoaded) {
+      setPosition(status.positionMillis)
+      setDuration(status.durationMillis)
+      setIsPlaying(status.isPlaying)
+    }
+  }, [])
+
+  // Lấy bài hát hiện tại
   useEffect(() => {
     const fetchCurrentSong = async () => {
       try {
@@ -23,57 +32,43 @@ const LiveMusicBottom = ({ loadMusic }) => {
         console.error('Error fetching current song:', error)
       }
     }
-
     fetchCurrentSong()
   }, [])
 
-  useEffect(() => {
+  const playSong = useCallback(async () => {
     if (sound) {
-      sound.setOnPlaybackStatusUpdate(onPlaybackStatusUpdate)
+      await sound.stopAsync()
+      await sound.unloadAsync()
+      setSound(null)
     }
-  }, [sound])
 
-  useEffect(() => {
-    if (loadMusic) {
-      if(sound && position !== 0) {
-        // reset nhạc
-        sound.stopAsync()
-        sound.unloadAsync()
-        setSound(null)
+    if (currentSong?.mp_audio) {
+      try {
+        const { sound: newSound } = await Audio.Sound.createAsync(
+          { uri: currentSong.mp_audio },
+        )
+        setSound(newSound)
+        newSound.setOnPlaybackStatusUpdate(onPlaybackStatusUpdate)
+        await newSound.playAsync()
+        setIsPlaying(true)
+      } catch (error) {
+        console.error('Error loading new sound:', error)
       }
-      playSound()
     }
-  }, [loadMusic, currentSong])
+  }, [currentSong])
 
-  const onPlaybackStatusUpdate = (status) => {
-    if (status.isLoaded) {
-      setPosition(status.positionMillis)
-      setDuration(status.durationMillis)
-      setIsPlaying(status.isPlaying)
-    }
-  }
-
-  const playSound = async () => {
+  const handlePlayPause = async () => {
     if (sound) {
-      await sound.playAsync()
-    } else if (currentSong?.mp_audio) {
-      const { sound: newSound } = await Audio.Sound.createAsync({ uri: currentSong.mp_audio })
-      setSound(newSound)
-      await newSound.playAsync()
-    }
-  }
-
-  const pauseSound = async () => {
-    if (sound) {
-      await sound.pauseAsync()
-    }
-  }
-
-  const handlePlayPause = () => {
-    if (isPlaying) {
-      pauseSound()
+      const status = await sound.getStatusAsync()
+      if (status.isPlaying) {
+        await sound.pauseAsync()
+        setIsPlaying(false)
+      } else {
+        await sound.playAsync()
+        setIsPlaying(true)
+      }
     } else {
-      playSound()
+      playSong()
     }
   }
 
@@ -83,12 +78,17 @@ const LiveMusicBottom = ({ loadMusic }) => {
     }
   }
 
+  const handlePrevious = () => {
+    // Logic để quay lại bài hát trước đó
+    console.log('Previous song')
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.topContainer}>
         <TouchableOpacity style={styles.music}>
-          <Image 
-            source={currentSong?.image ? { uri: currentSong.image } : require('../assets/images/avatarArtists.png')} 
+          <Image
+            source={currentSong?.image ? { uri: currentSong.image } : require('../assets/images/avatarArtists.png')}
             style={{ width: 40, height: 40, borderRadius: 4 }}
           />
           <View style={styles.textName}>
@@ -97,11 +97,11 @@ const LiveMusicBottom = ({ loadMusic }) => {
           </View>
         </TouchableOpacity>
         <View style={styles.iconLive}>
-          <TouchableOpacity>
-            <Ionicons name="play-back" size={18} color={Colors.neutral.white} style={styles.iconplayback} />
+          <TouchableOpacity onPress={handlePrevious}>
+            <Ionicons name="play-back" size={24} color={Colors.neutral.white} style={styles.iconplayback} />
           </TouchableOpacity>
           <TouchableOpacity style={styles.iconplay} onPress={handlePlayPause}>
-            <Ionicons name={isPlaying ? "pause" : "play"} size={24} color={Colors.neutral.white} />
+            <Ionicons name={isPlaying ? 'pause' : 'play'} size={24} color={Colors.neutral.white} />
           </TouchableOpacity>
         </View>
       </View>
@@ -110,7 +110,7 @@ const LiveMusicBottom = ({ loadMusic }) => {
         minimumValue={0}
         maximumValue={duration}
         value={position}
-        onValueChange={handleSliderValueChange}
+        onSlidingComplete={handleSliderValueChange}
         minimumTrackTintColor={Colors.neutral.white}
         maximumTrackTintColor={'rgba(255, 255, 255, 0.3)'}
         thumbTintColor={'transparent'}

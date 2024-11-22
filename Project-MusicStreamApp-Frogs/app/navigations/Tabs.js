@@ -55,7 +55,7 @@ const NavigationTabs = () => {
                         tabBarIcon: ({ color }) => (
                             <Ionicons name='home' size={24} color={color} />
                         ),
-                        title: 'Trang chủ',
+                        title: 'Home',
                     }}
                 />
 

@@ -16,18 +16,19 @@ import { getSongs, getAlbums, getClips, updateCurrentSong} from '@/services/getM
 import { getGenre } from '@/services/ChooseMusic';
 import { getRandomColor } from '@/utils/getRandomColor';
 import getKey from '@/utils/getKey';
+import { capNhatThongTinNguoiDung } from '@/services/getUser';
 
 SplashScreen.preventAutoHideAsync();
 
-const Home = ({ navigation, route = {} }) => {
+
+const Home = ({navigation}) => {
   const [songs, setSongs] = useState([]);
   const [albums, setAlbums] = useState([]);
   const [clips, setClips] = useState([]);
   const [genres, setGenres] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const { loaded, error } = useLoadFonts();
-  const { setCurrentSong = () => {} } = route.params || {};
-  const [loadMusic, setLoadMusic] = useState(false);
+  const [currentSong, setCurrentSong] = useState(null);
 
   useEffect(() => {
     let isMounted = true;
@@ -80,18 +81,28 @@ const Home = ({ navigation, route = {} }) => {
     );
   }
   
-  const handleSongPress = async (song) => {
+  const handleSongPress = (song) => {
     try {
       if (!song.mp_audio) {
         console.error("Song missing mp3 URL");
         return;
       }
-      await updateCurrentSong(song);
-      if (setCurrentSong) {
-        setCurrentSong(song);
-      }
+      updateCurrentSong(song);
     } catch (error) {
       console.error("Error updating current song:", error);
+    }
+  };
+
+  const handleMenuItemPress = async (action, song) => {
+    try {
+      const userData = {
+        favorite: action === 'Add to favorites' ? song : "",
+        playlist: action === 'Add to playlist' ? song : "",
+        queue: action === 'Add to queue' ? song : "",
+      };
+      await capNhatThongTinNguoiDung(userData);
+    } catch (error) {
+      console.error("Error updating user data:", error);
     }
   };
 
@@ -106,6 +117,7 @@ const Home = ({ navigation, route = {} }) => {
             <TouchableOpacity 
               style={styles.btnMore}
               onPress={() => navigation.navigate('SearchListAgain')}
+
             >
               <Text style={[styles.Color, styles.textH2]}>More</Text>
             </TouchableOpacity>
@@ -118,11 +130,8 @@ const Home = ({ navigation, route = {} }) => {
             renderItem={({ item }) => (
               <ListListenMusic 
                 items={item}
-                onPress={() => {
-                    handleSongPress(item)
-                    setLoadMusic(true)
-                  }
-                }
+                onPress={() => handleSongPress(item)}
+                onMenuItemPress={(action) => handleMenuItemPress(action, item)}
               />
             )}
           />
@@ -132,7 +141,7 @@ const Home = ({ navigation, route = {} }) => {
         <View style={styles.newReleases}>
           <View style={styles.listenTitle}>
             <Text style={[styles.Color, styles.textH1]}>New releases</Text>
-            <TouchableOpacity style={styles.btnMore}>
+            <TouchableOpacity style={styles.btnMore} onPress={() => navigation.navigate('SearchNewReleases')}>
               <Text style={[styles.Color, styles.textH2]}>More</Text>
             </TouchableOpacity>
           </View>
@@ -151,16 +160,20 @@ const Home = ({ navigation, route = {} }) => {
         <View style={styles.clips}>
           <View style={styles.listenTitle}>
             <Text style={[styles.Color, styles.textH1]}>Clips</Text>
-            <TouchableOpacity style={styles.btnMore}>
-              <Text style={[styles.Color, styles.textH2]}>More</Text>
-            </TouchableOpacity>
           </View>
           {/* Sổ các clips */}
           <FlatList
             data={clips}
-            renderItem={({ item }) => <Clips items={item}/>}
+            renderItem={({ item }) => (
+              <View>
+              {/* chua sua */}
+              <TouchableOpacity onPress={() => navigation.navigate('ClipsVideo', { clip: item })}>
+                <Clips items={item}/>
+              </TouchableOpacity>
+              </View>
+            )}
             keyExtractor={() => getKey()}
-            horizontal={true}
+            horizontal={true} 
             showsHorizontalScrollIndicator={false}
             style={{ width: '100%' }}
           />
@@ -227,10 +240,8 @@ const Home = ({ navigation, route = {} }) => {
             renderItem={({ item }) => (
               <ListListenMusic 
                 items={item}
-                onPress={() => {
-                  handleSongPress(item);
-                  setLoadMusic(true);
-                }}
+                onPress={() => handleSongPress(item)}
+                onMenuItemPress={(action) => handleMenuItemPress(action, item)}
               />
             )}
             keyExtractor={() => getKey()}
@@ -317,7 +328,11 @@ const Home = ({ navigation, route = {} }) => {
           {/* Sổ các clips count */}
           <FlatList
             data={clips}
-            renderItem={({ item }) => <Clips items={item} />}
+            renderItem={({ item }) => (
+              <TouchableOpacity onPress={() => navigation.navigate('Clips', { clip: item })}>
+                <Clips items={item} />
+              </TouchableOpacity>
+            )}
             keyExtractor={() => getKey()}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
@@ -359,7 +374,11 @@ const Home = ({ navigation, route = {} }) => {
           {/* Sổ các latest videos */}
           <FlatList
             data={[1, 2, 3, 4, 5]}
-            renderItem={({ item }) => <LastestVideos />}
+            renderItem={({ item }) => (
+              <TouchableOpacity onPress={() => navigation.navigate('Clips')}>
+                <LastestVideos />
+              </TouchableOpacity>
+            )}
             keyExtractor={() => getKey()}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
@@ -395,9 +414,10 @@ const Home = ({ navigation, route = {} }) => {
           </View>
 
         </View>
+        <View style={{height: 100}}></View>
       </ScrollView>
       <View style={styles.bottomNav}>
-        <LiveMusicBottom loadMusic={loadMusic} />
+        <LiveMusicBottom items={currentSong} />
       </View>
     </View>
     </GestureHandlerRootView>
