@@ -8,6 +8,10 @@ import Search from '../../screens/search/Search'
 import SearchHeaderRight from '../../screens/search/SearchHeaderRight'
 import SearchHeaderLeft from '../../screens/search/SearchHeaderLeft';
 import SearchListAgain from '../../screens/search/searchlistagain';
+import SearchNewReleases from '../../screens/search/searchNewReleases';
+import Clips from '../../screens/clips/clips';
+import RegisterName from '../../screens/profile/registerName';
+import MusicDetail from '../../screens/newReleases/MusicDetail';
 
 const Stack = createNativeStackNavigator();
 
@@ -65,6 +69,49 @@ const HomeStack = () => {
                     headerRight: () => (
                         <SearchHeaderRight />
                     ),
+                }}
+            />
+            <Stack.Screen
+                name="SearchNewReleases"
+                component={SearchNewReleases}
+                options={{
+                    headerStyle: {
+                        backgroundColor: Colors.neutral.gray,
+                    },
+                    title: 'New Releases',
+                    headerTintColor: '#fff'
+                }}
+            />
+            <Stack.Screen
+                name="ClipsVideo"
+                component={Clips}
+                options={{
+                    headerShown: false,
+                    headerStyle: {
+                        backgroundColor: Colors.neutral.gray,
+                    }
+                }}
+            />
+            <Stack.Screen
+                name="RegisterName"
+                component={RegisterName}
+                options={{
+                    headerStyle: {
+                        backgroundColor: Colors.neutral.gray,
+                    },
+                    title: 'Register Name',
+                    headerTintColor: '#fff'
+                }}
+            />
+            <Stack.Screen
+                name="MusicDetail"
+                component={MusicDetail}
+                options={{ 
+                    headerStyle: {
+                        backgroundColor: Colors.neutral.gray,
+                    },
+                    title: '',
+                    headerTintColor: '#fff'
                 }}
             />
         </Stack.Navigator>

@@ -14,7 +14,7 @@ const Clips = ({items}) => {
     }
 
   return (
-    <TouchableOpacity style={styles.container}>
+    <View style={styles.container}>
         <View style={styles.icon}>
             <Ionicons name="play" size={16} color="white"/>
         </View>
@@ -56,7 +56,7 @@ const Clips = ({items}) => {
             <Text style={styles.nameMusic}>{items.title}</Text>
             <Text style={styles.nameAuthor}>{items.artist}</Text>
         </View>
-    </TouchableOpacity>
+    </View>
   )
 }
 

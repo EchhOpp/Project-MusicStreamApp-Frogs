@@ -13,9 +13,9 @@ const Search = () => {
     const [selectedCriteria, setSelectedCriteria] = useState('');
 
     const criteriaData = [
-        { id: '1', label: 'Trending' },
-        { id: '2', label: 'New Releases' },
-        { id: '3', label: 'Popular' },
+        { id: '1', label: 'Trending', showMusic: true },
+        { id: '2', label: 'New Releases', showMusic: true },
+        { id: '3', label: 'Popular', showMusic: true },
         { id: '4', label: 'Recommended' },
         { id: '5', label: 'Hip Hop' },
         { id: '6', label: 'Rock' },
@@ -42,8 +42,15 @@ const Search = () => {
         try {
             setLoading(true);
             const songsData = await getSongs();
-            setSongs(songsData);
-            setFilteredSongs(songsData);
+            // Giả lập phân loại nhạc ngay khi lấy về
+            const categorizedSongs = songsData.map(song => ({
+                ...song,
+                isTrending: Math.random() > 0.7, // 30% chance to be trending
+                isNewRelease: new Date(song.releaseDate || Date.now()).getTime() > Date.now() - (30 * 24 * 60 * 60 * 1000), // Released within 30 days
+                isPopular: (song.playCount || 0) > 1000 // Consider popular if > 1000 plays
+            }));
+            setSongs(categorizedSongs);
+            setFilteredSongs(categorizedSongs);
         } catch (error) {
             console.error('Error loading songs:', error);
         } finally {
@@ -62,11 +69,28 @@ const Search = () => {
             );
         }
 
-        // Filter by selected criteria/genre if exists
+        // Filter based on selected criteria
         if (selectedCriteria) {
-            filtered = filtered.filter(song => 
-                song.genre?.toLowerCase() === selectedCriteria.toLowerCase()
-            );
+            const selectedItem = criteriaData.find(item => item.label === selectedCriteria);
+            if (selectedItem?.showMusic) {
+                // Handle special categories
+                switch(selectedCriteria) {
+                    case 'Trending':
+                        filtered = filtered.filter(song => song.isTrending);
+                        break;
+                    case 'New Releases':
+                        filtered = filtered.filter(song => song.isNewRelease);
+                        break;
+                    case 'Popular':
+                        filtered = filtered.filter(song => song.isPopular);
+                        break;
+                }
+            } else {
+                // Filter by genre for other categories
+                filtered = filtered.filter(song => 
+                    song.genre?.toLowerCase() === selectedCriteria.toLowerCase()
+                );
+            }
         }
 
         setFilteredSongs(filtered);
@@ -86,7 +110,6 @@ const Search = () => {
                 }
             ]}
             onPress={() => {
-                // Toggle selection - if already selected, clear it
                 setSelectedCriteria(selectedCriteria === item.label ? '' : item.label);
             }}
         >

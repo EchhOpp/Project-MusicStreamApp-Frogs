@@ -30,7 +30,9 @@
         {
           "fonts": [
             {
-              "ExpoArabicBold": "./assets/fonts/ExpoArabicBold.ttf"
+              "ExpoArabicBold": "./assets/fonts/fonts/ExpoArabicBold.ttf",
+              "ExpoArabicBook": "./assets/fonts/fonts/ExpoArabicBook.ttf",
+              "ExpoArabicMedium": "./assets/fonts/fonts/ExpoArabicMedium.ttf"
             }
           ]
         }

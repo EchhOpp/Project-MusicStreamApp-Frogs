@@ -35,6 +35,12 @@ const ListListenMusic = ({items, onPress}) => {
         }
     };
 
+    const handleMenuItemPress = (action) => {
+        // Save the selected action and song data to the user's side
+        console.log(`Action: ${action}, Song: ${JSON.stringify(items)}`);
+        hideModal();
+    };
+
     return (
         <View style={styles.container}>
             <TouchableOpacity style={styles.music} onPress={handlePress}>
@@ -72,19 +78,19 @@ const ListListenMusic = ({items, onPress}) => {
                             }
                         ]}
                     >
-                        <TouchableOpacity style={styles.menuItem}>
+                        <TouchableOpacity style={styles.menuItem} onPress={() => handleMenuItemPress('Add to favorites')}>
                             <Ionicons name="heart-outline" size={20} color="white" />
                             <Text style={styles.menuText}>Add to favorites</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.menuItem}>
+                        <TouchableOpacity style={styles.menuItem} onPress={() => handleMenuItemPress('Add to playlist')}>
                             <MaterialIcons name="playlist-add" size={20} color="white" />
                             <Text style={styles.menuText}>Add to playlist</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.menuItem}>
+                        <TouchableOpacity style={styles.menuItem} onPress={() => handleMenuItemPress('Add to queue')}>
                             <MaterialIcons name="queue-music" size={20} color="white" />
                             <Text style={styles.menuText}>Add to queue</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.menuItem}>
+                        <TouchableOpacity style={styles.menuItem} onPress={() => handleMenuItemPress('Share')}>
                             <Ionicons name="share-outline" size={20} color="white" />
                             <Text style={styles.menuText}>Share</Text>
                         </TouchableOpacity>
