@@ -5,7 +5,7 @@ import { FontAwesome } from '@expo/vector-icons'
 import { AntDesign } from '@expo/vector-icons';
 import SavedClipItem from '../../../components/SavedClips'
 import LiveMusicBottom from '@/components/LiveMusicBottom'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, useFocusEffect } from '@react-navigation/native'
 import { getClips } from '@/services/getMusicApi'
 
 const SavedClips = () => {
@@ -49,6 +49,22 @@ const SavedClips = () => {
         navigation.navigate('clipsItem', { id: id });
     }
 
+    useFocusEffect(
+        React.useCallback(() => {
+            const loadClips = async () => {
+                try {
+                    const clips = await getClips();
+                    setClips(clips);
+                    setFilteredClips(clips);
+                } catch (error) {
+                    console.error('Error loading clips:', error);
+                } finally {
+                    setLoading(false);
+                }
+            }
+            loadClips();
+        }
+    , []))
     return (
         <View style={styles.container}>
             <View style={styles.titles}>
@@ -70,7 +86,7 @@ const SavedClips = () => {
                     <View style={modalStyles.modalView}>
                         {/* Header */}
                         <View style={modalStyles.modalHeader}>
-                            <Text style={modalStyles.modalTitle}>Tìm kiếm</Text>
+                            <Text style={modalStyles.modalTitle}>Search</Text>
                             <TouchableOpacity
 
                                 onPress={() => {
@@ -85,13 +101,16 @@ const SavedClips = () => {
 
                         {/* Search Input */}
                         <View style={modalStyles.searchContainer}>
-                            <FontAwesome name="search" size={20} color="gray" />
+                            {/* <FontAwesome name="search" size={20} color="gray" />
+                             */}
+                             <AntDesign name="search1" size={24} color="gray"/>
                             <TextInput
                                 style={modalStyles.searchInput}
                                 placeholder="Search by name..."
                                 placeholderTextColor="gray"
                                 value={searchText}
                                 onChangeText={setSearchText}
+                                autoFocus={true}
                             />
                         </View>
 
@@ -107,14 +126,18 @@ const SavedClips = () => {
                                     handleSearch()
                                 }}
                             >
-                                <Text style={modalStyles.sortButtonText}>Tìm kiếm</Text>
+                                <Text style={modalStyles.sortButtonText}>Search</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
                 </View>
             </Modal>
 
-
+            {filteredClips.length === 0 && (
+                <View style={styles.noData}>
+                    <Text style={styles.noDataText}>No clips found</Text>
+                </View>
+            )}
 
             {/* render list clips */}
             <FlatList
@@ -124,7 +147,7 @@ const SavedClips = () => {
                 // renderItem={({ item }) => <SavedClipItem onPress={() => handlePress(item.id)} item={item} />}
                 renderItem={({ item }) => <SavedClipItem item={item} />}
                 keyExtractor={item => item.toString()}
-                numColumns={'2'}
+                numColumns={2}
             />
             <View style={styles.bottomNav}>
                 <LiveMusicBottom />
@@ -145,7 +168,7 @@ const modalStyles = StyleSheet.create({
     modalView: {
         width: '80%',
         backgroundColor: '#2A2A2A',
-        borderRadius: 20,
+        borderRadius: 8,
         padding: 20,
         shadowColor: '#000',
         shadowOffset: {
@@ -160,12 +183,12 @@ const modalStyles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginBottom: 20
+        marginBottom: 10
     },
     modalTitle: {
         color: 'white',
         fontSize: 20,
-        fontWeight: 'bold'
+        // fontWeight: 'bold'
     },
     closeButton: {
         padding: 5
@@ -175,20 +198,20 @@ const modalStyles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#3A3A3A',
         borderRadius: 10,
-        padding: 10,
-        marginBottom: 20
+        padding: 5,
+        marginBottom: 10
     },
     searchInput: {
         flex: 1,
         color: 'white',
         marginLeft: 10,
-        fontSize: 16
+        fontSize: 16,
+        padding:5
     },
     sortContainer: {
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        gap: 10
     },
     sortTitle: {
         color: 'white',
@@ -196,13 +219,13 @@ const modalStyles = StyleSheet.create({
     },
     sortButton: {
         backgroundColor: '#3A3A3A',
-        padding: 10,
+        padding: 8,
         borderRadius: 10,
         minWidth: 80,
         alignItems: 'center'
     },
     sortButtonActive: {
-        backgroundColor: '#007AFF'
+        backgroundColor: '#de322f'
     },
     sortButtonText: {
         color: 'white',

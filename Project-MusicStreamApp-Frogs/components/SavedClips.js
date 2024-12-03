@@ -11,7 +11,6 @@ const SavedClipItem = ({item}) => {
     const navigation = useNavigation();
     const videoUri = item?.video;
     const videoRef = useRef(item?.video);
-    const [isLoading, setIsLoading] = useState(true);
     const handlePress = (id) => {
         navigation.navigate('clipsItem',{id: id});
     }
@@ -28,8 +27,8 @@ const SavedClipItem = ({item}) => {
                  */}
                 <Video
                     ref={videoRef}
-                    source={{videoSource}}
-                    // source={{ uri: getFormattedVideoUrl(videoUri) }}
+                    source={{ uri: getFormattedVideoUrl(videoUri) }}
+                    // source={require('../assets/clips/theweekend.mp4')}
                     style={{
                         width: '100%',
                         height: 250,
@@ -41,18 +40,7 @@ const SavedClipItem = ({item}) => {
                     isMuted={true}
                     shouldPlay={true}
                     isLooping={true}
-                    showControls={true}
-                    onPlaybackStatusUpdate={status => {
-                        if (status.isLoaded) {
-                            setIsLoading(false);
-                        }
-                        if (status.didJustFinish && videoRef.current) {
-                            videoRef.current.replayAsync();
-                        }
-                        if (status.error) {
-                            console.error('Error playing video:', status.error);
-                        }
-                    }}
+                    showControls={false}
                     showPoster={false}
                     usePoster={false}
                 />
@@ -61,7 +49,7 @@ const SavedClipItem = ({item}) => {
                     style={styles.avtContainer}
                     >
                     <View style={styles.info}>
-                        <Text style={styles.songName}>{item.title} {item.id}</Text>
+                        <Text style={styles.songName}>{item.title}</Text>
                         <Text style={styles.authorName}>{item.title}</Text>
                     </View>
                 </LinearGradient>
