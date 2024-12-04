@@ -16,9 +16,13 @@ import styles from '../Artist_Profile/style/ArtissProfile'
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import ArtistComponet1st from './ArtistComponet1st';
 import { useNavigation } from '@react-navigation/native';
+import { getSongs, getAlbums, getClips, updateCurrentSong} from '@/services/getMusicApi';
+import { useEffect, useState } from 'react';
+import { set } from 'firebase/database';
 
 const ArtissProfile = () => {
     const navigation = useNavigation();
+    const name = "The weeknd";
     const data = [
         {
             id: 1,
@@ -41,6 +45,30 @@ const ArtissProfile = () => {
             name: 'Chíps'
         },
     ]
+    const [songs, setSongs] = useState([]);
+    const [clips, setClips] = useState([]);
+    const [albums, setAlbums] = useState([]);
+    useEffect(() => {
+        const loadData = async () => {
+            try {
+                const songs = await getSongs();
+                const clipss = await getClips();
+                const albumsD = await getAlbums();
+                console.log('albums', albumsD);
+                // setSongs(songs);
+                const songsData = songs.filter(song => song.author === name);
+                setSongs(songsData);
+                const clipsData = clipss.filter(clip => clip.artist.toLowerCase() === name.toLowerCase());
+                setClips(clipsData);
+                setAlbums(albumsD);
+                
+
+            } catch (error) {
+                console.error('Error loading songs:', error);
+            }
+        }
+        loadData();
+    }, []);
     return (
         <GestureHandlerRootView>
             <View style={styles.container}>
@@ -105,9 +133,9 @@ const ArtissProfile = () => {
                         </View>
                         <FlatList
                             scrollEnabled={false}
-                            data={[1, 2, 3, 4, 5]}
+                            data={songs}
                             keyExtractor={item => item.toString() + 'listenAgain'}
-                            renderItem={({ item }) => <ListListenMusic />}
+                            renderItem={({ item }) => <ListListenMusic items={item} />}
                         />
                     </View>
                     <View style={styles.ItemComponent}>
@@ -120,16 +148,16 @@ const ArtissProfile = () => {
                         <FlatList
                             // scrollEnabled={false}
                             style={{ marginTop: 20 }}
-                            data={[1, 2, 3, 4, 5, 6, 7, 8, 9]}
-                            renderItem={({ item }) => <ListSong />}
-                            keyExtractor={item => item.toString()}
+                            data={songs}
+                            renderItem={({ item }) => <ListSong items={item} />}
+                            keyExtractor={item => item.id}
                             horizontal={true}
                             showsHorizontalScrollIndicator={false}
                         />
                         <FlatList
-                            data={[1, 2, 3, 4, 5]}
-                            renderItem={({ item }) => <ListSong />}
-                            keyExtractor={item => item.toString()}
+                            data={songs}
+                            renderItem={({ item }) => <ListSong items={item} />}
+                            keyExtractor={item => item.id+ 'singles2'}
                             horizontal={true}
                             showsHorizontalScrollIndicator={false}
                         />
@@ -143,8 +171,8 @@ const ArtissProfile = () => {
                             </TouchableOpacity>
                         </View>
                         <FlatList
-                            data={[1, 2, 3, 4, 5]}
-                            renderItem={({ item }) => <Clips />}
+                            data={clips}
+                            renderItem={({ item }) => <Clips items={item}/>}
                             keyExtractor={item => item.toString()}
                             horizontal={true}
                             showsHorizontalScrollIndicator={false}
@@ -158,8 +186,8 @@ const ArtissProfile = () => {
                             </TouchableOpacity>
                         </View>
                         <FlatList
-                            data={[1, 2, 3, 4, 5]}
-                            renderItem={({ item }) => <AlbumComponet />}
+                            data={albums}
+                            renderItem={({ item }) => <AlbumComponet items={item} />}
                             keyExtractor={item => item.toString()}
                             horizontal={true}
                             showsHorizontalScrollIndicator={false}
