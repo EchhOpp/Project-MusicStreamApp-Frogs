@@ -3,7 +3,7 @@ import Reac, {useEffect, useState} from 'react'
 import { LinearGradient } from 'expo-linear-gradient'; 
 
 
-const AlbumComponet = () => {
+const AlbumComponet = ({items}) => {
   return (
     <View style={styles.container}>
         <LinearGradient
@@ -12,12 +12,13 @@ const AlbumComponet = () => {
         >
             <TouchableOpacity style={styles.imgContainer}>
                 <Image source={require('@/assets/images/IMG_04251.png')} style={styles.dia}/>
-                <Image source={require('@/assets/images/IMG_Playlist.png')} style={styles.avt}/>
+                {/* <Image source={require('@/assets/images/IMG_Playlist.png')} style={styles.avt}/> */}
+                <Image source={{uri:items.image}} style={styles.avt}/>
             </TouchableOpacity>
         </LinearGradient>
         <View>
-            <Text style={styles.nameMusic1}>After Hours</Text>
-            <Text style={styles.nameMusic2}>The Weeknd</Text>
+            <Text style={styles.nameMusic1}>{items.key}</Text>
+            <Text style={styles.nameMusic2}>{items.artist}</Text>
         </View>
     </View>
   )
