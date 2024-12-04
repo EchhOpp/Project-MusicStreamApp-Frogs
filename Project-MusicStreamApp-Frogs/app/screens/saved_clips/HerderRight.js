@@ -3,12 +3,17 @@ import React from 'react'
 import { Colors } from '@/constants/Colors'
 import { Popins } from '@/constants/Popins'
 import { Ionicons } from '@expo/vector-icons'
+import { AntDesign } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native'
 
 const HerderRight = () => {
+    const navigation = useNavigation();
   return (
     <View style={styles.container}>
-        <TouchableOpacity style={[styles.icon, styles.iconSearch]}>
-            <Ionicons name="search" size={24} color={'white'}/>
+        <TouchableOpacity 
+            onPress={() => navigation.navigate('Search')}
+            style={[styles.icon, styles.iconSearch]}>
+            <AntDesign name="search1" size={24} color="white"/>
         </TouchableOpacity>
     </View>
   )

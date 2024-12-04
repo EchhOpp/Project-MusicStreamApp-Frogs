@@ -12,15 +12,17 @@ const Clips = () => {
   const route = useRoute();
   const { id } = route.params;
   const [video, setVideo] = useState(null);
-  const videoRef = useRef(null);
+  const videoRef=null;
   const [isLoading, setIsLoading] = useState(true);
-
+  const[liked, setLiked]=useState(false);
+  const[follow, setFollow]=useState(false);
   useEffect(() => {
     const loadVideo = async () => {
       try {
         const videoData = await getVideoById(id);
         if (videoData) {
           setVideo(videoData);
+          videoRef = useRef(videoData.video);
         } else {
           console.log('Video not found');
         }
@@ -68,8 +70,10 @@ const Clips = () => {
             <Text style={[styles.ly, styles.color]}>I just wanna feel the ground when I’m coming down</Text>
           </View>
           <View style={styles.controllicon}>
-            <TouchableOpacity style={styles.icon}>
-              <AntDesign name="hearto" size={20} color="white" />
+            <TouchableOpacity 
+                onPress={()=>setLiked(!liked)}
+                style={styles.icon}>
+              <AntDesign name="hearto" size={20} color={liked ? 'red' : 'white'} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.icon}>
               <Feather name="bookmark" size={20} color="white" />
@@ -90,8 +94,10 @@ const Clips = () => {
               <Text style={[styles.color2, styles.subtitle]}>{video?.artist || 'The Weeknd'}</Text>
             </View>
           </View>
-          <TouchableOpacity style={[styles.follow, { backgroundColor: 'red' }]}>
-            <Text style={styles.followtext}>Follow</Text>
+          <TouchableOpacity 
+              onPress={()=>setFollow(!follow)}
+            style={[styles.follow, { backgroundColor: 'red' }]}>
+            <Text style={styles.followtext}>{follow?"Following":"Follow"}</Text>
           </TouchableOpacity>
         </View>
       </View>

@@ -36,6 +36,15 @@ const styles = StyleSheet.create({
     Color: {
         color: Colors.neutral.white,
     },
+    noData: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 20,
+    },
+    noDataText: {
+        color: Colors.neutral.white,
+        fontSize: Popins.Heading4.size,
+    },
 
 })
 

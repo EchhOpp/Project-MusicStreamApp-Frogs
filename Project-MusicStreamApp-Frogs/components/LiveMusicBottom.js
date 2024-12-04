@@ -21,7 +21,7 @@ const LiveMusicBottom = () => {
     }
   }, [])
 
-  // Lấy bài hát hiện tại
+  // Fetch current song
   useEffect(() => {
     const fetchCurrentSong = async () => {
       try {
@@ -35,25 +35,31 @@ const LiveMusicBottom = () => {
     fetchCurrentSong()
   }, [])
 
-  const playSong = useCallback(async () => {
-    if (sound) {
-      await sound.stopAsync()
-      await sound.unloadAsync()
-      setSound(null)
+  // Play song when currentSong changes
+  useEffect(() => {
+    const playSong = async () => {
+      if (sound) {
+        await sound.stopAsync()
+        await sound.unloadAsync()
+        setSound(null)
+      }
+
+      if (currentSong?.mp_audio) {
+        try {
+          const { sound: newSound } = await Audio.Sound.createAsync(
+            require('../assets/mp3/spotifydown.mp3'),
+          )
+          setSound(newSound)
+          newSound.setOnPlaybackStatusUpdate(onPlaybackStatusUpdate)
+          setIsPlaying(true)
+        } catch (error) {
+          console.error('Error loading new sound:', error)
+        }
+      }
     }
 
-    if (currentSong?.mp_audio) {
-      try {
-        const { sound: newSound } = await Audio.Sound.createAsync(
-          { uri: currentSong.mp_audio },
-        )
-        setSound(newSound)
-        newSound.setOnPlaybackStatusUpdate(onPlaybackStatusUpdate)
-        await newSound.playAsync()
-        setIsPlaying(true)
-      } catch (error) {
-        console.error('Error loading new sound:', error)
-      }
+    if (currentSong) {
+      playSong()
     }
   }, [currentSong])
 
@@ -67,8 +73,6 @@ const LiveMusicBottom = () => {
         await sound.playAsync()
         setIsPlaying(true)
       }
-    } else {
-      playSong()
     }
   }
 
@@ -79,7 +83,7 @@ const LiveMusicBottom = () => {
   }
 
   const handlePrevious = () => {
-    // Logic để quay lại bài hát trước đó
+    // Logic to go to the previous song
     console.log('Previous song')
   }
 
