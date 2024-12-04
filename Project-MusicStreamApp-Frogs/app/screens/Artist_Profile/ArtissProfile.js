@@ -51,16 +51,16 @@ const ArtissProfile = () => {
     useEffect(() => {
         const loadData = async () => {
             try {
-                const songs = await getSongs();
-                const clipss = await getClips();
-                const albumsD = await getAlbums();
-                console.log('albums', albumsD);
+                const songdb = await getSongs();
+                const clipdb = await getClips();
+                const albumdb = await getAlbums();
+                console.log('albums', albumdb);
                 // setSongs(songs);
-                const songsData = songs.filter(song => song.author === name);
+                const songsData = songdb.filter(song => song.author === name);
                 setSongs(songsData);
-                const clipsData = clipss.filter(clip => clip.artist.toLowerCase() === name.toLowerCase());
+                const clipsData = clipdb.filter(clip => clip.artist.toLowerCase() === name.toLowerCase());
                 setClips(clipsData);
-                setAlbums(albumsD);
+                setAlbums( albumdb.filter(album => album.artist.toLowerCase() === name.toLowerCase()));
                 
 
             } catch (error) {
@@ -134,7 +134,7 @@ const ArtissProfile = () => {
                         <FlatList
                             scrollEnabled={false}
                             data={songs}
-                            keyExtractor={item => item.toString() + 'listenAgain'}
+                            keyExtractor={item => item.id.toString()}
                             renderItem={({ item }) => <ListListenMusic items={item} />}
                         />
                     </View>
@@ -150,14 +150,14 @@ const ArtissProfile = () => {
                             style={{ marginTop: 20 }}
                             data={songs}
                             renderItem={({ item }) => <ListSong items={item} />}
-                            keyExtractor={item => item.id}
+                            keyExtractor={item => item.id.toString()}
                             horizontal={true}
                             showsHorizontalScrollIndicator={false}
                         />
                         <FlatList
                             data={songs}
                             renderItem={({ item }) => <ListSong items={item} />}
-                            keyExtractor={item => item.id+ 'singles2'}
+                            keyExtractor={item => item.id.toString()}
                             horizontal={true}
                             showsHorizontalScrollIndicator={false}
                         />
@@ -173,7 +173,7 @@ const ArtissProfile = () => {
                         <FlatList
                             data={clips}
                             renderItem={({ item }) => <Clips items={item}/>}
-                            keyExtractor={item => item.toString()}
+                            keyExtractor={item => item.id.toString()}
                             horizontal={true}
                             showsHorizontalScrollIndicator={false}
                         />
