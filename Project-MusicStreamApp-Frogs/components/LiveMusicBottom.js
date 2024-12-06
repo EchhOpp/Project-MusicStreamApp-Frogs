@@ -21,7 +21,6 @@ const LiveMusicBottom = () => {
     }
   }, [])
 
-  // Fetch current song
   useEffect(() => {
     const fetchCurrentSong = async () => {
       try {
@@ -35,7 +34,6 @@ const LiveMusicBottom = () => {
     fetchCurrentSong()
   }, [])
 
-  // Play song when currentSong changes
   useEffect(() => {
     const playSong = async () => {
       if (sound) {
@@ -47,7 +45,7 @@ const LiveMusicBottom = () => {
       if (currentSong?.mp_audio) {
         try {
           const { sound: newSound } = await Audio.Sound.createAsync(
-            require('../assets/mp3/spotifydown.mp3'),
+            { uri: currentSong.mp_audio },
           )
           setSound(newSound)
           newSound.setOnPlaybackStatusUpdate(onPlaybackStatusUpdate)

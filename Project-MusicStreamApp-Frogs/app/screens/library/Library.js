@@ -6,8 +6,50 @@ import LiveMusicBottom from '@/components/LiveMusicBottom'
 import Clips from '@/components/Clips'
 import LastestVideos from '@/components/LastestVideos'
 import Playlists from '@/components/PlayList'
+import { getClips } from '@/services/getMusicApi';
+import { getUserInfo } from '@/services/getUser';
+import { useState, useEffect  } from 'react'
+import { set } from 'firebase/database'
 
 const Library = ({navigation }) => {
+  const [clips, setClips] = useState([]);
+  const [userInfo, setUserInfo] = useState(null);
+  const [followings, setFollowings] = useState([]);
+  const [playlists, setPlaylists] = useState([]);
+  const [favorites, setFavorites] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const clipsData = await getClips();
+      setClips(clipsData);
+
+      const userInfoData = await getUserInfo();
+      if (userInfoData) {
+        setUserInfo(userInfoData);
+        setFollowings(userInfoData.follow || []);
+        setPlaylists(userInfoData.playlist || []);
+        setFavorites(userInfoData.favorite || []);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    if (userInfo) {
+      setFollowings(userInfo.follow || []);
+      setPlaylists(userInfo.playlist || []);
+      setFavorites(userInfo.favorite || []);
+    }
+  }, [userInfo]);
+
+  console.log(JSON.stringify(userInfo));
+  console.log(JSON.stringify(favorites));
+
+  if (!userInfo) {
+    return <Text>Loading...</Text>;
+  }
+  
   return (
     <View style={styles.container}>
        <ScrollView showsVerticalScrollIndicator={false} style={styles.bodyContent}>
@@ -32,22 +74,20 @@ const Library = ({navigation }) => {
           />
         </View>
 
-        {/* Playlists */}
+      {/* Playlists */}
         <View style={styles.playlists}>
           <View style={styles.listenTitle}>
             <Text style={[styles.Color, styles.textH1]}>Playlists</Text>
-            <TouchableOpacity style={styles.btnMore} onPress={
-              () => navigation.navigate('PlayListScreen')
-            }>
+            <TouchableOpacity style={styles.btnMore} onPress={() => navigation.navigate('PlayListScreen')}>
               <Text style={[styles.Color, styles.textH2]}>More</Text>
             </TouchableOpacity>
           </View>
 
           {/* Sổ data */}
           <FlatList
-            data={[1, 2, 3, 4, 5]}
-            renderItem={({ item }) => <Playlists />}
-            keyExtractor={item => item.toString()}
+            data={favorites}
+            renderItem={({ item }) => <Playlists playlist={item} />}
+            keyExtractor={(item, index) => Math.random().toString()}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
           />
@@ -67,9 +107,9 @@ const Library = ({navigation }) => {
 
           {/* Sổ data */}
           <FlatList
-            data={[1, 2, 3, 4, 5]}
-            renderItem={({ item }) => <Clips />}
-            keyExtractor={item => item.toString()}
+            data={clips}
+            renderItem={({ item }) => <Clips items={item}/>}
+            keyExtractor={(item, index) => index.toString()}  
             horizontal={true}
             showsHorizontalScrollIndicator={false}
           />

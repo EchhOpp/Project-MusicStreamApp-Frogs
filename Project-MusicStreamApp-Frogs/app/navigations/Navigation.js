@@ -11,7 +11,7 @@ const Stack = createNativeStackNavigator();
 
 const MainStack = () => {
     return (
-        <Stack.Navigator initialRouteName="Main">
+        <Stack.Navigator>
             <Stack.Screen
                 name="Auth"
                 component={Stacks}

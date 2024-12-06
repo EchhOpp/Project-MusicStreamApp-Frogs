@@ -16,7 +16,7 @@ import { getSongs, getAlbums, getClips, updateCurrentSong} from '@/services/getM
 import { getGenre } from '@/services/ChooseMusic';
 import { getRandomColor } from '@/utils/getRandomColor';
 import getKey from '@/utils/getKey';
-import { capNhatThongTinNguoiDung } from '@/services/getUser';
+import { getUserInfo, updateUserInformation } from '@/services/getUser';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -95,12 +95,60 @@ const Home = ({navigation}) => {
 
   const handleMenuItemPress = async (action, song) => {
     try {
+      // Lấy thông tin người dùng hiện tại
+      const userInfo = await getUserInfo();
+  
+      if (!userInfo) {
+        console.error("Không thể lấy thông tin người dùng.");
+        return;
+      }
+  
+      // Chuẩn bị dữ liệu cập nhật
+      let updatedFavorite = userInfo.favorite || [];
+      let updatedPlaylist = userInfo.playlist || [];
+      let updatedQueue = userInfo.queue || [];
+  
+      // Xử lý từng hành động
+      switch (action) {
+        case 'Add to favorites':
+          // Kiểm tra xem bài hát đã có trong danh sách chưa
+          if (!updatedFavorite.some(item => item.id === song.id)) {
+            updatedFavorite.push(song);
+          }
+          break;
+  
+        case 'Add to playlist':
+          if (!updatedPlaylist.some(item => item.id === song.id)) {
+            updatedPlaylist.push(song);
+          }
+          break;
+  
+        case 'Add to queue':
+          if (!updatedQueue.some(item => item.id === song.id)) {
+            updatedQueue.push(song);
+          }
+          break;
+  
+        default:
+          console.warn("Unknown action:", action);
+          return;
+      }
+  
+      // Cập nhật thông tin người dùng trong Firebase
       const userData = {
-        favorite: action === 'Add to favorites' ? song : "",
-        playlist: action === 'Add to playlist' ? song : "",
-        queue: action === 'Add to queue' ? song : "",
+        favorite: updatedFavorite,
+        playlist: updatedPlaylist,
+        queue: updatedQueue,
       };
-      await capNhatThongTinNguoiDung(userData);
+  
+      console.log("Updated user data:", userData);
+  
+      const updateResult = await updateUserInformation(userData);
+      if (updateResult) {
+        console.log("User data updated successfully.");
+      } else {
+        console.error("Failed to update user data.");
+      }
     } catch (error) {
       console.error("Error updating user data:", error);
     }

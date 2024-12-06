@@ -2,9 +2,9 @@ import { StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native'
 import React, {useEffect, useState} from 'react'
 import { LinearGradient } from 'expo-linear-gradient';
 
-const PlayList = ({ currentSong }) => {
-  if (!currentSong) return null;
+const PlayList = ({playlist}) => {
 
+    console.log((playlist));
   return (
     <View style={styles.container}>
         <LinearGradient
@@ -14,14 +14,14 @@ const PlayList = ({ currentSong }) => {
             <TouchableOpacity style={styles.imgContainer}>
                 <Image source={require('@/assets/images/IMG_04251.png')} style={styles.dia}/>
                 <Image 
-                  source={{ uri: currentSong.image }} 
+                  source={{uri: playlist.image}}    
                   style={styles.avt}
                 />
             </TouchableOpacity>
         </LinearGradient>
         <View>
-            <Text style={styles.nameMusic1}>{currentSong.title}</Text>
-            <Text style={styles.nameMusic2}>{currentSong.author}</Text>
+            <Text style={styles.nameMusic1}>{playlist.author}</Text>
+            <Text style={styles.nameMusic2}>{playlist.title}</Text>
         </View>
     </View>
   )

@@ -1,17 +1,15 @@
-import { ref, get, update } from "firebase/database";
 import { auth, database } from "../config/firebaseConfig";
-import { Alert } from "react-native";
+import { ref,update, get  } from "firebase/database";
 
 /**
- * Hàm để lấy thông tin người dùng hiện tại
- * @returns {Promise<Object>} - Trả về một Promise chứa thông tin người dùng hoặc lỗi
+ * Lấy thông tin của người dùng hiện tại
+ * @returns {Promise<Object|null>} - Trả về Promise chứa thông tin người dùng hoặc null nếu có lỗi
  */
-const layThongTinNguoiDung = async () => {
+const getUserInfo = async () => {
   try {
     const user = auth.currentUser;
 
     if (!user) {
-      Alert.alert("Lỗi", "Không có người dùng nào đang đăng nhập.");
       return null;
     }
 
@@ -21,14 +19,14 @@ const layThongTinNguoiDung = async () => {
     if (snapshot.exists()) {
       const data = snapshot.val();
       return {
-        ngheSi: data.artists || [],
-        clip: data.clips || "",
-        email: data.email || "",
-        yeuThich: data.favorite || "",
-        theoDoi: data.follow || "",
-        theLoai: data.genre || [],
-        danhSachPhat: data.playlist || "",
-        tenNguoiDung: data.userName || ""
+        artists: data?.artists || [],
+        clips: data?.clips || "",
+        email: data?.email || "",
+        favorite: data?.favorite || "",
+        follow: data?.follow || "",
+        genre: data?.genre || [],
+        playlist: data?.playlist || "",
+        userName: data?.userName || ""
       };
     } else {
       Alert.alert("Lỗi", "Không tìm thấy dữ liệu người dùng.");
@@ -36,44 +34,37 @@ const layThongTinNguoiDung = async () => {
     }
   } catch (error) {
     Alert.alert("Lỗi khi lấy thông tin người dùng", error.message);
-    console.error("Lỗi khi lấy thông tin người dùng:", error);
+    console.error("Error getting user information:", error);
     return null;
   }
 };
 
 /**
- * Hàm để cập nhật thông tin người dùng hiện tại
- * @param {Object} duLieu - Dữ liệu cần cập nhật
- * @returns {Promise<boolean>} - Trả về một Promise chứa kết quả cập nhật hoặc lỗi
+ * Cập nhật thông tin của người dùng hiện tại
+ * @param {Object} updateData - Dữ liệu cần cập nhật
+ * @returns {Promise<boolean>} - Trả về Promise true nếu thành công, false nếu có lỗi
  */
-const capNhatThongTinNguoiDung = async (duLieu) => {
+const updateUserInformation = async (userData) => {
   try {
     const user = auth.currentUser;
-
     if (!user) {
-      Alert.alert("Lỗi", "Không có người dùng nào đang đăng nhập.");
-      return false;
+        throw new Error("Không có người dùng nào đang đăng nhập");
     }
 
     const userRef = ref(database, `users/${user.uid}`);
-    await update(userRef, {
-      ngheSi: duLieu.artists || [],
-      clip: duLieu.clips || "",
-      email: duLieu.email || "",
-      yeuThich: duLieu.favorite || "",
-      theoDoi: duLieu.follow || "",
-      theLoai: duLieu.genre || [],
-      danhSachPhat: duLieu.playlist || "",
-      tenNguoiDung: duLieu.userName || ""
-    });
-    return true;
+      
+      // Chỉ cập nhật các trường được cung cấp
+      const updates = {};
+      if( userData.favorite != null) updates.favorite = userData.favorite;
+      if( userData.updatedPlaylist != null) updates.updatedPlaylist = userData.updatedPlaylist;
+      if( userData.updatedQueue != null ) updates.updatedQueue = userData.updatedQueue;
+
+      console.log("updates", updates);
+      await update(userRef, updates);
+      return true;
   } catch (error) {
-    Alert.alert("Lỗi khi cập nhật thông tin người dùng", error.message);
-    console.error("Lỗi khi cập nhật thông tin người dùng:", error);
-    return false;
+      throw new Error(`Lỗi khi cập nhật hồ sơ: ${error.message}`);
   }
 };
 
-export { layThongTinNguoiDung, capNhatThongTinNguoiDung };
-
-
+export { getUserInfo, updateUserInformation };
