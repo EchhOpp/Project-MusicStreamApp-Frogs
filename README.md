@@ -67,9 +67,9 @@ To learn more about developing your project with Expo, look at the following res
 11. Google Drive
    
 ## Contributors
-- Lastest update at 11:44 P.M. 08/09/2024
+- Lastest update at 11:08 P.M. 09/12/2024
 
 | No  | Full Name | Title | Student Code | Total commits  | Additions | Deletions | Join time | Disontinued |
 | :--: |:--:| :--: | :--: | --:| --: | --: | :--: | :--: |
-| 01. | Nguyễn Thành Luân | Leader | 21123021 | 0 | 0 | 0 | 31/08/24 | - |
-| 02. | Phan Đình Thái | Contributor | 21038281  | 0 | 0 | 0 | 31/08/24  | - |
+| 01. | Nguyễn Thành Luân | Leader | 21123021 | 77 | 32.682 | 6.279 | 31/08/24 | - |
+| 02. | Phan Đình Thái | Contributor | 21038281  | 43 | 4.868 | 971 | 31/08/24  | - |
