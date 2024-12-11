@@ -1,0 +1,399 @@
+{
+  "albums": {
+    "After Hours": {
+      "artist": "The Weeknd",
+      "image": "https://drive.google.com/uc?id=1yNcrH3zXSJ4pENEvEKUy1W904OJWeXLx",
+      "image_ablum": "https://drive.google.com/file/d/1MNHfrx2qA-wvYTFiF30tovljbQKC3TQ8",
+      "song_ablums": [
+        {
+          "id": "song04"
+        },
+        {
+          "id": "song05"
+        }
+      ]
+    },
+    "California": {
+      "artist": "Lana Del Rey",
+      "image": "https://drive.google.com/uc?id=1qnEq2fc-uzDQKRCY6YLezRWJUDS59zp7",
+      "image_ablum": "https://drive.google.com/file/d/1MNHfrx2qA-wvYTFiF30tovljbQKC3TQ8",
+      "song_ablums": [
+        {
+          "id": "song3"
+        }
+      ]
+    },
+    "Future Nostalgia": {
+      "artist": "Dua Lipa",
+      "image": "https://drive.google.com/uc?id=1r5qCUNFB-akf31VQKI_WkTC0BKWzYT5w",
+      "image_ablum": "https://drive.google.com/file/d/1MNHfrx2qA-wvYTFiF30tovljbQKC3TQ8",
+      "song_ablums": [
+        {
+          "id": "song06"
+        },
+        {
+          "id": "song07"
+        }
+      ]
+    },
+    "Happier Than Ever": {
+      "artist": "Billie Eilish",
+      "image": "https://drive.google.com/uc?id=16ccVaDm3L5gEdmkqPgXCN8YTx5a6kNbi",
+      "image_ablum": "https://drive.google.com/file/d/1MNHfrx2qA-wvYTFiF30tovljbQKC3TQ8",
+      "song_ablums": [
+        {
+          "id": "song10"
+        },
+        {
+          "id": "song11"
+        }
+      ]
+    },
+    "Midnights": {
+      "artist": "Taylor Swift",
+      "image": "https://drive.google.com/uc?id=11HvmxIRnV-6KktvVwuD26ZmqRdcFZvZS",
+      "image_ablum": "https://drive.google.com/file/d/1MNHfrx2qA-wvYTFiF30tovljbQKC3TQ8",
+      "song_ablums": [
+        {
+          "id": "song08"
+        },
+        {
+          "id": "song09"
+        }
+      ]
+    },
+    "Recovery": {
+      "artist": "Eminem",
+      "image": "https://drive.google.com/uc?id=1pxG-kIEEAssAL2PRv02tk9PefV8mk7J2",
+      "image_ablum": "https://drive.google.com/file/d/1MNHfrx2qA-wvYTFiF30tovljbQKC3TQ8",
+      "song_ablums": [
+        {
+          "id": "song12"
+        },
+        {
+          "id": "song13"
+        }
+      ]
+    },
+    "Wonderland": {
+      "artist": "Taylor Swift",
+      "image": "https://drive.google.com/uc?id=1_e__DdTO657fNZqGFnFPGbsR_2FPCQM4",
+      "image_ablum": "https://drive.google.com/file/d/1MNHfrx2qA-wvYTFiF30tovljbQKC3TQ8",
+      "song_ablums": [
+        {
+          "id": "song01"
+        },
+        {
+          "id": "song02"
+        }
+      ]
+    }
+  },
+  "artists": {
+    "Alternative": [
+      {
+        "id": "1",
+        "image": "https://drive.usercontent.google.com/download?id=1CTlEISxan39ZyqKZypusUqy2hKt-Xs48&export=view&authuser=0",
+        "name": "The Weeknd"
+      },
+      {
+        "id": "2",
+        "image": "https://drive.google.com/uc?export=view&id=1IH2TBh3Rcwj8qWKK-epIyfSjpl938Mut",
+        "name": "Dua Lipa"
+      },
+      {
+        "id": "a2",
+        "image": "https://drive.google.com/uc?export=view&id=1b4AXxaxvF2XI46075Cf9HxakuqQk9ZmT",
+        "name": "Lana Del Rey"
+      }
+    ],
+    "Blues": [
+      {
+        "id": "3",
+        "image": "https://drive.google.com/uc?export=view&id=1rPoLAwXFu8-XsqSmyGHIk5m6hRIbZ8Mr",
+        "name": "Taylor Swift"
+      },
+      {
+        "id": "4",
+        "image": "https://drive.google.com/uc?export=view&id=1huJNpAXDgeY0DeQBUIu47BK6CzBbnGek",
+        "name": "Drake"
+      },
+      {
+        "id": "a4",
+        "image": "https://drive.google.com/uc?export=view&id=1T5xg8v1T7zjBrqQuO3k4wLT82g8dkxJ1",
+        "name": "Billie Eilish"
+      }
+    ],
+    "Classical": [
+      {
+        "id": "5",
+        "image": "https://drive.google.com/uc?export=view&id=1oWK0HiZKBzCATLZ8aYWVZwZvjhFH5hPC",
+        "name": "Future"
+      },
+      {
+        "id": "6",
+        "image": "https://drive.google.com/uc?export=view&id=1bZQsWQESJ1IC1U7zkZ8mtzblgrG0h41N",
+        "name": "Eminem"
+      }
+    ],
+    "Country": [
+      {
+        "id": "7",
+        "image": "https://drive.google.com/uc?export=view&id=1Lor8OVtLeY66P-xlX2zqwhhMa6gggC0P",
+        "name": "Dua Lipa"
+      },
+      {
+        "id": "8",
+        "image": "https://drive.google.com/uc?export=view&id=1s7W7EVa2v8_LAveqJqKpkes2uTbEuAKp",
+        "name": "Metro Boomin"
+      }
+    ],
+    "Electronic": [
+      {
+        "id": "9",
+        "image": "https://drive.google.com/uc?export=view&id=145w36Zm194IdrWQ-GxMSwNC6aP4ul1l_",
+        "name": "Eminem"
+      },
+      {
+        "id": "a10",
+        "image": "https://drive.google.com/uc?export=view&id=1_EdG3yEujaQfQAlbVF3yjof7R57pmTTc",
+        "name": "Billie Eilish"
+      }
+    ],
+    "Experimental": [
+      {
+        "id": "12",
+        "image": "https://drive.google.com/uc?export=view&id=1nmgp6JbeAo4KeaZUR4ZhWiozrrB6gA_R",
+        "name": "Thanh Luan"
+      },
+      {
+        "id": "a11",
+        "image": "https://drive.google.com/uc?export=view&id=1TMHeRRE-CDOMSYiqW4ups7650vI6aivJ",
+        "name": "Dom dom"
+      }
+    ],
+    "Hip-hop": [
+      {
+        "id": "11",
+        "image": "https://drive.google.com/uc?export=view&id=1FrDJPH1aQgW1x65oHgqtv5aqR1HblgAo",
+        "name": "Thai Phan"
+      }
+    ],
+    "Luan": [
+      {
+        "id": "10",
+        "image": "https://drive.google.com/uc?export=view&id=1hkP8hwkyMNxU41xV01oEEZUQpd_nznIw",
+        "name": "Taylor Swift"
+      }
+    ],
+    "R&B": [
+      {
+        "id": "a8",
+        "image": "https://drive.google.com/uc?export=view&id=1vKjM1vSrQR9fThkQEFQWK8ESyV0Sbf4R",
+        "name": "Lana Del Rey"
+      }
+    ],
+    "Thai": [
+      {
+        "id": "a6",
+        "image": "https://drive.google.com/uc?export=view&id=14qFC5anmXBqtCsFugG2X86OjmISKkgvk",
+        "name": "The Weeknd"
+      }
+    ]
+  },
+  "clips": [
+    {
+      "artist": "The weeknd",
+      "id": "clip0",
+      "title": "Performing \"The Hills\"",
+      "video": "https://drive.google.com/file/d/1yR_o6kz62CK1RnG-EtctQXE6FaMPfEaj"
+    },
+    {
+      "artist": "Lana Del Rey",
+      "id": "clip01",
+      "title": "Venice Bitch",
+      "video": "https://drive.google.com/file/d/1M5Lu3M4NVq2DhPhJxQsh1Vug-DZMTL9R"
+    }
+  ],
+  "currentSong": {
+    "artist": "Taylor Swift",
+    "id": "song1",
+    "image": "https://drive.usercontent.google.com/download?id=1CTlEISxan39ZyqKZypusUqy2hKt-Xs48&export=view&authuser=0",
+    "mp_audio": "https://drive.google.com/uc?export=download&id=1VSMJQgs9VPuwPCv17hKUgNqVE-1T-0OC",
+    "title": "I Can See You"
+  },
+  "songs": [
+    {
+      "author": "Taylor Swift",
+      "id": "song1",
+      "image": "https://drive.usercontent.google.com/download?id=1CTlEISxan39ZyqKZypusUqy2hKt-Xs48&export=view&authuser=0",
+      "mp_audio": "https://drive.google.com/uc?export=download&id=1VSMJQgs9VPuwPCv17hKUgNqVE-1T-0OC",
+      "title": "I Can See You"
+    },
+    {
+      "author": "Dua Lipa",
+      "id": "song2",
+      "image": "https://drive.google.com/uc?export=view&id=1DSrC6Kl1IRb2KJN8UA3WGSmc6Kn9lLbR",
+      "mp_audio": "https://drive.google.com/uc?export=download&id=14E42-pSCjxJ2XYfYQSrg7DSYPUMkP9Zd",
+      "title": "Illusion"
+    },
+    {
+      "author": "Lana Del Rey",
+      "id": "song3",
+      "image": "https://drive.google.com/uc?export=view&id=18FJR8mnNombD2BBHmrOQf-flHcOPLNRt ",
+      "mp_audio": "https://drive.google.com/uc?export=download&id=17O2K8NHlQ8kzv11ti9j9yuQBbl10dayJ",
+      "title": "A & W"
+    },
+    {
+      "author": "Lana Del Rey",
+      "id": "song04",
+      "image": "https://drive.google.com/uc?export=view&id=1C0wsO3yp6EFt8kTlezcHNow-v3cpoYAa",
+      "mp_audio": "https://drive.google.com/uc?export=download&id=14E42-pSCjxJ2XYfYQSrg7DSYPUMkP9Zd",
+      "title": "Honeymoon"
+    },
+    {
+      "author": "The weeknd",
+      "id": "song05",
+      "image": "https://drive.google.com/uc?export=view&id=14saQlp1wH5OXpiclWYqiva_Gh7dBB_m5",
+      "mp_audio": "https://drive.google.com/uc?export=download&id=14E42-pSCjxJ2XYfYQSrg7DSYPUMkP9Zd",
+      "title": "Until I bleed out"
+    },
+    {
+      "author": "Luan Thai",
+      "id": "song6",
+      "image": "https://drive.usercontent.google.com/download?id=1EjWtP9-ZciWiuZn6m_H4GbCTfDbA-j_f&export=view&authuser=0",
+      "mp_audio": "https://drive.google.com/uc?export=download&id=14E42-pSCjxJ2XYfYQSrg7DSYPUMkP9Zd",
+      "title": "L & T"
+    }
+  ],
+  "users": {
+    "BvyHA95FjZeKUIi2irLzcCXnc1z1": {
+      "email": "demo285@gmail.com",
+      "userName": "Demoo"
+    },
+    "FaesLPYNeBOlWmy806kTO4esEpF2": {
+      "artists": [
+        "Lana Del Rey",
+        "Eminem",
+        "Taylor Swift",
+        "The Weeknd"
+      ],
+      "email": "test001@gmail.com",
+      "genre": [
+        "Country",
+        "Luan"
+      ],
+      "userName": "yio"
+    },
+    "GnaswSQvekSExRdftDxNVWduCIq1": {
+      "artists": [
+        "Dua Lipa"
+      ],
+      "email": "abc123@gmail.com",
+      "favorite": [
+        {
+          "author": "Taylor Swift",
+          "id": "song1",
+          "image": "https://drive.usercontent.google.com/download?id=1CTlEISxan39ZyqKZypusUqy2hKt-Xs48&export=view&authuser=0",
+          "key": "0",
+          "mp_audio": "https://drive.google.com/uc?export=download&id=14E42-pSCjxJ2XYfYQSrg7DSYPUMkP9Zd",
+          "title": "I Can See You"
+        }
+      ],
+      "genre": [
+        "Classical"
+      ],
+      "userName": "iPad Pro"
+    },
+    "Iyoy1s2lnnZQdAcChC9Q62WSepS2": {
+      "artists": [
+        "Dua Lipa",
+        "Billie Eilish"
+      ],
+      "email": "abc01@gmail.com",
+      "genre": [
+        "Hip-hop",
+        "Electronic"
+      ],
+      "userName": "abc"
+    },
+    "en5SnxuqmxMZI6SCH9eNCEl7Y222": {
+      "artists": [
+        "Lana Del Rey",
+        "Dua Lipa",
+        "Drake"
+      ],
+      "clips": "",
+      "email": "123a@gmail.com",
+      "favorite": "",
+      "follow": "",
+      "genre": [
+        "Blues",
+        "Luan"
+      ],
+      "playlist": "",
+      "userName": "123"
+    },
+    "vyRsXoWyVoefStATZJj9p4LWwPN2": {
+      "artists": [
+        "The Weeknd",
+        "Dua Lipa"
+      ],
+      "email": "abcx@gmail.com",
+      "favorite": [
+        {
+          "author": "Dua Lipa",
+          "id": "song2",
+          "image": "https://drive.google.com/uc?export=view&id=1DSrC6Kl1IRb2KJN8UA3WGSmc6Kn9lLbR",
+          "key": "1",
+          "mp_audio": "https://drive.google.com/uc?export=download&id=14E42-pSCjxJ2XYfYQSrg7DSYPUMkP9Zd",
+          "title": "Illusion"
+        },
+        {
+          "author": "Taylor Swift",
+          "id": "song1",
+          "image": "https://drive.usercontent.google.com/download?id=1CTlEISxan39ZyqKZypusUqy2hKt-Xs48&export=view&authuser=0",
+          "key": "0",
+          "mp_audio": "https://drive.google.com/uc?export=download&id=1VSMJQgs9VPuwPCv17hKUgNqVE-1T-0OC",
+          "title": "I Can See You"
+        },
+        {
+          "author": "Lana Del Rey",
+          "id": "song04",
+          "image": "https://drive.google.com/uc?export=view&id=1C0wsO3yp6EFt8kTlezcHNow-v3cpoYAa",
+          "key": "3",
+          "mp_audio": "https://drive.google.com/uc?export=download&id=14E42-pSCjxJ2XYfYQSrg7DSYPUMkP9Zd",
+          "title": "Honeymoon"
+        },
+        {
+          "author": "Luan Thai",
+          "id": "song6",
+          "image": "https://drive.usercontent.google.com/download?id=1EjWtP9-ZciWiuZn6m_H4GbCTfDbA-j_f&export=view&authuser=0",
+          "key": "5",
+          "mp_audio": "https://drive.google.com/uc?export=download&id=14E42-pSCjxJ2XYfYQSrg7DSYPUMkP9Zd",
+          "title": "L & T"
+        },
+        {
+          "author": "Lana Del Rey",
+          "id": "song3",
+          "image": "https://drive.google.com/uc?export=view&id=18FJR8mnNombD2BBHmrOQf-flHcOPLNRt ",
+          "key": "2",
+          "mp_audio": "https://drive.google.com/uc?export=download&id=17O2K8NHlQ8kzv11ti9j9yuQBbl10dayJ",
+          "title": "A & W"
+        },
+        {
+          "author": "The weeknd",
+          "id": "song05",
+          "image": "https://drive.google.com/uc?export=view&id=14saQlp1wH5OXpiclWYqiva_Gh7dBB_m5",
+          "key": "4",
+          "mp_audio": "https://drive.google.com/uc?export=download&id=14E42-pSCjxJ2XYfYQSrg7DSYPUMkP9Zd",
+          "title": "Until I bleed out"
+        }
+      ],
+      "genre": [
+        "Alternative"
+      ],
+      "userName": "abc"
+    }
+  }
+}
